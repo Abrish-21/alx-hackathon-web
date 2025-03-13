@@ -111,9 +111,12 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <button className="rounded-md bg-primary px-4 py-2 text-white font-medium hover:bg-primary/90 transition-colors">
+          <Link to={'/registration'} className="rounded-md bg-primary px-4 py-2 text-white font-medium hover:bg-primary/90 transition-colors">
+          Register Now</Link>
+          
+          {/* <button className="">
             Register Now
-          </button>
+          </button> */}
         </div>
       </div>
     </header>
