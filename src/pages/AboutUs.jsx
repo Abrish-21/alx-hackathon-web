@@ -126,7 +126,7 @@ export default function AboutUs() {
             <h1 className="text-3xl text-black font-bold tracking-tighter sm:text-5xl">
               We blend <span className="text-amber-600">Hospitality</span> and <span className="text-blue-800">Innovation</span>
             </h1>
-            <p className="text-black mx-auto max-w-[700px] text-white/80 md:text-xl">
+            <p className=" mx-auto max-w-[700px] text-black md:text-xl">
               Bridging technology and hospitality innovation to transform Ethiopia's hospitality landscape
             </p>
           </div>

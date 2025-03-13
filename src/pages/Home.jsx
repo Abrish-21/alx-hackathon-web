@@ -142,7 +142,7 @@ export default function Home() {
                 Hospitality <span className="text-amber-400">Hackathon</span> 2025
               </h1>
 
-              <p className="text-lg md:text-xl text-blue-100 mb-4 max-w-xl mx-auto lg:mx-0">SOLVE, CREATE, DISRUPT!</p>
+              <p className="text-lg md:text-2xl text-white font-bold mb-4 max-w-xl mx-auto lg:mx-0">SOLVE, CREATE, DISRUPT!</p>
 
               <p className="text-base md:text-lg text-blue-100 mb-8 max-w-xl mx-auto lg:mx-0">
                 Step into a vibrant space where tech visionaries, entrepreneurs, and hospitality leaders come together
