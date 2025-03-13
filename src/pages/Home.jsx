@@ -22,6 +22,8 @@ import {
   Briefcase,
   Sparkles,
 } from "lucide-react"
+import HackathonPeople from "../components/ui/HackathonPeople"
+import HackathonSchedule from "../components/ui/HackathonSchedule"
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
@@ -281,15 +283,18 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section>
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <HackathonSchedule />
+    </div>
+      </section>
 
       {/* Meet the Organizers */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Meet the Organizers</h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              The visionary organizations behind the Hospitality Hackathon 2025
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Jointly Organized By</h2>
+            
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -302,6 +307,12 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section>
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+      <HackathonPeople />
+    </div>
       </section>
 
       {/* Prizes & Opportunities */}
