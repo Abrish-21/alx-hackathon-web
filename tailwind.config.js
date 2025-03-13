@@ -50,6 +50,9 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        "fade-in": "fadeIn 0.5s ease-in-out",
+      },
     },
   },
   plugins: [],
