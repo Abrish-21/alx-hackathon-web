@@ -5,6 +5,7 @@ import AboutUs from './pages/AboutUs'
 import Resources from './pages/Resources'
 import Registration from './pages/Registration'
 import ContactUs from './pages/ContactUs'
+import CheckIn from './pages/CheckIn'
 import Navbar from './layouts/Navbar'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path='/resources' element={<Resources />} />
           <Route path='/registration' element={<Registration />} />
           <Route path='/contact-us' element={<ContactUs />} />
+          <Route path='/check-in' element={<CheckIn />} />
         </Routes>
       </Router>
 
