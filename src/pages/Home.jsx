@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import hero from '../../public/assets/hero.mp4'
+import hero from '/assets/hero.mp4'
 import {
   Calendar,
   MapPin,
@@ -423,7 +423,7 @@ export default function Home() {
       <section className="py-20 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">How to Participate & Contact Us</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">How to Participate</h2>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               Join us for this exciting opportunity to innovate in Ethiopia's hospitality industry
             </p>
