@@ -7,6 +7,7 @@ import Registration from './pages/Registration'
 import ContactUs from './pages/ContactUs'
 import CheckIn from './pages/CheckIn'
 import Navbar from './layouts/Navbar'
+import Footer from './layouts/Footer'
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path='/check-in' element={<CheckIn />} />
         </Routes>
       </Router>
-
+    <Footer />
     </div>
   )
 }
