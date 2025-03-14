@@ -101,13 +101,13 @@ const Users = (props) => (
 
 export default function AboutUs() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen max-w-full overflow-hidden flex-col bg-white">
      
 
       {/* Hero Section */}
-      <section className=" bg-gradient-to-br from-blue-700/20 to-amber-600/20 py-16 md:py-24 overflow-hidden">
+      <section className=" bg-gradient-to-br from-blue-700/20 to-amber-600/20 py-16 md:py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(20,1fr)] h-full w-full">
+          <div className="grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(20,1fr)] overflow-hidden">
             {Array(800)
               .fill(0)
               .map((_, i) => (
