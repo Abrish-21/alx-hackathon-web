@@ -22,7 +22,7 @@ function Footer() {
         <p className="text-center text-base text-gray-400">
             Made with ❤️ by 
             <a href="https://www.linkedin.com/in/abrham28/" target="_blank" rel="noopener noreferrer" className="text-blue-500">  Abrham Tilksew </a>  | 
-            <a href="https://www.linkedin.com/in/sumeya-akmel-2a3b9b270/" target="_blank" rel="noopener noreferrer" className="text-blue-500">Sumeya Akemel </a>  | 
+            <a href="https://www.linkedin.com/in/sumeya-akmel-2a3b9b270/" target="_blank" rel="noopener noreferrer" className="text-blue-500">Sumeya Akmel </a>  | 
             <a href="https://www.linkedin.com/in/yohana-mekuria-90607a2ab/" target="_blank" rel="noopener noreferrer" className="text-blue-500">Yohana Mekuria </a>
             </p>
 
