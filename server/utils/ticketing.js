@@ -13,7 +13,7 @@ const generateTicketNumber = () => {
 // Generate QR code as data URL
 const generateQRCode = async (data) => {
   try {
-    const qrDataUrl = await QRCode.toDataURL(JSON.stringify(data));
+    const qrDataUrl = await QRCode.toDataURL(data);
     return qrDataUrl;
   } catch (error) {
     console.error('Error generating QR code:', error);
@@ -74,6 +74,12 @@ const generateTicketHTML = (user, qrCodeDataUrl) => {
           font-size: 0.9em;
           color: #718096;
         }
+        .team-info {
+          background: #ebf4ff;
+          padding: 10px;
+          border-radius: 5px;
+          margin: 15px 0;
+        }
       </style>
     </head>
     <body>
@@ -88,6 +94,9 @@ const generateTicketHTML = (user, qrCodeDataUrl) => {
             <p><strong>Phone:</strong> ${user.phoneNumber}</p>
             <p><strong>Ticket Number:</strong> ${user.ticketNumber}</p>
             <p><strong>Role:</strong> ${user.roleType}</p>
+            <div class="team-info">
+              <p><strong>Team:</strong> ${user.teamName || 'N/A'}</p>
+            </div>
           </div>
           <div class="ticket-qr">
             <img src="${qrCodeDataUrl}" alt="QR Code">
