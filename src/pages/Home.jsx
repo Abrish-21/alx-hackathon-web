@@ -1,9 +1,9 @@
 "use client"
-
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import hero from '/assets/hero.mp4'
 import {
+  HeartIcon,
   Calendar,
   MapPin,
   Award,
@@ -481,7 +481,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-amber-500 to-amber-600 text-white">
+      <section className="flex flex-col justify-end gap-20 pb-2 pt-20 bg-gradient-to-r from-amber-500 to-amber-600 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">SOLVE, CREATE, DISRUPT!</h2>
@@ -500,12 +500,18 @@ export default function Home() {
                 to="/contact-us"
                 className="inline-flex items-center justify-center px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-colors border border-white/20"
               >
+
                 Contact Us
               </Link>
-            </div>
+            </div >
+            
+            
           </div>
         </div>
+      
       </section>
+     
+     
     </div>
   )
 }
