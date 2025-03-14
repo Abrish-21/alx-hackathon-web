@@ -17,7 +17,7 @@ function Footer() {
         </div>
         <div className="mt-8 md:mt-0 md:order-1">
           <p className="text-center text-base text-gray-400">&copy; {new Date().getFullYear()} Hospitality Hackathon.</p>
-        </div>npm i react-icons
+        </div>
         <div className="mt-8 md:mt-0 md:order-1">
         <p className="text-center text-base text-gray-400">
             Made with ❤️ by 
