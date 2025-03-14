@@ -3,11 +3,15 @@ export default {
     const corsHeaders = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Headers': 'Content-Type, Accept',
+      'Access-Control-Max-Age': '86400',
     };
 
+    // Handle CORS preflight requests
     if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders });
+      return new Response(null, {
+        headers: corsHeaders
+      });
     }
 
     try {
@@ -213,6 +217,64 @@ export default {
         );
       }
 
+      if (path === '/api/contact' && request.method === 'POST') {
+        try {
+          const data = await request.json();
+          console.log('Contact form data:', data);
+
+          // Validate required fields
+          if (!data.name || !data.email || !data.subject || !data.message) {
+            return new Response(
+              JSON.stringify({ error: 'All fields are required' }),
+              {
+                status: 400,
+                headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+              }
+            );
+          }
+
+          // Store contact message in database
+          try {
+            await env.DB.prepare(`
+              INSERT INTO contact_messages (
+                name, email, subject, message, created_at
+              ) VALUES (?, ?, ?, ?, datetime('now'))
+            `).bind(
+              data.name,
+              data.email,
+              data.subject,
+              data.message
+            ).run();
+
+            return new Response(
+              JSON.stringify({ message: 'Message sent successfully' }),
+              {
+                status: 200,
+                headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+              }
+            );
+          } catch (dbError) {
+            console.error('Database error:', dbError);
+            return new Response(
+              JSON.stringify({ error: 'Failed to save message' }),
+              {
+                status: 500,
+                headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+              }
+            );
+          }
+        } catch (error) {
+          console.error('Contact form error:', error);
+          return new Response(
+            JSON.stringify({ error: 'Failed to process request' }),
+            {
+              status: 400,
+              headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+            }
+          );
+        }
+      }
+
       if (path.startsWith('/api/registration/')) {
         const ticketNumber = path.split('/').pop();
         const user = await env.DB.prepare(`
@@ -329,7 +391,7 @@ export default {
     } catch (error) {
       console.error('Error:', error);
       return new Response(
-        JSON.stringify({ error: error.message }),
+        JSON.stringify({ error: 'Internal server error' }),
         {
           status: 500,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
