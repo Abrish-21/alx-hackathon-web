@@ -168,7 +168,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="lg:w-1/2">
+            <div className="lg:w-3/4">
               <div className="relative rounded-xl overflow-hidden shadow-2xl border-4 border-white/20">
                 {!isVideoPlaying && (
                   <div className="absolute inset-0 flex items-center justify-center bg-black/40 z-10">
