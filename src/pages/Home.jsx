@@ -124,7 +124,7 @@ export default function Home() {
   return (
     <div className={`bg-white min-h-screen transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
+      <section className="relative overflow-hidden bg-gradient-to-r from-blue-950 to-indigo-900 text-white">
         <div
           className="absolute inset-0 z-0 opacity-20"
           style={{
@@ -132,7 +132,7 @@ export default function Home() {
           }}
         ></div>
 
-        <div className="container mx-auto px-4 py-20 md:pb-32 relative z-10">
+        <div className="container mx-auto px-4 py-10 md:pb-32 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-1/2 text-center lg:text-left">
               <div className="inline-flex items-center justify-center p-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
@@ -146,7 +146,7 @@ export default function Home() {
 
               <p className="text-lg md:text-2xl text-white font-bold mb-4 max-w-xl mx-auto lg:mx-0">SOLVE, CREATE, DISRUPT!</p>
 
-              <p className="text-base md:text-lg text-blue-100 mb-8 max-w-xl mx-auto lg:mx-0">
+              <p className="text-base md:text-lg font-medium text-blue-100 mb-8 max-w-xl mx-auto lg:mx-0">
                 Step into a vibrant space where tech visionaries, entrepreneurs, and hospitality leaders come together
                 to transform Ethiopia's hospitality landscape through innovation.
               </p>
@@ -168,10 +168,10 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="lg:w-1/2">
-              <div className="relative rounded-xl overflow-hidden shadow-2xl border-4 border-white/20">
+            <div className="lg:w-3/4">
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
                 {!isVideoPlaying && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 z-10">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-10">
                     <button
                       onClick={playVideo}
                       className="p-4 bg-amber-500 hover:bg-amber-600 rounded-full transition-colors shadow-lg"

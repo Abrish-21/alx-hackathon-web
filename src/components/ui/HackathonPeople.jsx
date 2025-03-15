@@ -3,55 +3,11 @@
 import { useState } from "react"
 
 export default function HackathonPeople() {
-  const [activeTab, setActiveTab] = useState("organizers")
+  const [activeTab, setActiveTab] = useState("mentors")
 
   const people = {
-    organizers: [
-      {
-        name: "Alex Chen",
-        role: "Lead Organizer",
-        specialty: "Full-Stack Development",
-        image: "/assets/images/jurry1.png",
-        social: {
-          twitter: "https://twitter.com/alexchen",
-          github: "https://github.com/alexchen",
-          linkedin: "https://linkedin.com/in/alexchen",
-        },
-      },
-      {
-        name: "Priya Sharma",
-        role: "Technical Director",
-        specialty: "AI & Machine Learning",
-        image: "/assets/images/jurry2.png",
-        social: {
-          twitter: "https://twitter.com/priyasharma",
-          github: "https://github.com/priyasharma",
-          linkedin: "https://linkedin.com/in/priyasharma",
-        },
-      },
-      {
-        name: "Marcus Johnson",
-        role: "Community Manager",
-        specialty: "DevOps & Cloud",
-        image: "/assets/images/jurry3.png",
-        social: {
-          twitter: "https://twitter.com/marcusj",
-          github: "https://github.com/marcusj",
-          linkedin: "https://linkedin.com/in/marcusj",
-        },
-      },
-      {
-        name: "Sophia Rodriguez",
-        role: "Sponsorship Lead",
-        specialty: "Product Management",
-        image: "/assets/images/jurry4.png",
-        social: {
-          twitter: "https://twitter.com/sophiar",
-          github: "https://github.com/sophiar",
-          linkedin: "https://linkedin.com/in/sophiar",
-        },
-      },
-    ],
+    
+  
     mentors: [
       {
         name: "David Kim",
@@ -165,8 +121,8 @@ export default function HackathonPeople() {
 
       {/* Custom tabs since we're not using shadcn components */}
       <div className="flex justify-center mb-8">
-        <div className="grid grid-cols-3 w-full max-w-md bg-gray-100 rounded-lg p-1">
-          {["organizers", "mentors", "judges"].map((tab) => (
+        <div className="grid grid-cols-2 w-full max-w-md bg-gray-100 rounded-lg p-1">
+          {["mentors", "judges"].map((tab) => (
             <button
               key={tab}
               onClick={() => handleTabChange(tab)}
