@@ -294,23 +294,27 @@ const Registration = () => {
           teamMembers: [{ fullName: "", email: "", phoneNumber: "", roleType: "" }],
         });
       } else {
-        // Handle different types of errors
+        // Check for different types of errors
         let errorMessage = "Registration failed. ";
 
-        // Check for email-related errors in the response
-        const responseText = JSON.stringify(data).toLowerCase();
-        const isEmailError =
-          responseText.includes("email") ||
-          responseText.includes("already registered") ||
-          responseText.includes("already exists") ||
-          responseText.includes("duplicate");
-
-        if (isEmailError) {
-          errorMessage = "This email address is already registered for the hackathon. Please use a different email.";
-          setFieldErrors((prev) => ({
-            ...prev,
-            email: "Email already registered",
-          }));
+        if (data.error) {
+          errorMessage = data.error;
+          if (data.details) {
+            errorMessage = data.details;
+          }
+          
+          // Set specific field error
+          if (errorMessage.includes("team member")) {
+            setFieldErrors((prev) => ({
+              ...prev,
+              email: "Already registered as team member"
+            }));
+          } else {
+            setFieldErrors((prev) => ({
+              ...prev,
+              email: "Email already registered"
+            }));
+          }
         } else if (response.status === 400) {
           errorMessage += "Please check your information and try again.";
         } else if (response.status === 429) {
