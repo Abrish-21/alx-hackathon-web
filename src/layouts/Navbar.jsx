@@ -64,8 +64,8 @@ export default function Navbar() {
 
         {/* Mobile Menu Overlay */}
         {isOpen && (
-          <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm md:hidden">
-            <div className="fixed inset-y-0 right-0 z-50 w-full max-w-xs bg-white p-6 shadow-lg">
+          <div className="fixed inset-0 z-50 bg-white backdrop-blur-sm md:hidden">
+            <div className="fixed bg-white right-0 z-50 w-full max-w-xs  p-6 shadow-lg">
               <div className="flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
                   <Terminal className="h-6 w-6 text-primary" />
