@@ -249,13 +249,6 @@ const Registration = () => {
             </button>
           </div>
         </div>
-
-        {status.message && (
-          <div className={`mb-6 p-4 rounded-md ${status.type === 'error' ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
-            {status.message}
-          </div>
-        )}
-
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className={`bg-blue-50 p-4 rounded-md mb-6`}>
             <h3 className="text-xl font-semibold text-blue-800 mb-4">
@@ -452,6 +445,12 @@ const Registration = () => {
             >
               {registrationType === 'team' ? 'Register Team' : 'Register'}
             </button>
+            {status.message && (
+          <div className={`mb-6 p-4 rounded-md ${status.type === 'error' ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
+            {status.message}
+          </div>
+        )}
+
           </div>
         </form>
       </div>
