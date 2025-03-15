@@ -1,11 +1,9 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
-  const navigate = useNavigate()
-  const [registrationType, setRegistrationType] = useState("individual")
+  const navigate = useNavigate();
+  const [registrationType, setRegistrationType] = useState("individual");
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -15,23 +13,24 @@ const Registration = () => {
     strengths: "",
     roleType: "",
     teamMembers: [{ fullName: "", email: "", phoneNumber: "", roleType: "" }],
-  })
+  });
   const [status, setStatus] = useState({
     type: "",
     message: "",
-  })
-  const [showSuccess, setShowSuccess] = useState(false)
-  const [fieldErrors, setFieldErrors] = useState({})
+  });
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
 
   // Clear field errors when form data changes
   useEffect(() => {
     if (Object.keys(fieldErrors).length > 0) {
-      setFieldErrors({})
+      setFieldErrors({});
     }
-  }, [formData])
+  }, [formData]);
 
   const handleRegistrationTypeChange = (type) => {
-    setRegistrationType(type)
+    setRegistrationType(type);
     // Reset form data when switching registration type
     setFormData({
       fullName: "",
@@ -42,222 +41,223 @@ const Registration = () => {
       strengths: "",
       roleType: "",
       teamMembers: [{ fullName: "", email: "", phoneNumber: "", roleType: "" }],
-    })
-    setStatus({ type: "", message: "" })
-    setFieldErrors({})
-  }
+    });
+    setStatus({ type: "", message: "" });
+    setFieldErrors({});
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
-    }))
+    }));
 
     // Clear error status when user starts typing
     if (status.type === "error") {
-      setStatus({ type: "", message: "" })
+      setStatus({ type: "", message: "" });
     }
 
     // Clear field error for this specific field
     if (fieldErrors[name]) {
       setFieldErrors((prev) => {
-        const newErrors = { ...prev }
-        delete newErrors[name]
-        return newErrors
-      })
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
     }
-  }
+  };
 
   const handleTeamMemberChange = (index, e) => {
-    const { name, value } = e.target
-    const updatedTeamMembers = [...formData.teamMembers]
+    const { name, value } = e.target;
+    const updatedTeamMembers = [...formData.teamMembers];
     updatedTeamMembers[index] = {
       ...updatedTeamMembers[index],
       [name]: value,
-    }
+    };
     setFormData((prevState) => ({
       ...prevState,
       teamMembers: updatedTeamMembers,
-    }))
+    }));
 
     // Clear team member field errors
-    const fieldKey = `teamMember-${index}-${name}`
+    const fieldKey = `teamMember-${index}-${name}`;
     if (fieldErrors[fieldKey]) {
       setFieldErrors((prev) => {
-        const newErrors = { ...prev }
-        delete newErrors[fieldKey]
-        return newErrors
-      })
+        const newErrors = { ...prev };
+        delete newErrors[fieldKey];
+        return newErrors;
+      });
     }
-  }
+  };
 
   const addTeamMember = () => {
     if (formData.teamMembers.length < 4) {
       setFormData((prevState) => ({
         ...prevState,
         teamMembers: [...prevState.teamMembers, { fullName: "", email: "", phoneNumber: "", roleType: "" }],
-      }))
+      }));
     } else {
       setStatus({
         type: "error",
         message: "Maximum of 5 team members allowed (including team lead)",
-      })
+      });
     }
-  }
+  };
 
   const removeTeamMember = (index) => {
-    const updatedTeamMembers = [...formData.teamMembers]
-    updatedTeamMembers.splice(index, 1)
+    const updatedTeamMembers = [...formData.teamMembers];
+    updatedTeamMembers.splice(index, 1);
     setFormData((prevState) => ({
       ...prevState,
       teamMembers: updatedTeamMembers,
-    }))
-  }
+    }));
+  };
 
   const validateForm = () => {
-    const newErrors = {}
-    let isValid = true
+    const newErrors = {};
+    let isValid = true;
 
     if (!formData.fullName.trim()) {
-      newErrors.fullName = "Full name is required"
-      isValid = false
+      newErrors.fullName = "Full name is required";
+      isValid = false;
     }
 
     if (!formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = "Phone number is required"
-      isValid = false
+      newErrors.phoneNumber = "Phone number is required";
+      isValid = false;
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required"
-      isValid = false
+      newErrors.email = "Email is required";
+      isValid = false;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid"
-      isValid = false
+      newErrors.email = "Email is invalid";
+      isValid = false;
     }
 
     if (!formData.alxAffiliation) {
-      newErrors.alxAffiliation = "ALX Affiliation is required"
-      isValid = false
+      newErrors.alxAffiliation = "ALX Affiliation is required";
+      isValid = false;
     }
 
     if (!formData.strengths.trim()) {
-      newErrors.strengths = "Strengths/Background is required"
-      isValid = false
+      newErrors.strengths = "Strengths/Background is required";
+      isValid = false;
     }
 
     if (!formData.roleType) {
-      newErrors.roleType = "Role Type is required"
-      isValid = false
+      newErrors.roleType = "Role Type is required";
+      isValid = false;
     }
 
     if (registrationType === "team") {
       if (!formData.teamName.trim()) {
-        newErrors.teamName = "Team name is required"
-        isValid = false
+        newErrors.teamName = "Team name is required";
+        isValid = false;
       }
 
       formData.teamMembers.forEach((member, index) => {
         if (index > 0) {
           if (!member.fullName.trim()) {
-            newErrors[`teamMember-${index}-fullName`] = "Team member name is required"
-            isValid = false
+            newErrors[`teamMember-${index}-fullName`] = "Team member name is required";
+            isValid = false;
           }
 
           if (!member.email.trim()) {
-            newErrors[`teamMember-${index}-email`] = "Team member email is required"
-            isValid = false
+            newErrors[`teamMember-${index}-email`] = "Team member email is required";
+            isValid = false;
           } else if (!/\S+@\S+\.\S+/.test(member.email)) {
-            newErrors[`teamMember-${index}-email`] = "Team member email is invalid"
-            isValid = false
+            newErrors[`teamMember-${index}-email`] = "Team member email is invalid";
+            isValid = false;
           }
 
           if (!member.phoneNumber.trim()) {
-            newErrors[`teamMember-${index}-phoneNumber`] = "Team member phone is required"
-            isValid = false
+            newErrors[`teamMember-${index}-phoneNumber`] = "Team member phone is required";
+            isValid = false;
           }
 
           if (!member.roleType) {
-            newErrors[`teamMember-${index}-roleType`] = "Team member role is required"
-            isValid = false
+            newErrors[`teamMember-${index}-roleType`] = "Team member role is required";
+            isValid = false;
           }
         }
-      })
+      });
     }
 
-    setFieldErrors(newErrors)
-    return isValid
-  }
+    setFieldErrors(newErrors);
+    return isValid;
+  };
 
   const checkForDuplicateEmails = () => {
     // Check if any team member emails are duplicates of the team lead email
     if (registrationType === "team") {
-      const leadEmail = formData.email.toLowerCase().trim()
+      const leadEmail = formData.email.toLowerCase().trim();
       const duplicateIndex = formData.teamMembers.findIndex(
         (member, index) => index > 0 && member.email.toLowerCase().trim() === leadEmail,
-      )
+      );
 
       if (duplicateIndex > 0) {
         setStatus({
           type: "error",
           message: `Team member #${duplicateIndex} has the same email as the team lead. Each participant needs a unique email.`,
-        })
+        });
         setFieldErrors((prev) => ({
           ...prev,
           [`teamMember-${duplicateIndex}-email`]: "Duplicate email",
-        }))
-        return false
+        }));
+        return false;
       }
 
       // Check for duplicate emails among team members
-      const emails = new Map()
+      const emails = new Map();
       for (let i = 1; i < formData.teamMembers.length; i++) {
-        const email = formData.teamMembers[i].email.toLowerCase().trim()
+        const email = formData.teamMembers[i].email.toLowerCase().trim();
         if (email && emails.has(email)) {
-          const duplicateIndex = emails.get(email)
+          const duplicateIndex = emails.get(email);
           setStatus({
             type: "error",
             message: `Team members #${duplicateIndex} and #${i} have the same email. Each participant needs a unique email.`,
-          })
+          });
           setFieldErrors((prev) => ({
             ...prev,
             [`teamMember-${i}-email`]: "Duplicate email",
-          }))
-          return false
+          }));
+          return false;
         }
-        emails.set(email, i)
+        emails.set(email, i);
       }
     }
 
-    return true
-  }
+    return true;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Reset previous errors
-    setFieldErrors({})
-    setStatus({ type: "", message: "" })
+    setFieldErrors({});
+    setStatus({ type: "", message: "" });
 
     if (!validateForm()) {
       setStatus({
         type: "error",
         message: "Please fill in all required fields correctly",
-      })
-      return
+      });
+      return;
     }
 
     // Check for duplicate emails within the team
     if (!checkForDuplicateEmails()) {
-      return
+      return;
     }
 
     try {
+      setIsSubmitting(true); // Set loading state to true
       setStatus({
         type: "loading",
         message: "Processing your registration...",
-      })
+      });
 
       const response = await fetch("https://alx-hackathon-api.sumeyaakmel519.workers.dev/api/register", {
         method: "POST",
@@ -269,20 +269,20 @@ const Registration = () => {
           registrationType,
           teamMembers: registrationType === "team" ? formData.teamMembers : [],
         }),
-      })
+      });
 
-      let data
+      let data;
       try {
-        data = await response.json()
+        data = await response.json();
       } catch (e) {
         // Handle case where response isn't JSON
-        data = { message: "Invalid server response" }
+        data = { message: "Invalid server response" };
       }
 
-      console.log("API Response:", response.status, data)
+      console.log("API Response:", response.status, data);
 
       if (response.ok) {
-        setShowSuccess(true)
+        setShowSuccess(true);
         setFormData({
           fullName: "",
           phoneNumber: "",
@@ -292,46 +292,48 @@ const Registration = () => {
           strengths: "",
           roleType: "",
           teamMembers: [{ fullName: "", email: "", phoneNumber: "", roleType: "" }],
-        })
+        });
       } else {
         // Handle different types of errors
-        let errorMessage = "Registration failed. "
+        let errorMessage = "Registration failed. ";
 
         // Check for email-related errors in the response
-        const responseText = JSON.stringify(data).toLowerCase()
+        const responseText = JSON.stringify(data).toLowerCase();
         const isEmailError =
           responseText.includes("email") ||
           responseText.includes("already registered") ||
           responseText.includes("already exists") ||
-          responseText.includes("duplicate")
+          responseText.includes("duplicate");
 
         if (isEmailError) {
-          errorMessage = "This email address is already registered for the hackathon. Please use a different email."
+          errorMessage = "This email address is already registered for the hackathon. Please use a different email.";
           setFieldErrors((prev) => ({
             ...prev,
             email: "Email already registered",
-          }))
+          }));
         } else if (response.status === 400) {
-          errorMessage += "Please check your information and try again."
+          errorMessage += "Please check your information and try again.";
         } else if (response.status === 429) {
-          errorMessage = "Too many registration attempts. Please try again later."
+          errorMessage = "Too many registration attempts. Please try again later.";
         } else {
-          errorMessage += "An unexpected error occurred. Please try again later."
+          errorMessage += "An unexpected error occurred. Please try again later.";
         }
 
         setStatus({
           type: "error",
           message: errorMessage,
-        })
+        });
       }
     } catch (error) {
-      console.error("Registration error:", error)
+      console.error("Registration error:", error);
       setStatus({
         type: "error",
         message: "Network error. Please check your connection and try again.",
-      })
+      });
+    } finally {
+      setIsSubmitting(false); // Set loading state to false
     }
-  }
+  };
 
   if (showSuccess) {
     return (
@@ -360,8 +362,8 @@ const Registration = () => {
               </button>
               <button
                 onClick={() => {
-                  setShowSuccess(false)
-                  setRegistrationType("individual")
+                  setShowSuccess(false);
+                  setRegistrationType("individual");
                 }}
                 className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
@@ -371,7 +373,7 @@ const Registration = () => {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -714,16 +716,39 @@ const Registration = () => {
           <div>
             <button
               type="submit"
+              disabled={isSubmitting} // Disable button when submitting
               className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform hover:scale-[1.02] transition-all duration-200"
             >
-              {registrationType === "team" ? "Register Team" : "Register"}
+              {isSubmitting ? (
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              ) : registrationType === "team" ? (
+                "Register Team"
+              ) : (
+                "Register"
+              )}
             </button>
+            {status.message && (
+              <div className={`mb-6 p-4 rounded-md ${status.type === 'error' ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
+                {status.message}
+              </div>
+            )}
           </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Registration
-
+export default Registration;

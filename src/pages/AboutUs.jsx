@@ -101,13 +101,13 @@ const Users = (props) => (
 
 export default function AboutUs() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="flex min-h-screen max-w-full overflow-hidden flex-col bg-white">
      
 
-      {/* Hero Section */}
-      <section className=" bg-gradient-to-br from-blue-700/20 to-amber-600/20 py-16 md:py-24 overflow-hidden">
+  
+      <section className=" bg-gradient-to-br from-blue-700/20 to-amber-600/20 py-16 md:py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(20,1fr)] h-full w-full">
+          <div className="grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(20,1fr)] overflow-hidden h-full w-full">
             {Array(800)
               .fill(0)
               .map((_, i) => (
@@ -131,7 +131,7 @@ export default function AboutUs() {
             </p>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0">
+        <div className="absolute bottom-0 left-0 right-0 hidden md:block">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full">
             <path
               fill="#ffffff"
@@ -143,7 +143,7 @@ export default function AboutUs() {
       </section>
 
       {/* Mission Section */}
-      <section className="w-full py-12 md:py-24">
+      <section className="w-full py-12  mt-20 md:py-24">
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
             <div className="space-y-4">
