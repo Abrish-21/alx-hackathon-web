@@ -28,19 +28,52 @@ export default {
         const data = await request.json();
         const ticketNumber = 'ALX-' + Date.now().toString(36).toUpperCase();
 
-        // Check for existing email
+        // Check for existing email in both users and team_members tables
         const existingUser = await env.DB.prepare(
           'SELECT email FROM users WHERE email = ?'
         ).bind(data.email).first();
 
-        if (existingUser) {
+        const existingTeamMember = await env.DB.prepare(
+          'SELECT email FROM team_members WHERE email = ?'
+        ).bind(data.email).first();
+
+        if (existingUser || existingTeamMember) {
           return new Response(
-            JSON.stringify({ error: 'Email already registered' }),
+            JSON.stringify({ 
+              error: 'This email is already registered either as a participant or team member',
+              details: existingTeamMember ? 'You are already registered as a team member' : 'You are already registered as a participant'
+            }),
             {
               status: 400,
               headers: { ...corsHeaders, 'Content-Type': 'application/json' }
             }
           );
+        }
+
+        // For team registration, check if any team member email already exists
+        if (data.registrationType === 'team' && Array.isArray(data.teamMembers)) {
+          for (const member of data.teamMembers) {
+            const memberExistsInUsers = await env.DB.prepare(
+              'SELECT email FROM users WHERE email = ?'
+            ).bind(member.email).first();
+
+            const memberExistsInTeams = await env.DB.prepare(
+              'SELECT email FROM team_members WHERE email = ?'
+            ).bind(member.email).first();
+
+            if (memberExistsInUsers || memberExistsInTeams) {
+              return new Response(
+                JSON.stringify({ 
+                  error: 'Team member registration failed',
+                  details: `Team member with email ${member.email} is already registered`
+                }),
+                {
+                  status: 400,
+                  headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+                }
+              );
+            }
+          }
         }
 
         // Generate QR code data
@@ -52,20 +85,61 @@ export default {
 
         // Create email HTML with QR code
         const emailHtml = `
+          <!DOCTYPE html>
           <html>
-            <body style="font-family: Arial, sans-serif; line-height: 1.6;">
-              <h2>Welcome to ALX Hackathon!</h2>
-              <p>Dear ${data.fullName},</p>
-              <p>Thank you for registering for the ALX Hackathon. Here's your ticket information:</p>
-              <p><strong>Ticket Number:</strong> ${ticketNumber}</p>
-              <p><strong>Role:</strong> ${data.roleType}</p>
-              ${data.teamName ? `<p><strong>Team:</strong> ${data.teamName}</p>` : ''}
-              <div style="margin: 20px 0;">
-                <p>Your QR Code for Check-in:</p>
-                <img src="https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=200x200" alt="Check-in QR Code" style="width: 200px; height: 200px;"/>
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>ALX Hackathon Registration</title>
+            </head>
+            <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: #f4f7fa;">
+              <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                <!-- Header -->
+                <div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 40px 20px; text-align: center;">
+                  <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">Welcome to ALX Hackathon!</h1>
+                </div>
+
+                <!-- Content -->
+                <div style="padding: 40px 30px;">
+                  <p style="color: #374151; font-size: 16px; margin-bottom: 25px;">Dear ${data.fullName},</p>
+                  
+                  <p style="color: #374151; font-size: 16px; margin-bottom: 25px;">Thank you for registering for the ALX Hackathon. Your registration has been confirmed!</p>
+                  
+                  <!-- Ticket Info Box -->
+                  <div style="background-color: #f8fafc; border-radius: 8px; padding: 25px; margin-bottom: 30px; border: 1px solid #e2e8f0;">
+                    <h2 style="color: #1e40af; font-size: 20px; margin: 0 0 20px 0;">Registration Details</h2>
+                    <div style="margin-bottom: 15px;">
+                      <strong style="color: #1e40af;">Ticket Number:</strong>
+                      <span style="color: #374151; margin-left: 10px;">${ticketNumber}</span>
+                    </div>
+                    <div style="margin-bottom: 15px;">
+                      <strong style="color: #1e40af;">Role:</strong>
+                      <span style="color: #374151; margin-left: 10px;">${data.roleType}</span>
+                    </div>
+                    ${data.teamName ? `
+                    <div style="margin-bottom: 15px;">
+                      <strong style="color: #1e40af;">Team:</strong>
+                      <span style="color: #374151; margin-left: 10px;">${data.teamName}</span>
+                    </div>
+                    ` : ''}
+                  </div>
+
+                  <!-- QR Code Section -->
+                  <div style="text-align: center; margin-bottom: 30px;">
+                    <h2 style="color: #1e40af; font-size: 20px; margin-bottom: 20px;">Your Check-in QR Code</h2>
+                    <div style="background-color: white; display: inline-block; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                      <img src="https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=200x200" alt="Check-in QR Code" style="width: 200px; height: 200px;"/>
+                    </div>
+                    <p style="color: #6b7280; font-size: 14px; margin-top: 15px;">Please keep this QR code handy for check-in at the event</p>
+                  </div>
+
+                  <!-- Footer -->
+                  <div style="border-top: 1px solid #e5e7eb; padding-top: 30px; margin-top: 30px;">
+                    <p style="color: #374151; font-size: 16px; margin-bottom: 10px;">Best regards,</p>
+                    <p style="color: #1e40af; font-size: 16px; font-weight: 600; margin: 0;">ALX Hackathon Team</p>
+                  </div>
+                </div>
               </div>
-              <p>Please keep this QR code handy for check-in at the event.</p>
-              <p>Best regards,<br>ALX Hackathon Team</p>
             </body>
           </html>
         `;
@@ -139,20 +213,59 @@ export default {
 
               // Create email HTML for team member
               const memberEmailHtml = `
+                <!DOCTYPE html>
                 <html>
-                  <body style="font-family: Arial, sans-serif; line-height: 1.6;">
-                    <h2>Welcome to ALX Hackathon!</h2>
-                    <p>Dear ${member.fullName},</p>
-                    <p>You have been registered as a team member for the ALX Hackathon.</p>
-                    <p><strong>Team:</strong> ${data.teamName}</p>
-                    <p><strong>Ticket Number:</strong> ${memberTicket}</p>
-                    <p><strong>Role:</strong> ${member.roleType}</p>
-                    <div style="margin: 20px 0;">
-                      <p>Your QR Code for Check-in:</p>
-                      <img src="https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(memberQrData)}&size=200x200" alt="Check-in QR Code" style="width: 200px; height: 200px;"/>
+                  <head>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>ALX Hackathon Registration</title>
+                  </head>
+                  <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; background-color: #f4f7fa;">
+                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                      <!-- Header -->
+                      <div style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); padding: 40px 20px; text-align: center;">
+                        <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700;">Welcome to ALX Hackathon!</h1>
+                      </div>
+
+                      <!-- Content -->
+                      <div style="padding: 40px 30px;">
+                        <p style="color: #374151; font-size: 16px; margin-bottom: 25px;">Dear ${member.fullName},</p>
+                        
+                        <p style="color: #374151; font-size: 16px; margin-bottom: 25px;">You have been registered as a team member for the ALX Hackathon. Your registration has been confirmed!</p>
+                        
+                        <!-- Ticket Info Box -->
+                        <div style="background-color: #f8fafc; border-radius: 8px; padding: 25px; margin-bottom: 30px; border: 1px solid #e2e8f0;">
+                          <h2 style="color: #1e40af; font-size: 20px; margin: 0 0 20px 0;">Registration Details</h2>
+                          <div style="margin-bottom: 15px;">
+                            <strong style="color: #1e40af;">Team:</strong>
+                            <span style="color: #374151; margin-left: 10px;">${data.teamName}</span>
+                          </div>
+                          <div style="margin-bottom: 15px;">
+                            <strong style="color: #1e40af;">Ticket Number:</strong>
+                            <span style="color: #374151; margin-left: 10px;">${memberTicket}</span>
+                          </div>
+                          <div style="margin-bottom: 15px;">
+                            <strong style="color: #1e40af;">Role:</strong>
+                            <span style="color: #374151; margin-left: 10px;">${member.roleType}</span>
+                          </div>
+                        </div>
+
+                        <!-- QR Code Section -->
+                        <div style="text-align: center; margin-bottom: 30px;">
+                          <h2 style="color: #1e40af; font-size: 20px; margin-bottom: 20px;">Your Check-in QR Code</h2>
+                          <div style="background-color: white; display: inline-block; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(memberQrData)}&size=200x200" alt="Check-in QR Code" style="width: 200px; height: 200px;"/>
+                          </div>
+                          <p style="color: #6b7280; font-size: 14px; margin-top: 15px;">Please keep this QR code handy for check-in at the event</p>
+                        </div>
+
+                        <!-- Footer -->
+                        <div style="border-top: 1px solid #e5e7eb; padding-top: 30px; margin-top: 30px;">
+                          <p style="color: #374151; font-size: 16px; margin-bottom: 10px;">Best regards,</p>
+                          <p style="color: #1e40af; font-size: 16px; font-weight: 600; margin: 0;">ALX Hackathon Team</p>
+                        </div>
+                      </div>
                     </div>
-                    <p>Please keep this QR code handy for check-in at the event.</p>
-                    <p>Best regards,<br>ALX Hackathon Team</p>
                   </body>
                 </html>
               `;
