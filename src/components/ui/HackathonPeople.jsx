@@ -169,7 +169,7 @@ export default function HackathonPeople() {
                   href={person.social.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="h-8 w-8 rounded-full flex items-center justify-center text-gray-600 hover:text-primary hover:bg-gray-100"
+                  className="h-8 w-8 rounded-full flex items-center justify-center text-gray-700 hover:text-primary hover:bg-gray-100"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
