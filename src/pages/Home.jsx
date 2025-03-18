@@ -183,7 +183,7 @@ export default function Home() {
                 <video
                   ref={videoRef}
                   className="w-full aspect-video object-cover"
-                  poster="/assets/images/poster.png"
+                  poster="https://i.postimg.cc/hvRx3YK1/poster.png"
                   controls={isVideoPlaying}
                   onPlay={() => setIsVideoPlaying(true)}
                   onPause={() => setIsVideoPlaying(false)}
