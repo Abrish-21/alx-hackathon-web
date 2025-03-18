@@ -537,10 +537,10 @@ export default function Resources() {
               Can't find what you're looking for? Our team is here to help you prepare for the hackathon.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button  onClick={(e) => {window.location.href ='mailto:example@email.com';}}   className="bg-white text-blue-600 font-medium px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
+              <button  onClick={(e) => {window.location.href ='mailto:ethiopia@alxafrica.com';}}   className="bg-white text-blue-600 font-medium px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
                 Contact Support
               </button>
-              <button   onClick={()=> window.location.href='https://ide.geeksforgeeks.org/'}  className="bg-blue-700 text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors shadow-lg">
+              <button   onClick={()=> window.location.href='https://www.alxafrica.com/ethiopia/'}  className="bg-blue-700 text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors shadow-lg">
                 Join Our Community
               </button>
               
