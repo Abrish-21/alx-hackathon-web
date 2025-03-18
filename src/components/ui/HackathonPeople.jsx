@@ -1,102 +1,90 @@
 "use client"
 
 import { useState } from "react"
-
+import tadios from '../../../public/assets/images/Tadiwos.jpeg'
+import Bersufekad from '../../../public/assets/images/Bersufekad.jpeg'
+import Yoadan from '../../../public/assets/images/Yoadan.jpeg'
+import Helinna from '../../../public/assets/images/Helinna.jpeg'
+import Nael from '../../../public/assets/images/Nael.jpeg'
+import Israel from '../../../public/assets/images/Israel.jpeg'
+import Amaha from '../../../public/assets/images/Amaha.jpeg'
 export default function HackathonPeople() {
-  const [activeTab, setActiveTab] = useState("mentors")
+  const [activeTab, setActiveTab] = useState("Panelists")
 
   const people = {
     
   
-    mentors: [
+    Panelists: [
       {
-        name: "David Kim",
-        role: "Senior Mentor",
-        specialty: "Blockchain & Web3",
-        image: "/assets/images/jurry4.png",
+        name: "Tadiwos Belete",
+        role: "Founder & CEO of Kuriftu Resorts",
+        descritpion:"As the Founder & CEO of Kuriftu Resorts, Tadiwos Belete has established a chain of luxury resorts that blend Ethiopian hospitality with modern amenities, promoting tourism and cultural heritage.",
+        image: tadios,
         social: {
-          twitter: "https://twitter.com/davidkim",
-          github: "https://github.com/davidkim",
-          linkedin: "https://linkedin.com/in/davidkim",
+          linkedin: "https://www.linkedin.com/company/kuriftu-resorts/posts?lipi=urn%3Ali%3Apage%3Ad_flagship3_search_srp_all%3BB3Cgbzf2R2KlmzFGCGocgw%3D%3D",
         },
       },
       {
-        name: "Aisha Patel",
-        role: "Technical Mentor",
-        specialty: "Cybersecurity",
-        image: "/assets/images/jurry2.png",
+        name: "Bersufekad Getachew",
+        role: "Founder & CEO of Eagle Lion Systems",
+        descritpion:": Founder & CEO of Eagle Lion Systems, Bersufekad Getachew leads a company specializing in innovative technological solutions, contributing to the advancement of the tech industry in Ethiopia.",
+        image: Bersufekad,
         social: {
-          twitter: "https://twitter.com/aishap",
-          github: "https://github.com/aishap",
-          linkedin: "https://linkedin.com/in/aishap",
+        
+          linkedin: "https://www.linkedin.com/in/bersufekad-getachew-amare-6b61841b4/",
         },
       },
       {
-        name: "Carlos Mendez",
-        role: "Design Mentor",
-        specialty: "UX/UI Design",
-        image: "/assets/images/jurry3.png",
+        name: "Yoadan Tilahun",
+        role: "Founder & CEO of Flawless Events",
+        descritpion:" Founder & CEO of Flawless Events, Yoadan Tilahun has built a reputable event management company known for organizing high-profile events, enhancing Ethiopia's presence on the international stage.",
+        image: Yoadan,
         social: {
-          twitter: "https://twitter.com/carlosm",
-          github: "https://github.com/carlosm",
-          linkedin: "https://linkedin.com/in/carlosm",
+       
+          linkedin: "https://www.linkedin.com/in/yoadan-tilahun-46a09650/",
         },
       },
       {
-        name: "Emma Wilson",
-        role: "Startup Mentor",
-        specialty: "Entrepreneurship",
-        image: "/assets/images/jurry1.png",
+        name: "Helinna Ayalew",
+        role: "Moderator",
+        descritpion:" An accomplished communications professional, Helinna Ayalew has extensive experience in strategic engagement, public relations, and diplomatic communications. Having worked with international organizations and key stakeholders, Helinna excels in facilitating meaningful discussions that inspire action and innovation.",
+      
+        image: Helinna,
         social: {
-          twitter: "https://twitter.com/emmaw",
-          github: "https://github.com/emmaw",
-          linkedin: "https://linkedin.com/in/emmaw",
+        
+          linkedin: "https://www.linkedin.com/search/results/all/?keywords=Helinna%20Ayalew&origin=GLOBAL_SEARCH_HEADER&sid=Onx",
         },
       },
     ],
     judges: [
       {
-        name: "Dr. James Lee",
-        role: "Chief Judge",
-        specialty: "Quantum Computing",
-        image: "/assets/images/jurry2.png",
+        name: "Mr. Nael Hailemariam",
+        role: "Co-Founder and CEO at Chapa",
+        descritpion:" As a key figure at Chapa Financial Technologies, Mr. Nael has been instrumental in advancing digital payment solutions in Ethiopia. His leadership reflects a commitment to financial innovation and accessibility.",
+        image: Nael,
         social: {
-          twitter: "https://twitter.com/drjameslee",
-          github: "https://github.com/drjameslee",
-          linkedin: "https://linkedin.com/in/drjameslee",
+        
+          linkedin: "https://www.linkedin.com/in/naelatchapa/",
         },
       },
       {
-        name: "Olivia Taylor",
-        role: "Industry Judge",
-        specialty: "FinTech Innovation",
-        image: "/assets/images/jurry2.png",
+        name: "Mr. Israel Goytom",
+        role: "CTO and Co-Founder at Chapa",
+        descritpion:" Serving as a pivotal member of Chapa Financial Technologies, Mr. Israel has contributed significantly to the development of seamless payment systems, enhancing the financial technology landscape in the region.",
+        image:Israel,
         social: {
-          twitter: "https://twitter.com/oliviat",
-          github: "https://github.com/oliviat",
-          linkedin: "https://linkedin.com/in/oliviat",
+       
+          linkedin: "https://www.linkedin.com/in/israelgoytom/",
         },
       },
       {
-        name: "Raj Patel",
-        role: "VC Judge",
-        specialty: "Tech Investment",
-        image: "/assets/images/jurry1.png",
+        name: "Mr. Amaha Bekele: ",
+        role: "Partner, Consulting Leader for East Africa at Deloitte",
+        descritpion:" A seasoned business leader and angel investor, Amaha Bekele has played a crucial role in driving technology consulting across East Africa. His expertise in IT governance and aligning technology with corporate strategy has empowered numerous organizations to achieve excellence.",
+ 
+        image: Amaha,
         social: {
-          twitter: "https://twitter.com/rajp",
-          github: "https://github.com/rajp",
-          linkedin: "https://linkedin.com/in/rajp",
-        },
-      },
-      {
-        name: "Sarah Johnson",
-        role: "Technical Judge",
-        specialty: "AR/VR Technologies",
-        image: "/assets/images/jurry1.png",
-        social: {
-          twitter: "https://twitter.com/sarahj",
-          github: "https://github.com/sarahj",
-          linkedin: "https://linkedin.com/in/sarahj",
+          linkedin: "https://www.linkedin.com/in/amaha-bekele-4b2569a/",
         },
       },
     ],
@@ -111,7 +99,7 @@ export default function HackathonPeople() {
     <div className="container mx-auto py-16 px-4">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
-          Meet Our Tech Innovators
+        Meet Our Judges and Panelists
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           The brilliant minds behind TechHack 2025 who are dedicated to creating an unforgettable experience for all
@@ -122,7 +110,7 @@ export default function HackathonPeople() {
       {/* Custom tabs since we're not using shadcn components */}
       <div className="flex justify-center mb-8">
         <div className="grid grid-cols-2 w-full max-w-md bg-gray-100 rounded-lg p-1">
-          {["mentors", "judges"].map((tab) => (
+          {["Panelists", "judges"].map((tab) => (
             <button
               key={tab}
               onClick={() => handleTabChange(tab)}
@@ -162,52 +150,12 @@ export default function HackathonPeople() {
               <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 mb-4">
                 {person.specialty}
               </div>
+            
+              <p className="text-sm text-muted-foreground">{person.descritpion}</p>
 
               {/* Social links */}
               <div className="flex space-x-3 mt-2">
-                <a
-                  href={person.social.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-8 w-8 rounded-full flex items-center justify-center text-gray-700 hover:text-primary hover:bg-gray-100"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                  </svg>
-                  <span className="sr-only">GitHub</span>
-                </a>
-                <a
-                  href={person.social.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-8 w-8 rounded-full flex items-center justify-center text-gray-600 hover:text-primary hover:bg-gray-100"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                  </svg>
-                  <span className="sr-only">Twitter</span>
-                </a>
-                <a
+                            <a
                   href={person.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
