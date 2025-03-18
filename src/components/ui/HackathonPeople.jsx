@@ -113,9 +113,7 @@ export default function HackathonPeople() {
         <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
           Meet Our Tech Innovators
         </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          The brilliant minds behind TechHack 2025 who are dedicated to creating an unforgettable experience for all
-          participants.
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Our dedicated panelists and judges bring extensive experience to guide and evaluate participants throughout the hackathon.
         </p>
       </div>
 
