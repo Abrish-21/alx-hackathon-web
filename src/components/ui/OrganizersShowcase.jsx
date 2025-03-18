@@ -31,9 +31,9 @@ export default function OrganizersShowcase() {
 
                 {/* ALX Ethiopia */}
                 <div className="grid gap-8 md:grid-cols-2 items-center mb-16 border-b pb-16">
-          <div className="relative h-[300px] overflow-hidden rounded-xl shadow-lg">
+          <div className="relative h-[300px] md:h-[400px] overflow-hidden rounded-xl shadow-lg">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-tRDPnIMXnVCn1tIOcgFvBad4gUxD9P.png"
+              src="/assets/images/alx-hub.JPG"
               alt="ALX Ethiopia Training Session"
               className="object-cover w-full h-full"
             />
@@ -54,7 +54,7 @@ export default function OrganizersShowcase() {
 
         {/* Kuriftu Resorts */}
         <div className="grid gap-8 md:grid-cols-2 items-center mb-16 border-b pb-16">
-          <div className="relative h-[300px] overflow-hidden rounded-xl shadow-lg">
+          <div className="relative h-[300px] md:h-[400px]  overflow-hidden rounded-xl shadow-lg">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-CfcF48zB0j2ZRmTH0mk5b9kpSQcV0l.png"
               alt="Kuriftu Resort & Spa African Village"
@@ -77,7 +77,7 @@ export default function OrganizersShowcase() {
 
         {/* WeVenture Hub */}
         <div className="grid gap-8 md:grid-cols-2 items-center">
-          <div className="relative h-[300px] overflow-hidden rounded-xl shadow-lg">
+          <div className="relative h-[300px] md:h-[400px]  overflow-hidden rounded-xl shadow-lg">
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-spLJJiw4aPnmAGUhXd5n9703mzIzdb.png"
               alt="WeVenture Hub Facility"
