@@ -30,10 +30,10 @@ export default function Home() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const videoRef = useRef(null)
   const [activeTestimonial, setActiveTestimonial] = useState(0)
-  // useEffect(() => {
-  //   const img = new Image();
-  //   img.src = "https://i.postimg.cc/hvRx3YK1/poster.png";
-  // }, []);
+  useEffect(() => {
+    const img = new Image();
+    img.src = "https://i.postimg.cc/hvRx3YK1/poster.png";
+  }, []);
   
 
   useEffect(() => {
