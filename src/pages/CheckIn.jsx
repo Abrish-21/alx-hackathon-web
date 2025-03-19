@@ -27,7 +27,7 @@ const CheckIn = () => {
       
       // Fetch registration details
       const detailsResponse = await fetch(
-        `https://alx-hackathon-api.sumeyaakmel519.workers.dev/api/registration/${ticketData.ticketNumber}`
+        `https://api.hospitalityhackathon.et/api/registration/${ticketData.ticketNumber}`
       );
       
       if (!detailsResponse.ok) {
@@ -39,7 +39,7 @@ const CheckIn = () => {
 
       // Perform check-in
       const checkInResponse = await fetch(
-        `https://alx-hackathon-api.sumeyaakmel519.workers.dev/api/checkin/${ticketData.ticketNumber}`,
+        `https://api.hospitalityhackathon.et/api/checkin/${ticketData.ticketNumber}`,
         {
           method: 'POST',
           headers: {
