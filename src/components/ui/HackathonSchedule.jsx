@@ -16,70 +16,64 @@ export default function HackathonSchedule() {
           name: "Morning",
           events: [
             {
-              time: "10:00AM - 11:00AM",
+              time: "9:00 AM – 10:00 AM",
               title: "Check-ins",
               description: "Check-ins, setups, and preparation.",
               category: "logistics",
             },
             {
-              time: "011:00AM - 11:30AM",
+              time: "10:00 AM – 10:15 AM ",
               title: "Opening remarks",
               description: "Welcome address and introduction to the hackathon.",
               category: "main",
-              speaker: "Alex Chen, Lead Organizer",
+              speaker: "Mirafe Gebriel Marcos",
             },
             {
-              time: "11:30AM",
+              time: "10:20 AM – 10:40 AM",
               title: "Presentation of problem statements ",
               description: "Introduction to the hackathon challenges and problem statements.",
               category: "keynote",
-              speaker: "Kuriftu",
+              speaker: "Yonaiel Tadesse",
             },
             {
-              time: "12:00AM",
+              time: "10:45 AM – 11:45 AM",
               title: "Industry Panel Discussion",
               description: "Panel discussion on the future of tech and innovation in Africa.",
               category: "main",
               speaker: "Panelists: Tadiwos Belete, Bersufekad Getachew, Yoadan Tilahun: "
+            },
+            {
+              time: "11:50 AM – 12:50 PM ",
+              title: "Team formation, introductory training, and brainstorming",
+              description: "Form teams, get to know each other, and brainstorm project ideas. (Weventure, ALX Ventures Team)",
+              category: "break",
             },
           ],
         },
         {
           name: "Afternoon",
           events: [
+           
             {
-              time: "1:00PM",
-              title: "Team formation, introductory training, and brainstorming",
-              description: "Form teams, get to know each other, and brainstorm project ideas. (Weventure, ALX Ventures Team)",
-              category: "break",
-            },
-            {
-              time: "2:00PM",
+              time: "12:55 PM – 1:55 PM ",
               title: " Lunch + Networking",
               description: "Lunch and networking session with fellow participants, mentors, and sponsors.",
               category: "break",
             },
             {
-              time: "3:00PM",
+              time: "2:00 PM – 5:00 PM ",
               title: " MVP development + mentorship (Weventure, ALX Ventures Team)",
               description: "Develop your MVP with guidance from industry experts and mentors.",
               category: "hacking",
             },
             {
-              time: "6:00PM",
+              time: "5:05 PM – 6:05 PM",
               title: "Technical review session",
               description: "Review your project progress with mentors and get feedback.",
               category: "mentorship",
             },
             {
-              time: "16:45 - 17:45",
-              title: "Workshop: Pitch Perfect",
-              description: "Learn how to effectively present your project to judges and investors.",
-              category: "workshop",
-              speaker: "Sophia Rodriguez, Sponsorship Lead",
-            },
-            {
-              time: "7:00PM",
+              time: "6:10 PM – 6:30 PM",
               title: "Wrap-up & travel preparation for Day 2",
               description: "Summary of the day and instructions for Day 2 at Kuriftu African Village.",
               category: "logistics",
@@ -97,19 +91,19 @@ export default function HackathonSchedule() {
           name: "Morning",
           events: [
             {
-              time: "10:00 AM",
+              time: "9:00 AM – 10:30 AM",
               title: "Travel to Kuriftu African Village in Burayu",
               description: "Transportation to Kuriftu African Village for Day 2 activities.",
               category: "logistics",
             },
             {
-              time: "10:30 AM",
+              time: "10:35 AM – 11:35 AM",
               title: " Final pitch preparation & solution refinement",
               description: "Finalize your project pitch and refine your solution with mentors.",
               category: "mentorship",
             },
             {
-              time: "11:30",
+              time: "11:40 AM – 12:25 PM",
               title: "Demo presentations to judges",
               description: "Demo your project to judges and get feedback before final submission.",
               category: "presentation",
@@ -120,21 +114,27 @@ export default function HackathonSchedule() {
           name: "Afternoon",
           events: [
             {
-              time: "1:00PM",
+              time: "12:30 PM – 1:00 PM ",
               title: "Winners announced & awards ceremony",
               description: "Winners announced & awards ceremony ", 
               category: "main",
             },
             {
-              time: "2:00PM",
+              time: "1:05 PM – 3:00 PM ",
               title: "Lunch & informal networking",
               description: "Lunch and informal networking with participants, judges, and sponsors.",
               category: "social",
             },
             {
-              time: "3:00 PM - 5:00 PM",
+              time: "3:05 PM – 4:25 PM",
               title: " Open discussions, networking & closing remarks",
               description: "Open discussions, networking & closing remarks",
+              category: "main",
+            }, 
+            {
+              time: "4:30 PM – 5:00 PM",
+              title: "Closing remarks",
+              description: "Closing remarks and thank you note.",
               category: "main",
             },
           ],

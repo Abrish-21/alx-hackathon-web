@@ -1,4 +1,3 @@
-import { Button } from "../components/ui/Button"
 import { Card, CardContent } from "../components/ui/Card"
 import OrganizersShowcase from "../components/ui/OrganizersShowcase"
 import { Link } from "react-router-dom"
@@ -99,12 +98,99 @@ const Users = (props) => (
   </svg>
 )
 
+// Additional icons for problem statements
+const BookOpen = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+  </svg>
+)
+
+const Heart = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+  </svg>
+)
+
+const MessageSquare = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+  </svg>
+)
+
+const ClipboardCheck = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+    <path d="m9 14 2 2 4-4"></path>
+  </svg>
+)
+
+const CheckCircle = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+  </svg>
+)
+
 export default function AboutUs() {
   return (
     <div className="flex min-h-screen max-w-full overflow-hidden flex-col bg-white">
-     
-
-  
       <section className=" bg-gradient-to-br from-blue-700/20 to-amber-600/20 py-16 md:py-24">
         <div className="absolute inset-0 opacity-10">
           <div className="grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(20,1fr)] overflow-hidden h-full w-full">
@@ -124,7 +210,8 @@ export default function AboutUs() {
               <span>April 5-6, 2025</span>
             </div>
             <h1 className="text-3xl text-black font-bold tracking-tighter sm:text-5xl">
-              We blend <span className="text-amber-600">Hospitality</span> and <span className="text-blue-800">Innovation</span>
+              We blend <span className="text-amber-600">Hospitality</span> and{" "}
+              <span className="text-blue-800">Innovation</span>
             </h1>
             <p className=" mx-auto max-w-[700px] text-black md:text-xl">
               Bridging technology and hospitality innovation to transform Ethiopia's hospitality landscape
@@ -243,6 +330,179 @@ export default function AboutUs() {
               </CardContent>
             </Card>
           </div>
+
+          {/* Additional Problem Statements Section */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-center mb-8">
+              Kuriftu Hospitality Hackathon 2025 – Additional Problem Statements
+            </h3>
+            <div className="grid gap-8 md:grid-cols-2">
+              {/* Problem Statement 1 */}
+              <Card className="bg-white border-t-4 border-blue-600">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-blue-100 text-blue-600 rounded-full p-3 flex-shrink-0">
+                      <BookOpen className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">1. Revolutionizing Learning & Development in Hospitality</h3>
+                      <p className="mt-2 text-gray-600 font-medium">
+                        How can we create a scalable, tech-driven learning and development system that enhances employee
+                        training, ensures consistent service quality, and improves retention in the hospitality
+                        industry?
+                      </p>
+                      <div className="mt-4">
+                        <h4 className="font-semibold text-blue-700 mb-2">Key Focus Areas:</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                            <span>
+                              AI-powered training modules for front-line staff, leadership, and specialized skills
+                            </span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                            <span>Gamification of employee learning & skill certification programs</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                            <span>Personalized career pathing & mentorship through digital platforms</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                            <span>Multilingual training tools for a diverse workforce</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Problem Statement 2 */}
+              <Card className="bg-white border-t-4 border-amber-600">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-amber-100 text-amber-600 rounded-full p-3 flex-shrink-0">
+                      <Heart className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">2. Upgrading Kuriftu's Membership & Loyalty Program</h3>
+                      <p className="mt-2 text-gray-600 font-medium">
+                        How can we enhance Kuriftu's membership program to deliver greater value, increase customer
+                        retention, and incentivize direct bookings while creating exclusive experiences for loyal
+                        guests?
+                      </p>
+                      <div className="mt-4">
+                        <h4 className="font-semibold text-amber-700 mb-2">Key Focus Areas:</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                            <span>AI-driven dynamic reward system based on guest spending & engagement</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                            <span>Personalized membership tiers with customized perks</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                            <span>Seamless digital membership platform (app or web-based) with instant rewards</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                            <span>Integration of experiences (spa, dining, adventure) into loyalty points</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Problem Statement 3 */}
+              <Card className="bg-white border-t-4 border-green-600">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-green-100 text-green-600 rounded-full p-3 flex-shrink-0">
+                      <MessageSquare className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">
+                        3. Smart Feedback Collection & Real-Time Response Mechanisms
+                      </h3>
+                      <p className="mt-2 text-gray-600 font-medium">
+                        How can we implement a smart, automated system to collect, analyze, and act on guest feedback in
+                        real time, ensuring a faster and more effective response to enhance customer satisfaction?
+                      </p>
+                      <div className="mt-4">
+                        <h4 className="font-semibold text-green-700 mb-2">Key Focus Areas:</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                            <span>AI chatbots & digital kiosks for instant guest feedback collection</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                            <span>Real-time sentiment analysis & response tracking for guest issues</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                            <span>Automated escalation system for urgent service concerns</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                            <span>Integration of feedback insights into staff training & operational improvements</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Problem Statement 4 */}
+              <Card className="bg-white border-t-4 border-purple-600">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-purple-100 text-purple-600 rounded-full p-3 flex-shrink-0">
+                      <ClipboardCheck className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">4. Digitizing Resort Inspections & Checklist Management</h3>
+                      <p className="mt-2 text-gray-600 font-medium">
+                        How can we develop a digital tool to simplify and standardize inspections, allowing managers and
+                        directors to efficiently collect, track, and act on operational and physical maintenance issues
+                        across Kuriftu's resorts?
+                      </p>
+                      <div className="mt-4">
+                        <h4 className="font-semibold text-purple-700 mb-2">Key Focus Areas:</h4>
+                        <ul className="space-y-2">
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                            <span>
+                              Mobile-friendly digital checklists for inspections (housekeeping, maintenance, F&B, etc.)
+                            </span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                            <span>Automated issue reporting system with photo & video upload capabilities</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                            <span>Task assignment & follow-up tracking for corrective actions</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <CheckCircle className="h-5 w-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                            <span>AI-powered trend analysis to predict recurring operational challenges</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -359,12 +619,12 @@ export default function AboutUs() {
               </li>
             </ul>
             <Link
-                  to="/registration"
-                  className="inline-flex items-center justify-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-lg transition-colors shadow-lg"
-                >
-                  Register Now
-                  <ChevronRight className="h-5 w-5 ml-1" />
-                </Link>
+              to="/registration"
+              className="inline-flex items-center justify-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-lg transition-colors shadow-lg mt-8"
+            >
+              Register Now
+              <ChevronRight className="h-5 w-5 ml-1" />
+            </Link>
           </div>
         </div>
       </section>
@@ -378,21 +638,20 @@ export default function AboutUs() {
               Be part of Ethiopia's first hospitality innovation hackathon and help shape the future of the industry.
             </p>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-            <Link
-                  to="/registration"
-                  className="inline-flex items-center justify-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-lg transition-colors shadow-lg"
-                >
-                  Register Now
-                  <ChevronRight className="h-5 w-5 ml-1" />
-                </Link>
+              <Link
+                to="/registration"
+                className="inline-flex items-center justify-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-lg transition-colors shadow-lg"
+              >
+                Register Now
+                <ChevronRight className="h-5 w-5 ml-1" />
+              </Link>
 
-                <Link
+              <Link
                 to="/contact-us"
                 className="inline-flex items-center justify-center px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-colors border border-white/20"
               >
                 Contact Us
               </Link>
-              
             </div>
           </div>
         </div>

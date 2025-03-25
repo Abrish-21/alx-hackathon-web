@@ -2,6 +2,9 @@
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import hero from '/assets/hero.mp4'
+import alxl from '../../public/assets/images/alxl.jpg'
+import wev from '../../public/assets/images/wev.jpg'
+import kuri from '../../public/assets/images/kuri.jpg'
 import {
   HeartIcon,
   Calendar,
@@ -106,18 +109,18 @@ export default function Home() {
       name: "ALX Ethiopia",
       description:
         "Empowering young Ethiopians through premier technology training and entrepreneurship, driving the digital economy forward.",
-      icon: <Code className="h-8 w-8 text-blue-600" />,
+      icon: alxl,
     },
     {
       name: "Kuriftu Resorts",
       description:
         "Setting hospitality standards with luxury service and inspiring venues, perfect for sparking creativity.",
-      icon: <Hotel className="h-8 w-8 text-amber-600" />,
+      icon: kuri,
     },
     {
       name: "weVenture Hub",
       description: "Fostering startup growth and innovation, providing resources and support to entrepreneurs.",
-      icon: <Lightbulb className="h-8 w-8 text-emerald-600" />,
+      icon: wev,
     },
   ]
 
@@ -169,34 +172,32 @@ export default function Home() {
             </div>
 
             <div className="lg:w-3/4">
-  <div className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
-    {/* Show a clickable video thumbnail instead of a blank play button */}
-    {!isVideoPlaying && (
-      <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-10">
-        <button
-          onClick={playVideo}
-          className="p-4 bg-amber-500 hover:bg-amber-600 rounded-full transition-colors shadow-lg"
-        >
-          <Play className="h-8 w-8 text-white" />
-        </button>
-      </div>
-    )}
-    <video
-      ref={videoRef}
-      className="w-full aspect-video object-cover"
-      poster="/placeholder.svg?height=400&width=600" // Thumbnail ensures users understand it's a video before clicking
-      controls={isVideoPlaying}
-      onPlay={() => setIsVideoPlaying(true)}
-      onPause={() => setIsVideoPlaying(false)}
-    >
-      <source
-        src={hero}
-        type="video/mp4"
-      />
-      Your browser does not support the video tag.
-    </video>
-  </div>
-
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
+                {!isVideoPlaying && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-10">
+                    <button
+                      onClick={playVideo}
+                      className="p-4 bg-amber-500 hover:bg-amber-600 rounded-full transition-colors shadow-lg"
+                    >
+                      <Play className="h-8 w-8 text-white" />
+                    </button>
+                  </div>
+                )}
+                <video
+                  ref={videoRef}
+                  className="w-full aspect-video object-cover"
+                  poster="/placeholder.svg?height=400&width=600"
+                  controls={isVideoPlaying}
+                  onPlay={() => setIsVideoPlaying(true)}
+                  onPause={() => setIsVideoPlaying(false)}
+                >
+                  <source
+                    src={hero}
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
             </div>
           </div>
         </div>
@@ -233,7 +234,7 @@ export default function Home() {
                   <MapPin className="h-5 w-5 text-blue-600 mr-2 mt-1" />
                   <div>
                     <h4 className="font-semibold text-slate-800">Location</h4>
-                    <p className="text-slate-600">ALX-HubTech District, Innovation Avenue to Capstone ALX Tech Hub, Lideta/Mexico</p>
+                    <p className="text-slate-600">Capstone ALX Tech Hub, Lideta/Mexico</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -265,7 +266,7 @@ export default function Home() {
                   <MapPin className="h-5 w-5 text-amber-600 mr-2 mt-1" />
                   <div>
                     <h4 className="font-semibold text-slate-800">Location</h4>
-                    <p className="text-slate-600">Kuriftu African Village, Lakeside Resort, Nature Road to Kuriftu African Village, Burayu</p>
+                    <p className="text-slate-600">Kuriftu African Village, Burayu</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -302,7 +303,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {organizers.map((organizer, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-md border border-slate-100">
-                <div className="p-3 bg-slate-50 rounded-lg inline-block mb-4">{organizer.icon}</div>
+                <img className="p-3 w-full h-24 bg-slate-50 rounded-lg inline-block mb-4" src={organizer.icon} />
                 <h3 className="text-xl font-semibold mb-3 text-slate-800">{organizer.name}</h3>
                 <p className="text-slate-600">{organizer.description}</p>
               </div>
