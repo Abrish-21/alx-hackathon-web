@@ -259,7 +259,7 @@ const Registration = () => {
         message: "Processing your registration...",
       });
 
-      const response = await fetch("https://alx-hackathon-api.sumeyaakmel519.workers.dev/api/register", {
+      const response = await fetch("https://api.hospitalityhackathon.et/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

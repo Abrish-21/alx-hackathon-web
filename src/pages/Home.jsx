@@ -33,6 +33,11 @@ export default function Home() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const videoRef = useRef(null)
   const [activeTestimonial, setActiveTestimonial] = useState(0)
+  useEffect(() => {
+    const img = new Image();
+    img.src = "https://i.postimg.cc/hvRx3YK1/poster.png";
+  }, []);
+  
 
   useEffect(() => {
     setIsLoaded(true)
@@ -186,7 +191,7 @@ export default function Home() {
                 <video
                   ref={videoRef}
                   className="w-full aspect-video object-cover"
-                  poster="/placeholder.svg?height=400&width=600"
+                  poster="/assets/images/poster.png"
                   controls={isVideoPlaying}
                   onPlay={() => setIsVideoPlaying(true)}
                   onPause={() => setIsVideoPlaying(false)}
