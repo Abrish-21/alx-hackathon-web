@@ -334,7 +334,7 @@ export default function AboutUs() {
           {/* Additional Problem Statements Section */}
           <div className="mt-16">
             <h3 className="text-2xl font-bold text-center mb-8">
-              Kuriftu Hospitality Hackathon 2025 – Additional Problem Statements
+              Hackathon 2025 –  Problem Statements
             </h3>
             <div className="grid gap-8 md:grid-cols-2">
               {/* Problem Statement 1 */}
