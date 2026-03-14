@@ -8,9 +8,9 @@ export default function HackathonSchedule() {
 
   const schedule = {
     day1: {
-      date: "Saturday, April 5",
-      location: "ALX Lideta Tech Hub",
-      locationAddress: "Innovation Avenue to Capstone ALX Tech Hub, Lideta/Mexico",
+      date: "Saturday, April 4, 2026",
+      location: "Capstone ALX Tech Hub",
+      locationAddress: "Innovation Avenue to Capstone ALX Tech Hub, Lideta, Addis Ababa",
       timeBlocks: [
         {
           name: "Morning",
@@ -83,7 +83,7 @@ export default function HackathonSchedule() {
       ],
     },
     day2: {
-      date: "Sunday, April 6 2025",
+      date: "Saturday, April 18, 2026",
       location: "Kuriftu African Village Burayu",
       locationAddress: " Lakeside Resort, Nature Road to Kuriftu African Village, Burayu",
       timeBlocks: [

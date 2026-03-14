@@ -145,11 +145,11 @@ export default function Home() {
             <div className="lg:w-1/2 text-center lg:text-left">
               <div className="inline-flex items-center justify-center p-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
                 <Calendar className="h-5 w-5 text-amber-400 mr-2" />
-                <span className="text-sm font-medium text-white">April 5-6, 2025</span>
+                <span className="text-sm font-medium text-white">April 4 & 18, 2026</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Hospitality <span className="text-amber-400">Hackathon</span> 2025
+                Hospitality <span className="text-amber-400">Hackathon</span> 2026
               </h1>
 
               <p className="text-lg md:text-2xl text-white font-bold mb-4 max-w-xl mx-auto lg:mx-0">SOLVE, CREATE, DISRUPT!</p>
@@ -228,7 +228,7 @@ export default function Home() {
             {/* Day 1 */}
             <div className="bg-white rounded-xl overflow-hidden shadow-md">
               <div className="bg-blue-600 p-4 text-white">
-                <h3 className="text-xl font-bold">Day 1: Saturday, April 5, 2025</h3>
+                <h3 className="text-xl font-bold">Day 1: Saturday, April 4, 2026</h3>
                 <div className="flex items-center mt-2">
                   <Clock className="h-5 w-5 mr-2" />
                   <span>10:00 AM - 6:00 PM</span>
@@ -239,7 +239,7 @@ export default function Home() {
                   <MapPin className="h-5 w-5 text-blue-600 mr-2 mt-1" />
                   <div>
                     <h4 className="font-semibold text-slate-800">Location</h4>
-                    <p className="text-slate-600">Capstone ALX Tech Hub, Lideta/Mexico</p>
+                    <p className="text-slate-600">Capstone ALX Tech Hub, Lideta, Addis Ababa</p>
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -260,7 +260,7 @@ export default function Home() {
             {/* Day 2 */}
             <div className="bg-white rounded-xl overflow-hidden shadow-md">
               <div className="bg-amber-600 p-4 text-white">
-                <h3 className="text-xl font-bold">Day 2: Sunday, April 6, 2025</h3>
+                <h3 className="text-xl font-bold">Day 2: Saturday, April 18, 2026</h3>
                 <div className="flex items-center mt-2">
                   <Clock className="h-5 w-5 mr-2" />
                   <span>10:00 AM - 5:00 PM</span>
@@ -340,7 +340,7 @@ export default function Home() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Prizes & Opportunities</h2>
             <p className="text-lg text-blue-100 max-w-3xl mx-auto">
-              The 2025 Hospitality Hackathon offers a platform not just for winning impressive prizes but also for
+              The 2026 Hospitality Hackathon offers a platform not just for winning impressive prizes but also for
               engaging directly with top industry leaders and enhancing your professional skills through hands-on
               challenges.
             </p>
@@ -476,7 +476,7 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="flex items-center">
                   <Mail className="h-4 w-4 text-slate-400 mr-2" />
-                  <span className="text-slate-600">info@hospitalityhackathon2025.com</span>
+                  <span className="text-slate-600">info@hospitalityhackathon2026.com</span>
                 </div>
                 <div className="flex items-center">
                   <Phone className="h-4 w-4 text-slate-400 mr-2" />
@@ -494,7 +494,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">SOLVE, CREATE, DISRUPT!</h2>
             <p className="text-xl mb-8">
-              Join us for two days of innovation, collaboration, and fun at the Hospitality Hackathon 2025.
+              Join us for two days of innovation, collaboration, and fun at the Hospitality Hackathon 2026.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

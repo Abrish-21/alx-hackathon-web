@@ -25,7 +25,7 @@ export default function OrganizersShowcase() {
           </div>
           <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Our Organizing Partners</h2>
           <p className="mx-auto max-w-[700px] text-gray-500 md:text-lg">
-            Meet the visionary organizations behind the Hospitality Hackathon 2025
+            Meet the visionary organizations behind the Hospitality Hackathon 2026
           </p>
         </div>
 

@@ -207,7 +207,7 @@ export default function AboutUs() {
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-600">
               <Calendar className="mr-1 h-4 w-4" />
-              <span>April 5-6, 2025</span>
+              <span>April 4 & 18, 2026</span>
             </div>
             <h1 className="text-3xl text-black font-bold tracking-tighter sm:text-5xl">
               We blend <span className="text-amber-600">Hospitality</span> and{" "}
@@ -240,7 +240,7 @@ export default function AboutUs() {
               </div>
               <h2 className="text-3xl font-bold tracking-tighter">Bridging Technology and Hospitality</h2>
               <p className="text-gray-500 md:text-lg">
-                The Hospitality Hackathon 2025 is Ethiopia's premier event dedicated to fostering innovation in the
+                The Hospitality Hackathon 2026 is Ethiopia's premier event dedicated to fostering innovation in the
                 hospitality sector. We bring together tech visionaries, entrepreneurs, and hospitality leaders to
                 collaborate on solutions that address the unique challenges and opportunities in Ethiopia's growing
                 tourism and hospitality industry.
@@ -334,7 +334,7 @@ export default function AboutUs() {
           {/* Additional Problem Statements Section */}
           <div className="mt-16">
             <h3 className="text-2xl font-bold text-center mb-8">
-              Hackathon 2025 –  Problem Statements
+              Hackathon 2026 –  Problem Statements
             </h3>
             <div className="grid gap-8 md:grid-cols-2">
               {/* Problem Statement 1 */}
@@ -526,7 +526,7 @@ export default function AboutUs() {
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl">Our Goals</h2>
             <p className="mt-4 text-white/80 md:text-xl">
-              The Hospitality Hackathon 2025 aims to achieve the following outcomes:
+              The Hospitality Hackathon 2026 aims to achieve the following outcomes:
             </p>
             <ul className="mt-8 space-y-4 text-left">
               <li className="flex items-start">

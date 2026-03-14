@@ -227,13 +227,13 @@ export default function Resources() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center justify-center p-2 bg-white/80 backdrop-blur-sm rounded-full mb-6 shadow-sm">
               <Award className="h-5 w-5 text-amber-600 mr-2" />
-              <span className="text-sm font-medium text-slate-800">Hospitality Hackathon 2025</span>
+              <span className="text-sm font-medium text-slate-800">Hospitality Hackathon 2026</span>
             </div>
             <h1 className="text-5xl font-bold text-slate-800 mb-6 leading-tight">
               Resources for <span className="text-blue-600">Innovation</span> in Hospitality
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Everything you need to prepare for the Hospitality Hackathon 2025. Browse our curated collection of
+              Everything you need to prepare for the Hospitality Hackathon 2026. Browse our curated collection of
               articles, tools, and resources to help you build innovative solutions.
             </p>
 
