@@ -14,9 +14,9 @@ const routes = [
 
 const cn = (...classes) => classes.filter(Boolean).join(" ")
 
-// Shared gradient for all CTA buttons
-const btnGradient = "linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #3730a3 100%)"
-const btnShadow = "0 4px 14px rgba(99, 58, 237, 0.3)"
+// Shared gradient for all CTA buttons (red brand)
+const btnGradient = "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)"
+const btnShadow = "0 4px 14px rgba(220, 38, 38, 0.35)"
 
 // Frosted glass styles
 const glassStyle = {
@@ -54,12 +54,12 @@ export default function Navbar() {
           <div className="flex h-14 items-center justify-between">
             {/* Brand */}
             <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-              <Terminal className="h-5 w-5" style={{ color: "#7C3AED" }} />
+              <Terminal className="h-5 w-5" style={{ color: "#DC2626" }} />
               <span className="hidden font-bold text-sm sm:inline-block text-slate-800">
-                <span style={{ color: "#7C3AED" }}>&lt;</span>
+                <span style={{ color: "#DC2626" }}>&lt;</span>
                 Hospitality
-                <span style={{ color: "#7C3AED" }}>Hackathon</span>
-                <span style={{ color: "#7C3AED" }}>/&gt;</span>
+                <span style={{ color: "#DC2626" }}>Hackathon</span>
+                <span style={{ color: "#DC2626" }}>/&gt;</span>
               </span>
             </Link>
 

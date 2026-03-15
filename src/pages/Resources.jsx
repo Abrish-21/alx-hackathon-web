@@ -46,7 +46,7 @@ export default function Resources() {
     {
       title: "Building User-Centric Hospitality Solutions",
       description: "Discover how to create tech solutions that prioritize guest experience.",
-      icon: <Users className="h-6 w-6 text-blue-600" />,
+      icon: <Users className="h-6 w-6 text-red-600" />,
       link: "https://uxdesign.cc/",
       tags: ["UX/UI", "Design"],
       category: "design",
@@ -54,7 +54,7 @@ export default function Resources() {
     {
       title: "Data Analytics for Hospitality",
       description: "Leverage data to improve operations and guest satisfaction in hospitality settings.",
-      icon: <Database className="h-6 w-6 text-indigo-600" />,
+      icon: <Database className="h-6 w-6 text-red-600" />,
       link: "https://www.hospitalitynet.org/",
       tags: ["Data", "Analytics"],
       category: "technical",
@@ -75,9 +75,9 @@ export default function Resources() {
       name: "Hotel Management APIs",
       description: "Access reservation systems, room management, and guest services APIs.",
       category: "API",
-      icon: <Hotel className="h-6 w-6 text-blue-600" />,
+      icon: <Hotel className="h-6 w-6 text-red-600" />,
       link: "https://www.roomraccoon.com/",
-      bgColor: "bg-blue-50",
+      bgColor: "bg-red-50",
     },
     {
       name: "Customer Experience Tools",
@@ -99,25 +99,25 @@ export default function Resources() {
       name: "Location & Mapping Services",
       description: "APIs for location-based services, nearby attractions, and navigation.",
       category: "API",
-      icon: <Wifi className="h-6 w-6 text-indigo-600" />,
+      icon: <Wifi className="h-6 w-6 text-red-600" />,
       link: "https://www.mapbox.com/",
-      bgColor: "bg-indigo-50",
+      bgColor: "bg-red-50",
     },
     {
       name: "AI & Chatbot Frameworks",
       description: "Build intelligent assistants for guest services and support.",
       category: "Framework",
-      icon: <Users className="h-6 w-6 text-violet-600" />,
+      icon: <Users className="h-6 w-6 text-red-600" />,
       link: "https://cloud.google.com/dialogflow",
-      bgColor: "bg-violet-50",
+      bgColor: "bg-red-50",
     },
     {
       name: "Data Visualization Libraries",
       description: "Create compelling visualizations for hospitality analytics.",
       category: "Library",
-      icon: <Database className="h-6 w-6 text-rose-600" />,
+      icon: <Database className="h-6 w-6 text-red-600" />,
       link: "https://d3js.org/",
-      bgColor: "bg-rose-50",
+      bgColor: "bg-red-50",
     },
   ]
 
@@ -127,8 +127,8 @@ export default function Resources() {
       name: "Hospitality UI Kit",
       description: "Pre-designed UI components specifically for hospitality applications.",
       link: "https://ui8.net/",
-      icon: <Palette className="h-6 w-6 text-purple-600" />,
-      bgGradient: "from-purple-50 to-pink-50",
+      icon: <Palette className="h-6 w-6 text-red-600" />,
+      bgGradient: "from-red-50 to-red-100",
     },
     {
       name: "Hotel & Restaurant Icon Pack",
@@ -141,8 +141,8 @@ export default function Resources() {
       name: "Color Palettes for Hospitality",
       description: "Curated color schemes that convey warmth and professionalism.",
       link: "https://coolors.co/",
-      icon: <Palette className="h-6 w-6 text-blue-600" />,
-      bgGradient: "from-blue-50 to-cyan-50",
+      icon: <Palette className="h-6 w-6 text-red-600" />,
+      bgGradient: "from-red-50 to-neutral-50",
     },
     {
       name: "Hospitality Stock Photos",
@@ -213,10 +213,10 @@ export default function Resources() {
   )
 
   return (
-    <div className={`bg-white min-h-screen transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
+    <div className={`bg-neutral-50 min-h-screen transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
       {/* Hero Header */}
       <div className="relative overflow-hidden -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-amber-600/20 z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-amber-600/20 z-0"></div>
         <div
           className="absolute inset-0 z-0 opacity-10"
           style={{
@@ -226,13 +226,13 @@ export default function Resources() {
         <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center justify-center p-2 bg-white/80 backdrop-blur-sm rounded-full mb-6 shadow-sm">
-              <Award className="h-5 w-5 text-amber-600 mr-2" />
-              <span className="text-sm font-medium text-slate-800">Hospitality Hackathon 2025</span>
+              <Award className="h-5 w-5 text-red-600 mr-2" />
+              <span className="text-sm font-medium text-neutral-900">Hospitality Hackathon 2025</span>
             </div>
-            <h1 className="text-5xl font-bold text-slate-800 mb-6 leading-tight">
-              Resources for <span className="text-blue-600">Innovation</span> in Hospitality
+            <h1 className="text-5xl font-bold text-neutral-900 mb-6 leading-tight">
+              Resources for <span className="text-red-600">Innovation</span> in Hospitality
             </h1>
-            <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-neutral-700 mb-8 max-w-3xl mx-auto leading-relaxed">
               Everything you need to prepare for the Hospitality Hackathon 2025. Browse our curated collection of
               articles, tools, and resources to help you build innovative solutions.
             </p>
@@ -240,11 +240,11 @@ export default function Resources() {
             {/* Search Bar */}
             <div className="relative max-w-2xl mx-auto">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-slate-400" />
+                <Search className="h-5 w-5 text-neutral-500" />
               </div>
               <input
                 type="text"
-                className="block w-full pl-10 pr-4 py-3 border border-slate-200 rounded-full bg-white/90 backdrop-blur-sm shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+                className="block w-full pl-10 pr-4 py-3 border border-neutral-200 rounded-full bg-white/90 backdrop-blur-sm shadow-sm focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:outline-none"
                 placeholder="Search for resources, tools, or topics..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -255,7 +255,7 @@ export default function Resources() {
 
         {/* Wave Divider */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" fill="white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" fill="#fafaf9">
             <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
           </svg>
         </div>
@@ -267,10 +267,10 @@ export default function Resources() {
         <section className="mb-24">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
             <div className="flex items-center mb-4 md:mb-0">
-              <div className="p-2 bg-blue-100 rounded-lg mr-3">
-                <BookOpen className="h-7 w-7 text-blue-600" />
+              <div className="p-2 bg-red-100 rounded-lg mr-3">
+                <BookOpen className="h-7 w-7 text-red-600" />
               </div>
-              <h2 className="text-3xl font-bold text-slate-800">Articles & Tutorials</h2>
+              <h2 className="text-3xl font-bold text-neutral-900">Articles & Tutorials</h2>
             </div>
 
             {/* Category Tabs */}
@@ -278,7 +278,7 @@ export default function Resources() {
               <button
                 onClick={() => setActiveTab("all")}
                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                  activeTab === "all" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  activeTab === "all" ? "bg-red-600 text-white" : "bg-neutral-200 text-neutral-700 hover:bg-neutral-300"
                 }`}
               >
                 All
@@ -288,7 +288,7 @@ export default function Resources() {
                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                   activeTab === "overview"
                     ? "bg-amber-600 text-white"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    : "bg-neutral-200 text-neutral-700 hover:bg-neutral-300"
                 }`}
               >
                 Overview
@@ -296,7 +296,7 @@ export default function Resources() {
               <button
                 onClick={() => setActiveTab("design")}
                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
-                  activeTab === "design" ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  activeTab === "design" ? "bg-red-600 text-white" : "bg-neutral-200 text-neutral-700 hover:bg-neutral-300"
                 }`}
               >
                 Design
@@ -305,8 +305,8 @@ export default function Resources() {
                 onClick={() => setActiveTab("technical")}
                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                   activeTab === "technical"
-                    ? "bg-indigo-600 text-white"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    ? "bg-red-600 text-white"
+                    : "bg-neutral-200 text-neutral-700 hover:bg-neutral-300"
                 }`}
               >
                 Technical
@@ -316,7 +316,7 @@ export default function Resources() {
                 className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                   activeTab === "innovation"
                     ? "bg-emerald-600 text-white"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    : "bg-neutral-200 text-neutral-700 hover:bg-neutral-300"
                 }`}
               >
                 Innovation
@@ -329,16 +329,16 @@ export default function Resources() {
               {filteredArticles.map((article, index) => (
                 <div
                   key={index}
-                  className="bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 transform hover:-translate-y-1"
+                  className="bg-white/60 rounded-2xl border border-black/[0.06] shadow-sm backdrop-blur-sm hover:shadow-md transition-all duration-300 p-6 transform hover:-translate-y-1"
                 >
-                  <div className="mb-4 p-3 bg-slate-50 rounded-lg inline-block">{article.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3 text-slate-800">{article.title}</h3>
-                  <p className="text-slate-600 mb-4">{article.description}</p>
+                  <div className="mb-4 p-3 bg-neutral-100 rounded-lg inline-block">{article.icon}</div>
+                  <h3 className="text-xl font-semibold mb-3 text-neutral-900">{article.title}</h3>
+                  <p className="text-neutral-700 mb-4">{article.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {article.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="bg-blue-50 text-blue-600 text-xs px-3 py-1 rounded-full font-medium"
+                        className="bg-red-50 text-red-600 text-xs px-3 py-1 rounded-full font-medium"
                       >
                         {tag}
                       </span>
@@ -348,7 +348,7 @@ export default function Resources() {
                     href={article.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors"
+                    className="inline-flex items-center text-red-600 font-medium hover:text-red-700 transition-colors"
                   >
                     Read more
                     <ExternalLink className="h-4 w-4 ml-1" />
@@ -357,8 +357,8 @@ export default function Resources() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 bg-slate-50 rounded-xl">
-              <p className="text-slate-600">No articles found matching your search criteria.</p>
+            <div className="text-center py-12 bg-neutral-100 rounded-xl">
+              <p className="text-neutral-700">No articles found matching your search criteria.</p>
             </div>
           )}
         </section>
@@ -366,31 +366,31 @@ export default function Resources() {
         {/* Tech Tools and APIs */}
         <section className="mb-24">
           <div className="flex items-center mb-8">
-            <div className="p-2 bg-indigo-100 rounded-lg mr-3">
-              <Code className="h-7 w-7 text-indigo-600" />
+            <div className="p-2 bg-red-100 rounded-lg mr-3">
+              <Code className="h-7 w-7 text-red-600" />
             </div>
-            <h2 className="text-3xl font-bold text-slate-800">Tech Tools & APIs</h2>
+            <h2 className="text-3xl font-bold text-neutral-900">Tech Tools & APIs</h2>
           </div>
 
-          <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-8 mb-12">
+          <div className="bg-gradient-to-r from-red-50 to-neutral-100 rounded-2xl p-8 mb-12">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
               <div className="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-sm">
-                <Wifi className="h-10 w-10 text-indigo-600 mb-2" />
+                <Wifi className="h-10 w-10 text-red-600 mb-2" />
               </div>
               <div className="flex-1">
-                <h3 className="text-xl font-semibold text-slate-800 mb-2">Exclusive Access for Participants</h3>
-                <p className="text-slate-700 mb-4 max-w-3xl">
+                <h3 className="text-xl font-semibold text-neutral-900 mb-2">Exclusive Access for Participants</h3>
+                <p className="text-neutral-700 mb-4 max-w-3xl">
                   We've partnered with leading technology providers to give you access to powerful tools and APIs that
                   can help you build innovative solutions for the hospitality industry.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <span className="bg-white/80 backdrop-blur-sm text-indigo-600 border border-indigo-100 px-3 py-1 rounded-full text-sm font-medium">
+                  <span className="bg-white/80 backdrop-blur-sm text-red-600 border border-red-100 px-3 py-1 rounded-full text-sm font-medium">
                     Free access during hackathon
                   </span>
-                  <span className="bg-white/80 backdrop-blur-sm text-indigo-600 border border-indigo-100 px-3 py-1 rounded-full text-sm font-medium">
+                  <span className="bg-white/80 backdrop-blur-sm text-red-600 border border-red-100 px-3 py-1 rounded-full text-sm font-medium">
                     Technical support available
                   </span>
-                  <span className="bg-white/80 backdrop-blur-sm text-indigo-600 border border-indigo-100 px-3 py-1 rounded-full text-sm font-medium">
+                  <span className="bg-white/80 backdrop-blur-sm text-red-600 border border-red-100 px-3 py-1 rounded-full text-sm font-medium">
                     Documentation provided
                   </span>
                 </div>
@@ -403,21 +403,21 @@ export default function Resources() {
               {filteredTools.map((tool, index) => (
                 <div
                   key={index}
-                  className={`${tool.bgColor} border border-slate-200 rounded-xl p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1`}
+                  className={`${tool.bgColor} rounded-2xl border border-black/[0.06] p-6 bg-white/60 backdrop-blur-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1`}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div className="p-2 bg-white/80 backdrop-blur-sm rounded-lg">{tool.icon}</div>
-                    <span className="bg-white/80 backdrop-blur-sm text-slate-600 text-xs px-3 py-1 rounded-full font-medium">
+                    <span className="bg-white/80 backdrop-blur-sm text-neutral-700 text-xs px-3 py-1 rounded-full font-medium">
                       {tool.category}
                     </span>
                   </div>
-                  <h3 className="text-xl font-semibold text-slate-800 mb-3">{tool.name}</h3>
-                  <p className="text-slate-600 mb-4">{tool.description}</p>
+                  <h3 className="text-xl font-semibold text-neutral-900 mb-3">{tool.name}</h3>
+                  <p className="text-neutral-700 mb-4">{tool.description}</p>
                   <a
                     href={tool.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-slate-800 font-medium hover:text-blue-600 transition-colors"
+                    className="inline-flex items-center text-neutral-900 font-medium hover:text-red-600 transition-colors"
                   >
                     Access tool
                     <ExternalLink className="h-4 w-4 ml-1" />
@@ -426,8 +426,8 @@ export default function Resources() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 bg-slate-50 rounded-xl">
-              <p className="text-slate-600">No tools found matching your search criteria.</p>
+            <div className="text-center py-12 bg-neutral-100 rounded-xl">
+              <p className="text-neutral-700">No tools found matching your search criteria.</p>
             </div>
           )}
         </section>
@@ -435,10 +435,10 @@ export default function Resources() {
         {/* Design Resources */}
         <section className="mb-24">
           <div className="flex items-center mb-8">
-            <div className="p-2 bg-amber-100 rounded-lg mr-3">
-              <Palette className="h-7 w-7 text-amber-600" />
+            <div className="p-2 bg-red-100 rounded-lg mr-3">
+              <Palette className="h-7 w-7 text-red-600" />
             </div>
-            <h2 className="text-3xl font-bold text-slate-800">Design Resources</h2>
+            <h2 className="text-3xl font-bold text-neutral-900">Design Resources</h2>
           </div>
 
           {filteredDesignResources.length > 0 ? (
@@ -446,16 +446,16 @@ export default function Resources() {
               {filteredDesignResources.map((resource, index) => (
                 <div
                   key={index}
-                  className={`bg-gradient-to-br ${resource.bgGradient} border border-slate-200 rounded-xl p-6 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1`}
+                  className={`bg-gradient-to-br ${resource.bgGradient} rounded-2xl border border-black/[0.06] p-6 bg-white/60 backdrop-blur-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1`}
                 >
                   <div className="p-3 bg-white/80 backdrop-blur-sm rounded-lg inline-block mb-4">{resource.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3 text-slate-800">{resource.name}</h3>
-                  <p className="text-slate-600 mb-4">{resource.description}</p>
+                  <h3 className="text-xl font-semibold mb-3 text-neutral-900">{resource.name}</h3>
+                  <p className="text-neutral-700 mb-4">{resource.description}</p>
                   <a
                     href={resource.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-slate-800 font-medium hover:text-blue-600 transition-colors"
+                    className="inline-flex items-center text-neutral-900 font-medium hover:text-red-600 transition-colors"
                   >
                     Download
                     <ExternalLink className="h-4 w-4 ml-1" />
@@ -464,8 +464,8 @@ export default function Resources() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 bg-slate-50 rounded-xl">
-              <p className="text-slate-600">No design resources found matching your search criteria.</p>
+            <div className="text-center py-12 bg-neutral-100 rounded-xl">
+              <p className="text-neutral-700">No design resources found matching your search criteria.</p>
             </div>
           )}
         </section>
@@ -473,32 +473,32 @@ export default function Resources() {
         {/* FAQ Section */}
         <section className="mb-24">
           <div className="flex items-center mb-8">
-            <div className="p-2 bg-emerald-100 rounded-lg mr-3">
-              <Tool className="h-7 w-7 text-emerald-600" />
+            <div className="p-2 bg-red-100 rounded-lg mr-3">
+              <Tool className="h-7 w-7 text-red-600" />
             </div>
-            <h2 className="text-3xl font-bold text-slate-800">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-neutral-900">Frequently Asked Questions</h2>
           </div>
 
           {filteredFaqs.length > 0 ? (
-            <div className="border border-slate-200 rounded-xl overflow-hidden divide-y bg-white shadow-sm">
+            <div className="rounded-2xl border border-black/[0.06] overflow-hidden divide-y bg-white/60 backdrop-blur-sm shadow-sm">
               {filteredFaqs.map((faq, index) => (
                 <div key={index} className="transition-all duration-300">
                   <button
-                    className="flex justify-between items-center w-full p-6 text-left hover:bg-slate-50 transition-colors"
+                    className="flex justify-between items-center w-full p-6 text-left hover:bg-neutral-100/30 transition-colors"
                     onClick={() => toggleFaq(index)}
                     aria-expanded={openFaqIndex === index}
                   >
-                    <span className="font-medium text-lg text-slate-800">{faq.question}</span>
+                    <span className="font-medium text-lg text-neutral-900">{faq.question}</span>
                     <div
-                      className={`p-1 rounded-full transition-colors ${openFaqIndex === index ? "bg-blue-100" : "bg-slate-100"}`}
+                      className={`p-1 rounded-full transition-colors ${openFaqIndex === index ? "bg-red-100" : "bg-neutral-200"}`}
                     >
                       {openFaqIndex === index ? (
                         <ChevronUp
-                          className={`h-5 w-5 ${openFaqIndex === index ? "text-blue-600" : "text-slate-400"}`}
+                          className={`h-5 w-5 ${openFaqIndex === index ? "text-red-600" : "text-neutral-500"}`}
                         />
                       ) : (
                         <ChevronDown
-                          className={`h-5 w-5 ${openFaqIndex === index ? "text-blue-600" : "text-slate-400"}`}
+                          className={`h-5 w-5 ${openFaqIndex === index ? "text-red-600" : "text-neutral-500"}`}
                         />
                       )}
                     </div>
@@ -508,7 +508,7 @@ export default function Resources() {
                       openFaqIndex === index ? "max-h-96" : "max-h-0"
                     }`}
                   >
-                    <div className="px-6 pb-6 text-slate-600">
+                    <div className="px-6 pb-6 text-neutral-700">
                       <p className="leading-relaxed">{faq.answer}</p>
                     </div>
                   </div>
@@ -516,15 +516,15 @@ export default function Resources() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12 bg-slate-50 rounded-xl">
-              <p className="text-slate-600">No FAQs found matching your search criteria.</p>
+            <div className="text-center py-12 bg-neutral-100 rounded-xl">
+              <p className="text-neutral-700">No FAQs found matching your search criteria.</p>
             </div>
           )}
         </section>
 
         {/* Additional Help */}
         <section className="mt-16 relative overflow-hidden rounded-2xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 z-0"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-900 z-0"></div>
           <div
             className="absolute inset-0 z-0 opacity-10"
             style={{
@@ -533,17 +533,17 @@ export default function Resources() {
           ></div>
           <div className="relative z-10 p-12 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">Need Additional Help?</h2>
-            <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-red-100 mb-8 max-w-2xl mx-auto">
               Can't find what you're looking for? Our team is here to help you prepare for the hackathon.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button  onClick={() => {window.location.href ='mailto:ethiopia@alxafrica.com';}}   className="bg-white text-blue-600 font-medium px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
+              <button onClick={() => {window.location.href ='mailto:ethiopia@alxafrica.com';}} className="bg-white text-red-600 font-medium px-6 py-3 rounded-lg hover:bg-neutral-50 transition-colors shadow-lg">
                 Contact Support
               </button>
-              <button   onClick={()=> window.location.href='https://www.alxafrica.com/ethiopia/'}  className="bg-blue-700 text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors shadow-lg">
+              <button onClick={() => window.location.href='https://www.alxafrica.com/ethiopia/'} className="bg-gradient-to-r from-red-600 to-red-900 text-white font-medium px-6 py-3 rounded-lg hover:shadow-xl transition-all shadow-lg">
                 Join Our Community
               </button>
-              
+
             </div>
           </div>
         </section>
