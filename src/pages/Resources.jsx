@@ -214,26 +214,27 @@ export default function Resources() {
 
   return (
     <div className={`bg-neutral-50 min-h-screen transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
-      {/* Hero Header */}
-      <div className="relative overflow-hidden -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]">
-        <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-amber-600/20 z-0"></div>
+      {/* Hero Header — dark gradient matching site theme */}
+      <div className="relative overflow-hidden -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]" style={{ background: "linear-gradient(135deg, #0a0a0a 0%, #171717 35%, #1a1a1a 70%, #111111 100%)" }}>
+        {/* Subtle red accent orb */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.06]" style={{ background: "radial-gradient(circle, #DC2626 0%, transparent 70%)" }} />
         <div
-          className="absolute inset-0 z-0 opacity-10"
+          className="absolute inset-0 z-0 opacity-[0.04]"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
           }}
         ></div>
-        <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="container mx-auto px-4 py-24 sm:py-28 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center justify-center p-2 bg-white/80 backdrop-blur-sm rounded-full mb-6 shadow-sm">
-              <Award className="h-5 w-5 text-red-600 mr-2" />
-              <span className="text-sm font-medium text-neutral-900">Hospitality Hackathon 2025</span>
+            <div className="inline-flex items-center justify-center p-2 bg-white/10 backdrop-blur-sm rounded-full mb-6 border border-white/10">
+              <Award className="h-5 w-5 text-red-500 mr-2" />
+              <span className="text-sm font-medium text-neutral-300">Hospitality Hackathon 2026</span>
             </div>
-            <h1 className="text-5xl font-bold text-neutral-900 mb-6 leading-tight">
-              Resources for <span className="text-red-600">Innovation</span> in Hospitality
+            <h1 className="text-5xl font-bold text-white mb-6 leading-tight">
+              Resources for <span style={{ color: "#DC2626" }}>Innovation</span> in Hospitality
             </h1>
-            <p className="text-xl text-neutral-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Everything you need to prepare for the Hospitality Hackathon 2025. Browse our curated collection of
+            <p className="text-xl text-neutral-400 mb-10 max-w-3xl mx-auto leading-relaxed">
+              Everything you need to prepare for the Hospitality Hackathon 2026. Browse our curated collection of
               articles, tools, and resources to help you build innovative solutions.
             </p>
 
@@ -244,7 +245,7 @@ export default function Resources() {
               </div>
               <input
                 type="text"
-                className="block w-full pl-10 pr-4 py-3 border border-neutral-200 rounded-full bg-white/90 backdrop-blur-sm shadow-sm focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:outline-none"
+                className="block w-full pl-10 pr-4 py-3 border border-white/10 rounded-full bg-white/5 text-white placeholder-neutral-500 backdrop-blur-sm shadow-sm focus:ring-2 focus:ring-red-600 focus:border-red-600 focus:outline-none"
                 placeholder="Search for resources, tools, or topics..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const navigate = useNavigate();
-  const [registrationType, setRegistrationType] = useState("individual");
+  const [registrationType, setRegistrationType] = useState("team");
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -400,8 +400,18 @@ const Registration = () => {
         background: "linear-gradient(135deg, #0a0a0a 0%, #171717 35%, #1a1a1a 70%, #111111 100%)"
       }}
     >
-      <div className="max-w-3xl mx-auto rounded-2xl border border-black/[0.06] bg-white/60 shadow-sm backdrop-blur-sm p-8">
-        <h2 className="text-3xl font-bold text-center text-neutral-900 mb-8">Register for ALX Hackathon</h2>
+      <div className="pt-10 sm:pt-14 lg:pt-16" />
+      <div
+        className="max-w-3xl mx-auto rounded-2xl border border-white/10 shadow-xl p-8 sm:p-10"
+        style={{
+          background: "rgba(255, 255, 255, 0.08)",
+          backdropFilter: "blur(20px) saturate(180%)",
+          WebkitBackdropFilter: "blur(20px) saturate(180%)",
+          boxShadow: "0 0 0 0.5px rgba(255,255,255,0.08), 0 8px 40px rgba(0,0,0,0.4)"
+        }}
+      >
+        <h2 className="text-3xl font-bold text-center text-white mb-2">Register for ALX Hackathon</h2>
+        <p className="text-center text-neutral-400 mb-8 text-sm">April 4 & 18, 2026 — Addis Ababa, Ethiopia</p>
 
         <div className="mb-8">
           <div className="flex justify-center space-x-4 flex-wrap gap-2">
@@ -417,9 +427,9 @@ const Registration = () => {
                       boxShadow: "0 4px 14px rgba(220, 38, 38, 0.35)"
                     }
                   : {
-                      backgroundColor: "rgba(255, 255, 255, 0.5)",
-                      color: "#404040",
-                      border: "1px solid rgba(0, 0, 0, 0.1)"
+                      backgroundColor: "rgba(255, 255, 255, 0.06)",
+                      color: "#a3a3a3",
+                      border: "1px solid rgba(255, 255, 255, 0.1)"
                     }
               }
             >
@@ -437,9 +447,9 @@ const Registration = () => {
                       boxShadow: "0 4px 14px rgba(220, 38, 38, 0.35)"
                     }
                   : {
-                      backgroundColor: "rgba(255, 255, 255, 0.5)",
-                      color: "#404040",
-                      border: "1px solid rgba(0, 0, 0, 0.1)"
+                      backgroundColor: "rgba(255, 255, 255, 0.06)",
+                      color: "#a3a3a3",
+                      border: "1px solid rgba(255, 255, 255, 0.1)"
                     }
               }
             >
@@ -452,10 +462,10 @@ const Registration = () => {
           <div
             className={`mb-6 p-4 rounded-xl border flex items-center gap-3 ${
               status.type === "error"
-                ? "bg-red-50/80 text-red-700 border-red-200"
+                ? "bg-red-900/30 text-red-300 border-red-500/30"
                 : status.type === "loading"
-                  ? "bg-neutral-50/80 text-neutral-700 border-neutral-200"
-                  : "bg-neutral-50/80 text-neutral-700 border-neutral-200"
+                  ? "bg-white/5 text-neutral-300 border-white/10"
+                  : "bg-white/5 text-neutral-300 border-white/10"
             }`}
           >
             {status.type === "loading" && (
@@ -494,13 +504,13 @@ const Registration = () => {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="p-6 rounded-xl bg-white/40 backdrop-blur-sm border border-white/20 mb-6">
-            <h3 className="text-xl font-semibold text-neutral-900 mb-4">
+          <div className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 mb-6">
+            <h3 className="text-xl font-semibold text-white mb-4">
               {registrationType === "team" ? "Team Lead Information" : "Personal Information"}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="fullName" className="block text-sm font-medium text-neutral-700">
+                <label htmlFor="fullName" className="block text-sm font-medium text-neutral-300">
                   Full Name *
                 </label>
                 <input
@@ -511,15 +521,15 @@ const Registration = () => {
                   onChange={handleChange}
                   className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                     fieldErrors.fullName
-                      ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                      : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                   } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 />
                 {fieldErrors.fullName && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.fullName}</p>}
               </div>
 
               <div>
-                <label htmlFor="phoneNumber" className="block text-sm font-medium text-neutral-700">
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-neutral-300">
                   Phone Number *
                 </label>
                 <input
@@ -530,15 +540,15 @@ const Registration = () => {
                   onChange={handleChange}
                   className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                     fieldErrors.phoneNumber
-                      ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                      : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                   } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 />
                 {fieldErrors.phoneNumber && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.phoneNumber}</p>}
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-700">
+                <label htmlFor="email" className="block text-sm font-medium text-neutral-300">
                   Email Address *
                 </label>
                 <input
@@ -549,15 +559,15 @@ const Registration = () => {
                   onChange={handleChange}
                   className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                     fieldErrors.email
-                      ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                      : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                   } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 />
                 {fieldErrors.email && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.email}</p>}
               </div>
 
               <div>
-                <label htmlFor="alxAffiliation" className="block text-sm font-medium text-neutral-700">
+                <label htmlFor="alxAffiliation" className="block text-sm font-medium text-neutral-300">
                   ALX Affiliation *
                 </label>
                 <select
@@ -567,8 +577,8 @@ const Registration = () => {
                   onChange={handleChange}
                   className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                     fieldErrors.alxAffiliation
-                      ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                      : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                   } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 >
                   <option value="">Select your affiliation</option>
@@ -583,7 +593,7 @@ const Registration = () => {
 
               {registrationType === "team" && (
                 <div>
-                  <label htmlFor="teamName" className="block text-sm font-medium text-neutral-700">
+                  <label htmlFor="teamName" className="block text-sm font-medium text-neutral-300">
                     Team Name *
                   </label>
                   <input
@@ -594,8 +604,8 @@ const Registration = () => {
                     onChange={handleChange}
                     className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                       fieldErrors.teamName
-                        ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                        : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                        ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                        : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                     } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                   />
                   {fieldErrors.teamName && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.teamName}</p>}
@@ -603,7 +613,7 @@ const Registration = () => {
               )}
 
               <div>
-                <label htmlFor="roleType" className="block text-sm font-medium text-neutral-700">
+                <label htmlFor="roleType" className="block text-sm font-medium text-neutral-300">
                   Role Type *
                 </label>
                 <select
@@ -613,8 +623,8 @@ const Registration = () => {
                   onChange={handleChange}
                   className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                     fieldErrors.roleType
-                      ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                      : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                   } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 >
                   <option value="">Select your role</option>
@@ -629,7 +639,7 @@ const Registration = () => {
             </div>
 
             <div className="mt-4">
-              <label htmlFor="strengths" className="block text-sm font-medium text-neutral-700">
+              <label htmlFor="strengths" className="block text-sm font-medium text-neutral-300">
                 Strengths/Background *
               </label>
               <textarea
@@ -641,8 +651,8 @@ const Registration = () => {
                 placeholder="Describe your skills, experience, and what you can bring to the hackathon"
                 className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                   fieldErrors.strengths
-                    ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                    : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                    ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                    : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                 } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
               />
               {fieldErrors.strengths && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.strengths}</p>}
@@ -650,9 +660,9 @@ const Registration = () => {
           </div>
 
           {registrationType === "team" && (
-            <div className="p-6 rounded-xl bg-white/40 backdrop-blur-sm border border-white/20">
+            <div className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
               <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
-                <h3 className="text-xl font-semibold text-neutral-900">Team Members (Max 4 Additional Members)</h3>
+                <h3 className="text-xl font-semibold text-white">Team Members (Max 4 Additional Members)</h3>
                 <button
                   type="button"
                   onClick={addTeamMember}
@@ -668,9 +678,9 @@ const Registration = () => {
 
               {formData.teamMembers.map((member, index) =>
                 index === 0 ? null : (
-                  <div key={index} className="mb-6 p-4 border border-neutral-300/30 bg-white/30 rounded-xl">
+                  <div key={index} className="mb-6 p-4 border border-white/10 bg-white/5 rounded-xl">
                     <div className="flex justify-between items-center mb-4">
-                      <h4 className="font-medium text-neutral-800">Team Member #{index}</h4>
+                      <h4 className="font-medium text-neutral-200">Team Member #{index}</h4>
                       <button
                         type="button"
                         onClick={() => removeTeamMember(index)}
@@ -682,7 +692,7 @@ const Registration = () => {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor={`member-${index}-name`} className="block text-sm font-medium text-neutral-700">
+                        <label htmlFor={`member-${index}-name`} className="block text-sm font-medium text-neutral-300">
                           Full Name *
                         </label>
                         <input
@@ -693,8 +703,8 @@ const Registration = () => {
                           onChange={(e) => handleTeamMemberChange(index, e)}
                           className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                             fieldErrors[`teamMember-${index}-fullName`]
-                              ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                              : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                              ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                              : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                           } shadow-sm sm:text-sm p-2.5`}
                         />
                         {fieldErrors[`teamMember-${index}-fullName`] && (
@@ -702,7 +712,7 @@ const Registration = () => {
                         )}
                       </div>
                       <div>
-                        <label htmlFor={`member-${index}-email`} className="block text-sm font-medium text-neutral-700">
+                        <label htmlFor={`member-${index}-email`} className="block text-sm font-medium text-neutral-300">
                           Email *
                         </label>
                         <input
@@ -713,8 +723,8 @@ const Registration = () => {
                           onChange={(e) => handleTeamMemberChange(index, e)}
                           className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                             fieldErrors[`teamMember-${index}-email`]
-                              ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                              : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                              ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                              : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                           } shadow-sm sm:text-sm p-2.5`}
                         />
                         {fieldErrors[`teamMember-${index}-email`] && (
@@ -722,7 +732,7 @@ const Registration = () => {
                         )}
                       </div>
                       <div>
-                        <label htmlFor={`member-${index}-phone`} className="block text-sm font-medium text-neutral-700">
+                        <label htmlFor={`member-${index}-phone`} className="block text-sm font-medium text-neutral-300">
                           Phone Number *
                         </label>
                         <input
@@ -733,8 +743,8 @@ const Registration = () => {
                           onChange={(e) => handleTeamMemberChange(index, e)}
                           className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                             fieldErrors[`teamMember-${index}-phoneNumber`]
-                              ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                              : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                              ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                              : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                           } shadow-sm sm:text-sm p-2.5`}
                         />
                         {fieldErrors[`teamMember-${index}-phoneNumber`] && (
@@ -742,7 +752,7 @@ const Registration = () => {
                         )}
                       </div>
                       <div>
-                        <label htmlFor={`member-${index}-role`} className="block text-sm font-medium text-neutral-700">
+                        <label htmlFor={`member-${index}-role`} className="block text-sm font-medium text-neutral-300">
                           Role *
                         </label>
                         <select
@@ -752,8 +762,8 @@ const Registration = () => {
                           onChange={(e) => handleTeamMemberChange(index, e)}
                           className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                             fieldErrors[`teamMember-${index}-roleType`]
-                              ? "border-red-500 bg-red-50/60 focus:ring-red-500 focus:border-red-500"
-                              : "border-neutral-300/50 bg-white/70 focus:ring-red-500 focus:border-red-500"
+                              ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                              : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
                           } shadow-sm sm:text-sm p-2.5`}
                         >
                           <option value="">Select role</option>

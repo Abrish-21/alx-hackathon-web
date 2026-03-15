@@ -192,7 +192,7 @@ export default function AboutUs() {
   return (
     <div className="flex min-h-screen max-w-full flex-col bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-16 md:py-24 -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]" style={{
+      <section className="relative overflow-hidden py-20 md:py-32 -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]" style={{
         background: "linear-gradient(135deg, #0a0a0a 0%, #171717 35%, #1a1a1a 70%, #111111 100%)"
       }}>
         <div className="absolute inset-0 opacity-5">
@@ -719,35 +719,6 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="w-full py-6 bg-neutral-900 text-neutral-200">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="flex items-center space-x-2">
-              <span className="text-lg font-bold">
-                <span style={{ color: "#DC2626" }}>&lt;</span>
-                <span>Hospitality</span>
-                <span style={{ color: "#DC2626" }}>Hackathon</span>
-                <span style={{ color: "#DC2626" }}>/&gt;</span>
-              </span>
-            </div>
-            <p className="text-sm text-neutral-400">
-              © {new Date().getFullYear()} Hospitality Hackathon. All rights reserved.
-            </p>
-            <nav className="flex gap-4 sm:gap-6">
-              <a href="#" className="text-xs text-neutral-400 hover:underline underline-offset-4">
-                Terms of Service
-              </a>
-              <a href="#" className="text-xs text-neutral-400 hover:underline underline-offset-4">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-xs text-neutral-400 hover:underline underline-offset-4">
-                Code of Conduct
-              </a>
-            </nav>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
