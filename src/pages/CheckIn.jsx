@@ -75,7 +75,7 @@ const CheckIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]">
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         <div className="px-4 py-5 sm:p-6">
           <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">

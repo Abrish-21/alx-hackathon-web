@@ -85,7 +85,7 @@ const ContactUs = () => {
 
   if (showSuccess) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-950 to-indigo-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-b from-blue-950 to-indigo-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]">
         {/* Tech background elements */}
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="h-full w-full grid grid-cols-12 gap-4">
@@ -157,7 +157,7 @@ const ContactUs = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-950 to-indigo-900 py-12 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-blue-950 to-indigo-900 py-12 relative overflow-hidden -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]">
       {/* Circuit board pattern */}
       <div
         className="absolute inset-0 opacity-10"

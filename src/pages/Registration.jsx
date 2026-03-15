@@ -24,9 +24,7 @@ const Registration = () => {
 
   // Clear field errors when form data changes
   useEffect(() => {
-    if (Object.keys(fieldErrors).length > 0) {
-      setFieldErrors({});
-    }
+    setFieldErrors((prev) => Object.keys(prev).length > 0 ? {} : prev);
   }, [formData]);
 
   const handleRegistrationTypeChange = (type) => {
@@ -341,7 +339,7 @@ const Registration = () => {
 
   if (showSuccess) {
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]">
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10 text-center">
             <div className="mb-6">
@@ -381,7 +379,7 @@ const Registration = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8 -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]">
       <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Register for ALX Hackathon</h2>
 

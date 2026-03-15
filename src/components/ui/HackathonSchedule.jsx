@@ -1,426 +1,230 @@
 "use client"
 
 import { useState } from "react"
+import {
+  Clock,
+  MapPin,
+  ChevronDown,
+  Star,
+  BookOpen,
+  Code2,
+  Coffee,
+  Users,
+  Mic,
+  Award,
+  MessageCircle,
+  Bus,
+  Presentation,
+  Sparkles,
+} from "lucide-react"
+
+const PURPLE = "#7C3AED"
+const ACCENT = "#D4952C"
+
+const categoryConfig = {
+  logistics: { icon: Clock, color: "#64748b", bg: "rgba(100,116,139,0.08)", label: "Logistics" },
+  main: { icon: Mic, color: "#7C3AED", bg: "rgba(124,58,237,0.08)", label: "Main Event" },
+  keynote: { icon: Star, color: "#D4952C", bg: "rgba(212,149,44,0.08)", label: "Keynote" },
+  hacking: { icon: Code2, color: "#059669", bg: "rgba(5,150,105,0.08)", label: "Hacking" },
+  break: { icon: Coffee, color: "#8b5cf6", bg: "rgba(139,92,246,0.08)", label: "Break" },
+  mentorship: { icon: BookOpen, color: "#2563eb", bg: "rgba(37,99,235,0.08)", label: "Mentorship" },
+  presentation: { icon: Presentation, color: "#db2777", bg: "rgba(219,39,119,0.08)", label: "Presentation" },
+  social: { icon: MessageCircle, color: "#f59e0b", bg: "rgba(245,158,11,0.08)", label: "Social" },
+  travel: { icon: Bus, color: "#64748b", bg: "rgba(100,116,139,0.08)", label: "Travel" },
+}
+
+const schedule = {
+  day1: {
+    date: "Saturday, April 4, 2026",
+    location: "ALX Tech Hub",
+    address: "Lideta, Addis Ababa",
+    events: [
+      { time: "9:00 AM – 10:00 AM", title: "Check-ins & Setup", description: "Check-ins, setups, and preparation.", category: "logistics" },
+      { time: "10:00 AM – 10:15 AM", title: "Opening Remarks", description: "Welcome address and introduction to the hackathon.", category: "main", speaker: "Mirafe Gebriel Marcos" },
+      { time: "10:20 AM – 10:40 AM", title: "Problem Statements", description: "Introduction to the hackathon challenges and problem statements.", category: "keynote", speaker: "Yonaiel Tadesse" },
+      { time: "10:45 AM – 11:45 AM", title: "Industry Panel Discussion", description: "Panel discussion on the future of tech and innovation in Africa.", category: "main", speaker: "Tadiwos Belete, Bersufekad Getachew, Yoadan Tilahun" },
+      { time: "11:50 AM – 12:50 PM", title: "Team Formation & Brainstorming", description: "Form teams, get to know each other, and brainstorm project ideas.", category: "break" },
+      { time: "12:55 PM – 1:55 PM", title: "Lunch & Networking", description: "Lunch and networking session with fellow participants, mentors, and sponsors.", category: "social" },
+      { time: "2:00 PM – 5:00 PM", title: "MVP Development & Mentorship", description: "Develop your MVP with guidance from industry experts and mentors.", category: "hacking" },
+      { time: "5:05 PM – 6:05 PM", title: "Technical Review Session", description: "Review your project progress with mentors and get feedback.", category: "mentorship" },
+      { time: "6:10 PM – 6:30 PM", title: "Wrap-up & Day 2 Prep", description: "Summary of the day and instructions for Day 2 at Kuriftu African Village.", category: "logistics" },
+    ],
+  },
+  day2: {
+    date: "Saturday, April 18, 2026",
+    location: "Kuriftu African Village",
+    address: "Burayu",
+    events: [
+      { time: "9:00 AM – 10:30 AM", title: "Travel to Kuriftu", description: "Transportation to Kuriftu African Village for Day 2 activities.", category: "logistics" },
+      { time: "10:35 AM – 11:35 AM", title: "Final Pitch Preparation", description: "Finalize your project pitch and refine your solution with mentors.", category: "mentorship" },
+      { time: "11:40 AM – 12:25 PM", title: "Demo Presentations", description: "Demo your project to judges and get feedback before final submission.", category: "presentation" },
+      { time: "12:30 PM – 1:00 PM", title: "Winners & Awards Ceremony", description: "Winners announced and awards ceremony.", category: "main" },
+      { time: "1:05 PM – 3:00 PM", title: "Lunch & Networking", description: "Lunch and informal networking with participants, judges, and sponsors.", category: "social" },
+      { time: "3:05 PM – 4:25 PM", title: "Open Discussions & Networking", description: "Open discussions, networking, and knowledge sharing.", category: "social" },
+      { time: "4:30 PM – 5:00 PM", title: "Closing Remarks", description: "Closing remarks and thank you note.", category: "main" },
+    ],
+  },
+}
 
 export default function HackathonSchedule() {
   const [activeDay, setActiveDay] = useState("day1")
-  const [expandedEvents, setExpandedEvents] = useState({})
+  const [expandedIndex, setExpandedIndex] = useState(null)
 
-  const schedule = {
-    day1: {
-      date: "Saturday, April 4, 2026",
-      location: "Capstone ALX Tech Hub",
-      locationAddress: "Innovation Avenue to Capstone ALX Tech Hub, Lideta, Addis Ababa",
-      timeBlocks: [
-        {
-          name: "Morning",
-          events: [
-            {
-              time: "9:00 AM – 10:00 AM",
-              title: "Check-ins",
-              description: "Check-ins, setups, and preparation.",
-              category: "logistics",
-            },
-            {
-              time: "10:00 AM – 10:15 AM ",
-              title: "Opening remarks",
-              description: "Welcome address and introduction to the hackathon.",
-              category: "main",
-              speaker: "Mirafe Gebriel Marcos",
-            },
-            {
-              time: "10:20 AM – 10:40 AM",
-              title: "Presentation of problem statements ",
-              description: "Introduction to the hackathon challenges and problem statements.",
-              category: "keynote",
-              speaker: "Yonaiel Tadesse",
-            },
-            {
-              time: "10:45 AM – 11:45 AM",
-              title: "Industry Panel Discussion",
-              description: "Panel discussion on the future of tech and innovation in Africa.",
-              category: "main",
-              speaker: "Panelists: Tadiwos Belete, Bersufekad Getachew, Yoadan Tilahun: "
-            },
-            {
-              time: "11:50 AM – 12:50 PM ",
-              title: "Team formation, introductory training, and brainstorming",
-              description: "Form teams, get to know each other, and brainstorm project ideas. (Weventure, ALX Ventures Team)",
-              category: "break",
-            },
-          ],
-        },
-        {
-          name: "Afternoon",
-          events: [
-           
-            {
-              time: "12:55 PM – 1:55 PM ",
-              title: " Lunch + Networking",
-              description: "Lunch and networking session with fellow participants, mentors, and sponsors.",
-              category: "break",
-            },
-            {
-              time: "2:00 PM – 5:00 PM ",
-              title: " MVP development + mentorship (Weventure, ALX Ventures Team)",
-              description: "Develop your MVP with guidance from industry experts and mentors.",
-              category: "hacking",
-            },
-            {
-              time: "5:05 PM – 6:05 PM",
-              title: "Technical review session",
-              description: "Review your project progress with mentors and get feedback.",
-              category: "mentorship",
-            },
-            {
-              time: "6:10 PM – 6:30 PM",
-              title: "Wrap-up & travel preparation for Day 2",
-              description: "Summary of the day and instructions for Day 2 at Kuriftu African Village.",
-              category: "logistics",
-            },
-          ],
-        },
-      ],
-    },
-    day2: {
-      date: "Saturday, April 18, 2026",
-      location: "Kuriftu African Village Burayu",
-      locationAddress: " Lakeside Resort, Nature Road to Kuriftu African Village, Burayu",
-      timeBlocks: [
-        {
-          name: "Morning",
-          events: [
-            {
-              time: "9:00 AM – 10:30 AM",
-              title: "Travel to Kuriftu African Village in Burayu",
-              description: "Transportation to Kuriftu African Village for Day 2 activities.",
-              category: "logistics",
-            },
-            {
-              time: "10:35 AM – 11:35 AM",
-              title: " Final pitch preparation & solution refinement",
-              description: "Finalize your project pitch and refine your solution with mentors.",
-              category: "mentorship",
-            },
-            {
-              time: "11:40 AM – 12:25 PM",
-              title: "Demo presentations to judges",
-              description: "Demo your project to judges and get feedback before final submission.",
-              category: "presentation",
-            },
-          ],
-        },
-        {
-          name: "Afternoon",
-          events: [
-            {
-              time: "12:30 PM – 1:00 PM ",
-              title: "Winners announced & awards ceremony",
-              description: "Winners announced & awards ceremony ", 
-              category: "main",
-            },
-            {
-              time: "1:05 PM – 3:00 PM ",
-              title: "Lunch & informal networking",
-              description: "Lunch and informal networking with participants, judges, and sponsors.",
-              category: "social",
-            },
-            {
-              time: "3:05 PM – 4:25 PM",
-              title: " Open discussions, networking & closing remarks",
-              description: "Open discussions, networking & closing remarks",
-              category: "main",
-            }, 
-            {
-              time: "4:30 PM – 5:00 PM",
-              title: "Closing remarks",
-              description: "Closing remarks and thank you note.",
-              category: "main",
-            },
-          ],
-        },
-      ],
-    },
-  }
-
-  // Get category color class
-  const getCategoryColor = (category) => {
-    switch (category) {
-      case "keynote":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200"
-      case "workshop":
-        return "bg-blue-100 text-blue-800 border-blue-200"
-      case "hacking":
-        return "bg-green-100 text-green-800 border-green-200"
-      case "break":
-        return "bg-gray-100 text-gray-800 border-gray-200"
-      case "main":
-        return "bg-purple-100 text-purple-800 border-purple-200"
-      case "presentation":
-        return "bg-pink-100 text-pink-800 border-pink-200"
-      case "deadline":
-        return "bg-red-100 text-red-800 border-red-200"
-      case "mentorship":
-        return "bg-indigo-100 text-indigo-800 border-indigo-200"
-      case "social":
-        return "bg-orange-100 text-orange-800 border-orange-200"
-      default:
-        return "bg-gray-100 text-gray-800 border-gray-200"
-    }
-  }
-
-  // Get category icon
-  const getCategoryIcon = (category) => {
-    switch (category) {
-      case "keynote":
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-          </svg>
-        )
-      case "workshop":
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-          </svg>
-        )
-      case "hacking":
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-          </svg>
-        )
-      case "break":
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
-            <line x1="6" y1="1" x2="6" y2="4"></line>
-            <line x1="10" y1="1" x2="10" y2="4"></line>
-            <line x1="14" y1="1" x2="14" y2="4"></line>
-          </svg>
-        )
-      default:
-        return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-        )
-    }
-  }
-
-  const toggleEvent = (blockIndex, eventIndex) => {
-    const key = `${activeDay}-${blockIndex}-${eventIndex}`
-    setExpandedEvents((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }))
-  }
-
-  const isExpanded = (blockIndex, eventIndex) => {
-    const key = `${activeDay}-${blockIndex}-${eventIndex}`
-    return expandedEvents[key]
-  }
+  const currentSchedule = schedule[activeDay]
 
   return (
-    <div className="container mx-auto py-16 px-4">
+    <div className="container mx-auto py-20 px-4">
+      {/* Section Header */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-slate-600 text-xs font-medium tracking-wide uppercase mb-4">
+          <Clock className="h-3.5 w-3.5" />
+          Event Timeline
+        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight mb-3">
           Hackathon Schedule
         </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Your guide to all the exciting events, workshops, and activities planned for our two-day tech extravaganza.
+        <p className="text-base text-slate-500 max-w-2xl mx-auto">
+          Your guide to all the exciting events, workshops, and activities planned for our two-day hackathon.
         </p>
       </div>
 
-      {/* Day tabs */}
-      <div className="flex justify-center mb-8">
-        <div className="grid grid-cols-2 w-full max-w-md bg-gray-100 rounded-lg p-1">
-          <button
-            onClick={() => setActiveDay("day1")}
-            className={`py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-              activeDay === "day1" ? "bg-white shadow-sm text-primary" : "text-gray-600 hover:text-primary"
-            }`}
-          >
-            Day 1: ALX-Hub
-          </button>
-          <button
-            onClick={() => setActiveDay("day2")}
-            className={`py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-              activeDay === "day2" ? "bg-white shadow-sm text-primary" : "text-gray-600 hover:text-primary"
-            }`}
-          >
-            Day 2: Kuriftu Village
-          </button>
+      {/* Day Switcher */}
+      <div className="flex justify-center mb-10">
+        <div className="inline-flex bg-slate-100 rounded-lg p-1 border border-slate-200">
+          {[
+            { key: "day1", label: "Day 1: ALX Hub", sublabel: "Apr 4" },
+            { key: "day2", label: "Day 2: Kuriftu", sublabel: "Apr 18" },
+          ].map((tab) => (
+            <button
+              key={tab.key}
+              onClick={() => { setActiveDay(tab.key); setExpandedIndex(null) }}
+              className={`relative py-2.5 px-6 rounded-md text-sm font-medium transition-all duration-200 ${
+                activeDay === tab.key
+                  ? "bg-white text-slate-900 shadow-sm border border-slate-200"
+                  : "text-slate-500 hover:text-slate-700"
+              }`}
+            >
+              <span className="hidden sm:inline">{tab.label}</span>
+              <span className="sm:hidden">{tab.sublabel}</span>
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Schedule header */}
-      <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div>
-            <h3 className="text-2xl font-bold text-gray-900">{schedule[activeDay].date}</h3>
-            <div className="flex items-center mt-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-primary mr-2"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <div>
-                <span className="font-medium">{schedule[activeDay].location}</span>
-                <span className="text-gray-500 text-sm ml-2">{schedule[activeDay].locationAddress}</span>
+      {/* Day Info Card */}
+      <div className="max-w-4xl mx-auto mb-8">
+        <div
+          className="rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          style={{
+            background: activeDay === "day1"
+              ? "linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)"
+              : `linear-gradient(135deg, ${ACCENT} 0%, #b8751f 100%)`,
+          }}
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/10">
+              <Sparkles className="h-5 w-5 text-white" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white">{currentSchedule.date}</h3>
+              <div className="flex items-center gap-1.5 text-sm text-white/70 mt-0.5">
+                <MapPin className="h-3.5 w-3.5" />
+                {currentSchedule.location} — {currentSchedule.address}
               </div>
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
-            <div className="flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-medium">
-              <span className="w-2 h-2 rounded-full bg-blue-500 mr-2"></span>
-              Workshop
-            </div>
-            <div className="flex items-center px-3 py-1 rounded-full bg-green-100 text-green-800 text-xs font-medium">
-              <span className="w-2 h-2 rounded-full bg-green-500 mr-2"></span>
-              Hacking
-            </div>
-            <div className="flex items-center px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-medium">
-              <span className="w-2 h-2 rounded-full bg-yellow-500 mr-2"></span>
-              Keynote
-            </div>
+            {["Main Event", "Hacking", "Social"].map((tag) => (
+              <span key={tag} className="px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-medium border border-white/10">
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Accordion Schedule */}
-      <div className="grid md:grid-cols-2 gap-6">
-        {schedule[activeDay].timeBlocks.map((block, blockIndex) => (
-          <div key={blockIndex} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900">{block.name}</h3>
-            </div>
-            <div className="divide-y divide-gray-200">
-              {block.events.map((event, eventIndex) => (
-                <div key={eventIndex} className="cursor-pointer">
-                  <div
-                    className="px-6 py-4 flex items-center justify-between hover:bg-gray-50"
-                    onClick={() => toggleEvent(blockIndex, eventIndex)}
-                  >
-                    <div className="flex items-center">
-                      <div
-                        className={`w-6 h-6 rounded-full flex items-center justify-center mr-3 ${getCategoryColor(event.category)}`}
-                      >
-                        {getCategoryIcon(event.category)}
-                      </div>
-                      <div>
-                        <div className="font-medium">{event.title}</div>
-                        <div className="text-sm text-gray-500">{event.time}</div>
-                      </div>
-                    </div>
-                    <div className="text-gray-400">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className={`h-5 w-5 transition-transform ${isExpanded(blockIndex, eventIndex) ? "transform rotate-180" : ""}`}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                      </svg>
-                    </div>
+      {/* Timeline */}
+      <div className="max-w-4xl mx-auto">
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-[23px] top-0 bottom-0 w-px bg-slate-200 hidden md:block"></div>
+
+          <div className="space-y-3">
+            {currentSchedule.events.map((event, index) => {
+              const config = categoryConfig[event.category] || categoryConfig.logistics
+              const Icon = config.icon
+              const isOpen = expandedIndex === index
+
+              return (
+                <div key={index} className="relative md:pl-14">
+                  {/* Timeline dot */}
+                  <div className="absolute left-[16px] top-[22px] hidden md:flex items-center justify-center">
+                    <div
+                      className="w-[15px] h-[15px] rounded-full border-2 border-white shadow-sm"
+                      style={{ backgroundColor: config.color }}
+                    ></div>
                   </div>
 
-                  {isExpanded(blockIndex, eventIndex) && (
-                    <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
-                      <p className="text-gray-600 mb-3">{event.description}</p>
-
-                      {event.speaker && (
-                        <div className="flex items-center mt-3 pt-3 border-t border-gray-200">
-                          <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-3">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-3 w-3 text-gray-600"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                              <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
+                  {/* Event Card */}
+                  <div
+                    className="rounded-2xl border border-white/60 bg-white/50 shadow-sm hover:shadow-md hover:bg-white/70 transition-all duration-300 overflow-hidden cursor-pointer"
+                    onClick={() => setExpandedIndex(isOpen ? null : index)}
+                  >
+                    <div className="p-4 sm:p-5">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex items-start gap-3 flex-1 min-w-0">
+                          {/* Category Icon */}
+                          <div
+                            className="p-2 rounded-xl flex-shrink-0 mt-0.5"
+                            style={{ backgroundColor: config.bg, color: config.color }}
+                          >
+                            <Icon className="h-4 w-4" />
                           </div>
-                          <span className="text-sm font-medium">{event.speaker}</span>
+
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-2 mb-1">
+                              <h4 className="text-sm font-semibold text-slate-900">{event.title}</h4>
+                              <span
+                                className="px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wide"
+                                style={{ backgroundColor: config.bg, color: config.color }}
+                              >
+                                {config.label}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-xs text-slate-400">
+                              <Clock className="h-3 w-3" />
+                              {event.time}
+                            </div>
+                          </div>
+                        </div>
+
+                        <ChevronDown
+                          className={`h-4 w-4 text-slate-400 flex-shrink-0 mt-1 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                        />
+                      </div>
+
+                      {/* Expanded content */}
+                      {isOpen && (
+                        <div className="mt-4 pt-4 border-t border-slate-100">
+                          <p className="text-sm text-slate-500 leading-relaxed">{event.description}</p>
+                          {event.speaker && (
+                            <div className="mt-3 flex items-center gap-2">
+                              <div className="p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+                                <Users className="h-3 w-3 text-slate-400" />
+                              </div>
+                              <span className="text-xs font-medium text-slate-600">{event.speaker}</span>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
-                  )}
+                  </div>
                 </div>
-              ))}
-            </div>
+              )
+            })}
           </div>
-        ))}
+        </div>
       </div>
-
     </div>
   )
 }
-

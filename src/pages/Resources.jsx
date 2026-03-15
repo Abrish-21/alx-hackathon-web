@@ -215,7 +215,7 @@ export default function Resources() {
   return (
     <div className={`bg-white min-h-screen transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
       {/* Hero Header */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-amber-600/20 z-0"></div>
         <div
           className="absolute inset-0 z-0 opacity-10"
@@ -227,13 +227,13 @@ export default function Resources() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center justify-center p-2 bg-white/80 backdrop-blur-sm rounded-full mb-6 shadow-sm">
               <Award className="h-5 w-5 text-amber-600 mr-2" />
-              <span className="text-sm font-medium text-slate-800">Hospitality Hackathon 2026</span>
+              <span className="text-sm font-medium text-slate-800">Hospitality Hackathon 2025</span>
             </div>
             <h1 className="text-5xl font-bold text-slate-800 mb-6 leading-tight">
               Resources for <span className="text-blue-600">Innovation</span> in Hospitality
             </h1>
             <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Everything you need to prepare for the Hospitality Hackathon 2026. Browse our curated collection of
+              Everything you need to prepare for the Hospitality Hackathon 2025. Browse our curated collection of
               articles, tools, and resources to help you build innovative solutions.
             </p>
 
@@ -537,7 +537,7 @@ export default function Resources() {
               Can't find what you're looking for? Our team is here to help you prepare for the hackathon.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button  onClick={(e) => {window.location.href ='mailto:ethiopia@alxafrica.com';}}   className="bg-white text-blue-600 font-medium px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
+              <button  onClick={() => {window.location.href ='mailto:ethiopia@alxafrica.com';}}   className="bg-white text-blue-600 font-medium px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors shadow-lg">
                 Contact Support
               </button>
               <button   onClick={()=> window.location.href='https://www.alxafrica.com/ethiopia/'}  className="bg-blue-700 text-white font-medium px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors shadow-lg">
