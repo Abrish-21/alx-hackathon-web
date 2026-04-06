@@ -36,7 +36,7 @@ const ContactUs = () => {
     try {
       console.log('Sending request to:', `${API_URL}/api/contact`); // Debug log
       console.log('Form data:', formData); // Debug log
-      
+
       const response = await fetch(`${API_URL}/api/contact`, {
         method: "POST",
         headers: {
@@ -49,7 +49,7 @@ const ContactUs = () => {
       console.log('Response status:', response.status); // Debug log
       const responseText = await response.text();
       console.log('Raw response:', responseText); // Debug log
-      
+
       let data;
       try {
         data = JSON.parse(responseText);
@@ -57,7 +57,7 @@ const ContactUs = () => {
         console.error('Failed to parse response:', e);
         throw new Error('Invalid response from server');
       }
-      
+
       console.log('Response data:', data); // Debug log
 
       if (response.ok) {
@@ -85,17 +85,17 @@ const ContactUs = () => {
 
   if (showSuccess) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-950 to-indigo-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-b from-neutral-900 to-neutral-800 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]">
         {/* Tech background elements */}
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="h-full w-full grid grid-cols-12 gap-4">
             {Array.from({ length: 12 }).map((_, i) => (
-              <div key={i} className="border-r border-cyan-400/20 h-full"></div>
+              <div key={i} className="border-r border-red-500/20 h-full"></div>
             ))}
           </div>
           <div className="h-full w-full grid grid-rows-6 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="border-b border-cyan-400/20 w-full"></div>
+              <div key={i} className="border-b border-red-500/20 w-full"></div>
             ))}
           </div>
         </div>
@@ -104,7 +104,7 @@ const ContactUs = () => {
         {Array.from({ length: 20 }).map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-cyan-400 opacity-20"
+            className="absolute rounded-full bg-red-500 opacity-20"
             style={{
               width: Math.random() * 10 + 5 + "px",
               height: Math.random() * 10 + 5 + "px",
@@ -116,33 +116,34 @@ const ContactUs = () => {
         ))}
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10">
-          <div className="bg-white/10 backdrop-blur-sm py-8 px-4 shadow-lg sm:rounded-lg sm:px-10 text-center border border-cyan-500/30">
+          <div className="bg-white/10 backdrop-blur-sm py-8 px-4 shadow-lg sm:rounded-lg sm:px-10 text-center border border-red-500/30">
             <div className="mb-6">
-              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-cyan-500/20 border border-cyan-500/50">
-                <svg className="h-10 w-10 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-500/20 border border-red-500/50">
+                <svg className="h-10 w-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
             </div>
             <h2 className="text-2xl font-bold text-white mb-4 font-mono">
-              <span className="text-cyan-400">&gt;</span> Message Sent Successfully!
+              <span className="text-red-400">&gt;</span> Message Sent Successfully!
             </h2>
-            <p className="text-blue-100 mb-8">
+            <p className="text-neutral-200 mb-8">
               Thank you for contacting us! We have received your message and will get back to you as soon as possible.
               You will receive a confirmation email shortly.
             </p>
             <div className="space-y-4">
               <button
                 onClick={() => setShowSuccess(false)}
-                className="w-full flex justify-center py-2 px-4 border border-cyan-500/50 rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transition-all duration-300 relative overflow-hidden group"
+                className="w-full flex justify-center py-2 px-4 border border-red-500/50 rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 relative overflow-hidden group"
+                style={{ backgroundImage: "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)" }}
               >
                 <span className="relative z-10 flex items-center font-mono">
-                  <span className="text-cyan-300 mr-1">&gt;</span>
+                  <span className="text-red-300 mr-1">&gt;</span>
                   Send Another Message
                 </span>
                 <span className="absolute inset-0 w-full h-full">
                   <span
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-transparent"
+                    className="absolute inset-0 bg-gradient-to-r from-red-400/20 to-transparent"
                     style={{
                       animation: "shimmer 3s infinite linear",
                     }}
@@ -157,7 +158,7 @@ const ContactUs = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-950 to-indigo-900 py-12 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-neutral-900 to-neutral-800 py-12 relative overflow-hidden -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]" style={{ backgroundImage: "linear-gradient(135deg, #0a0a0a 0%, #171717 35%, #1a1a1a 70%, #111111 100%)" }}>
       {/* Circuit board pattern */}
       <div
         className="absolute inset-0 opacity-10"
@@ -170,12 +171,12 @@ const ContactUs = () => {
       <div className="absolute inset-0 z-0 opacity-10">
         <div className="h-full w-full grid grid-cols-12 gap-4">
           {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="border-r border-cyan-400/20 h-full"></div>
+            <div key={i} className="border-r border-red-500/20 h-full"></div>
           ))}
         </div>
         <div className="h-full w-full grid grid-rows-6 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="border-b border-cyan-400/20 w-full"></div>
+            <div key={i} className="border-b border-red-500/20 w-full"></div>
           ))}
         </div>
       </div>
@@ -184,7 +185,7 @@ const ContactUs = () => {
       {Array.from({ length: 30 }).map((_, i) => (
         <div
           key={i}
-          className="absolute rounded-full bg-cyan-400 opacity-20"
+          className="absolute rounded-full bg-red-500 opacity-20"
           style={{
             width: Math.random() * 10 + 5 + "px",
             height: Math.random() * 10 + 5 + "px",
@@ -198,22 +199,22 @@ const ContactUs = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-white mb-2 font-mono">
-            <span className="text-cyan-400">&lt;</span>
+            <span className="text-red-400">&lt;</span>
             Contact Us
-            <span className="text-cyan-400">/&gt;</span>
+            <span className="text-red-400">/&gt;</span>
           </h2>
-          <p className="text-center text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-center text-neutral-200 mb-8 max-w-2xl mx-auto">
             Have questions about the ALX Hackathon? We're here to help!
             <span
-              className="inline-block ml-1 w-2 h-5 bg-cyan-400 align-middle"
+              className="inline-block ml-1 w-2 h-5 bg-red-500 align-middle"
               style={{ animation: "blink 1s infinite" }}
             />
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center transform hover:scale-105 transition-transform duration-300 group">
-              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-cyan-500/20 rounded-full mb-4 border border-cyan-500/50 group-hover:border-cyan-400 transition-colors">
-                <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-red-500/20 rounded-full mb-4 border border-red-500/50 group-hover:border-red-400 transition-colors">
+                <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -223,14 +224,14 @@ const ContactUs = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-medium text-white font-mono">
-                <span className="text-cyan-400">&gt;</span> Phone
+                <span className="text-red-400">&gt;</span> Phone
               </h3>
-              <p className="mt-2 text-blue-100">+251 911 223344</p>
+              <p className="mt-2 text-neutral-300">+251 911 223344</p>
             </div>
 
             <div className="text-center transform hover:scale-105 transition-transform duration-300 group">
-              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-cyan-500/20 rounded-full mb-4 border border-cyan-500/50 group-hover:border-cyan-400 transition-colors">
-                <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-red-500/20 rounded-full mb-4 border border-red-500/50 group-hover:border-red-400 transition-colors">
+                <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -240,14 +241,14 @@ const ContactUs = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-medium text-white font-mono">
-                <span className="text-cyan-400">&gt;</span> Email
+                <span className="text-red-400">&gt;</span> Email
               </h3>
-              <p className="mt-2 text-blue-100">hackathon@alxethiopia.com</p>
+              <p className="mt-2 text-neutral-300">hackathon@alxethiopia.com</p>
             </div>
 
             <div className="text-center transform hover:scale-105 transition-transform duration-300 group">
-              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-cyan-500/20 rounded-full mb-4 border border-cyan-500/50 group-hover:border-cyan-400 transition-colors">
-                <svg className="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-red-500/20 rounded-full mb-4 border border-red-500/50 group-hover:border-red-400 transition-colors">
+                <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -263,22 +264,22 @@ const ContactUs = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-medium text-white font-mono">
-                <span className="text-cyan-400">&gt;</span> Location
+                <span className="text-red-400">&gt;</span> Location
               </h3>
-              <p className="mt-2 text-blue-100">Addis Ababa, Ethiopia</p>
+              <p className="mt-2 text-neutral-300">Addis Ababa, Ethiopia</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 max-w-lg mx-auto bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-8 border border-cyan-500/30 relative">
+        <div className="mt-12 max-w-lg mx-auto bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-8 border border-red-500/30 relative">
           {/* Corner brackets */}
-          <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-cyan-400/70"></div>
-          <div className="absolute top-0 right-0 w-8 h-8 border-r-2 border-t-2 border-cyan-400/70"></div>
-          <div className="absolute bottom-0 left-0 w-8 h-8 border-l-2 border-b-2 border-cyan-400/70"></div>
-          <div className="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-cyan-400/70"></div>
+          <div className="absolute top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-red-400/70"></div>
+          <div className="absolute top-0 right-0 w-8 h-8 border-r-2 border-t-2 border-red-400/70"></div>
+          <div className="absolute bottom-0 left-0 w-8 h-8 border-l-2 border-b-2 border-red-400/70"></div>
+          <div className="absolute bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-red-400/70"></div>
 
           {/* Terminal header */}
-          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs py-1 px-4 rounded-t-md font-mono">
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-red-600 to-red-700 text-white text-xs py-1 px-4 rounded-t-md font-mono" style={{ backgroundImage: "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)" }}>
             contact_form.exe
           </div>
 
@@ -293,8 +294,8 @@ const ContactUs = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-blue-100 font-mono">
-                  <span className="text-cyan-400">&gt;</span> Name *
+                <label htmlFor="name" className="block text-sm font-medium text-neutral-200 font-mono">
+                  <span className="text-red-400">&gt;</span> Name *
                 </label>
                 <input
                   type="text"
@@ -302,13 +303,13 @@ const ContactUs = () => {
                   id="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className=" outline-none mt-1 block w-full rounded-lg border border-cyan-500/50 bg-blue-900/20 shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm p-2.5 hover:border-cyan-400 transition-colors duration-200 text-white placeholder-blue-300"
+                  className=" outline-none mt-1 block w-full rounded-lg border border-red-500/50 bg-neutral-900/40 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm p-2.5 hover:border-red-400 transition-colors duration-200 text-white placeholder-neutral-400"
                   required
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-blue-100 font-mono">
-                  <span className="text-cyan-400">&gt;</span> Email *
+                <label htmlFor="email" className="block text-sm font-medium text-neutral-200 font-mono">
+                  <span className="text-red-400">&gt;</span> Email *
                 </label>
                 <input
                   type="email"
@@ -316,15 +317,15 @@ const ContactUs = () => {
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-1 block w-full outline-none  rounded-lg border border-cyan-500/50 bg-blue-900/20 shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm p-2.5 hover:border-cyan-400 transition-colors duration-200 text-white placeholder-blue-300"
+                  className="mt-1 block w-full outline-none  rounded-lg border border-red-500/50 bg-neutral-900/40 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm p-2.5 hover:border-red-400 transition-colors duration-200 text-white placeholder-neutral-400"
                   required
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="subject" className="block text-sm font-medium text-blue-100 font-mono">
-                <span className="text-cyan-400">&gt;</span> Subject
+              <label htmlFor="subject" className="block text-sm font-medium text-neutral-200 font-mono">
+                <span className="text-red-400">&gt;</span> Subject
               </label>
               <input
                 type="text"
@@ -332,13 +333,13 @@ const ContactUs = () => {
                 id="subject"
                 value={formData.subject}
                 onChange={handleChange}
-                className="mt-1 block w-full outline-none rounded-lg border border-cyan-500/50 bg-blue-900/20 shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm p-2.5 hover:border-cyan-400 transition-colors duration-200 text-white placeholder-blue-300"
+                className="mt-1 block w-full outline-none rounded-lg border border-red-500/50 bg-neutral-900/40 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm p-2.5 hover:border-red-400 transition-colors duration-200 text-white placeholder-neutral-400"
               />
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-blue-100 font-mono">
-                <span className="text-cyan-400">&gt;</span> Message *
+              <label htmlFor="message" className="block text-sm font-medium text-neutral-200 font-mono">
+                <span className="text-red-400">&gt;</span> Message *
               </label>
               <textarea
                 name="message"
@@ -346,7 +347,7 @@ const ContactUs = () => {
                 rows="5"
                 value={formData.message}
                 onChange={handleChange}
-                className="outline-none mt-1 block w-full rounded-lg border border-cyan-500/50 bg-blue-900/20 shadow-sm focus:border-cyan-500 focus:ring-cyan-500 sm:text-sm p-2.5 hover:border-cyan-400 transition-colors duration-200 text-white placeholder-blue-300"
+                className="outline-none mt-1 block w-full rounded-lg border border-red-500/50 bg-neutral-900/40 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm p-2.5 hover:border-red-400 transition-colors duration-200 text-white placeholder-neutral-400"
                 required
               />
             </div>
@@ -354,15 +355,16 @@ const ContactUs = () => {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-3 px-4 border border-cyan-500/50 rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 transform hover:scale-[1.02] transition-all duration-200 relative overflow-hidden group"
+                className="w-full flex justify-center py-3 px-4 border border-red-500/50 rounded-lg shadow-sm text-sm font-medium text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transform hover:scale-[1.02] transition-all duration-200 relative overflow-hidden group"
+                style={{ backgroundImage: "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)" }}
               >
                 <span className="relative z-10 flex items-center font-mono">
-                  <span className="text-cyan-300 mr-1">&gt;</span>
+                  <span className="text-red-300 mr-1">&gt;</span>
                   Send Message
                 </span>
                 <span className="absolute inset-0 w-full h-full">
                   <span
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-transparent"
+                    className="absolute inset-0 bg-gradient-to-r from-red-400/20 to-transparent"
                     style={{
                       animation: "shimmer 3s infinite linear",
                     }}
@@ -377,7 +379,7 @@ const ContactUs = () => {
       {/* Tech-themed floating elements */}
       <div className="absolute top-10 right-10 hidden lg:block">
         <div
-          className="text-xs font-mono text-cyan-400 bg-black/20 backdrop-blur-sm p-2 rounded border border-cyan-500/20"
+          className="text-xs font-mono text-red-400 bg-black/20 backdrop-blur-sm p-2 rounded border border-red-500/20"
           style={{ animation: "pulse 4s infinite" }}
         >
           <div>SYSTEM: OPERATIONAL</div>

@@ -1,21 +1,17 @@
 "use client"
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import hero from '/assets/hero.mp4'
-import alxl from '../../public/assets/images/alxl.jpg'
-import wev from '../../public/assets/images/wev.jpg'
-import kuri from '../../public/assets/images/kuri.jpg'
+import alxl from '../../public/assets/images/alxl-clean.png'
+import wev from '../../public/assets/images/wev-clean.png'
+import kuri from '../../public/assets/images/kuri-clean.png'
 import {
-  HeartIcon,
   Calendar,
   MapPin,
   Award,
   Users,
   ChevronRight,
-  Play,
   Clock,
   Hotel,
-  Code,
   Lightbulb,
   Trophy,
   ArrowRight,
@@ -24,266 +20,303 @@ import {
   Mail,
   Briefcase,
   Sparkles,
+  Cpu,
+  Zap,
+  ArrowUpRight,
+  Code2,
+  Terminal,
+  Braces,
 } from "lucide-react"
 import HackathonPeople from "../components/ui/HackathonPeople"
 import HackathonSchedule from "../components/ui/HackathonSchedule"
 
+function useInView() {
+  const ref = useRef(null)
+  const [isInView, setIsInView] = useState(false)
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setIsInView(true); observer.unobserve(entry.target) }
+    }, { threshold: 0.1 })
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+  return [ref, isInView]
+}
+
+/* ── Brand Color System (from branding materials) ── */
+const RED = "#DC2626"
+const RED_DARK = "#B91C1C"
+const RED_LIGHT = "#EF4444"
+const DARK = "#0a0a0a"
+const DARK_CHARCOAL = "#171717"
+const WARM_GREY = "#F5F3F3"
+
+/* Shared button gradient (red) */
+const btnGradient = "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)"
+const btnShadow = "0 4px 14px rgba(220, 38, 38, 0.35)"
+
+/* Shared glassy card style */
+const glassCard = "rounded-2xl border border-black/[0.06] bg-white/60 shadow-sm hover:shadow-md hover:bg-white/80 transition-all duration-300 backdrop-blur-sm"
+
+/* Dark section background */
+const darkSection = "linear-gradient(135deg, #0a0a0a 0%, #171717 35%, #1a1a1a 70%, #111111 100%)"
+
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false)
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
-  const videoRef = useRef(null)
-  const [activeTestimonial, setActiveTestimonial] = useState(0)
-  useEffect(() => {
-    const img = new Image();
-    img.src = "https://i.postimg.cc/hvRx3YK1/poster.png";
-  }, []);
-  
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+
+  const [activitiesRef, activitiesInView] = useInView()
+  const [organizersRef, organizersInView] = useInView()
+  const [prizesRef, prizesInView] = useInView()
+  const [participateRef, participateInView] = useInView()
 
   useEffect(() => {
-    setIsLoaded(true)
-
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
-
-    return () => clearInterval(interval)
+    const targetDate = new Date("2026-04-04T10:00:00+03:00").getTime()
+    const update = () => {
+      const diff = targetDate - Date.now()
+      if (diff > 0) {
+        setTimeLeft({
+          days: Math.floor(diff / 86400000),
+          hours: Math.floor((diff % 86400000) / 3600000),
+          minutes: Math.floor((diff % 3600000) / 60000),
+          seconds: Math.floor((diff % 60000) / 1000),
+        })
+      }
+    }
+    update()
+    const i = setInterval(update, 1000)
+    return () => clearInterval(i)
   }, [])
 
-  const playVideo = () => {
-    if (videoRef.current) {
-      videoRef.current.play()
-      setIsVideoPlaying(true)
-    }
-  }
-
-  const sponsors = [
-    { name: "ALX Ethiopia", logo: "/placeholder.svg?height=80&width=160", tier: "Platinum" },
-    { name: "Kuriftu Resorts", logo: "/placeholder.svg?height=80&width=160", tier: "Platinum" },
-    { name: "WeVenture Hub", logo: "/placeholder.svg?height=80&width=160", tier: "Platinum" },
-    { name: "Tech Partner 1", logo: "/placeholder.svg?height=60&width=120", tier: "Gold" },
-    { name: "Tech Partner 2", logo: "/placeholder.svg?height=60&width=120", tier: "Gold" },
-    { name: "Hospitality Partner", logo: "/placeholder.svg?height=60&width=120", tier: "Gold" },
-    { name: "Startup Incubator", logo: "/placeholder.svg?height=50&width=100", tier: "Silver" },
-    { name: "Local Business", logo: "/placeholder.svg?height=50&width=100", tier: "Silver" },
-  ]
-
-  const testimonials = [
-    {
-      quote:
-        "The Hospitality Hackathon was a game-changer for my career. The connections I made and skills I developed were invaluable.",
-      author: "Sarah Johnson",
-      role: "Previous Participant, Software Developer",
-    },
-    {
-      quote:
-        "As a judge last year, I was blown away by the innovative solutions presented. Can't wait to see what this year brings!",
-      author: "Michael Chen",
-      role: "CTO, Hospitality Tech Innovations",
-    },
-    {
-      quote:
-        "The blend of tech expertise and hospitality knowledge created truly unique solutions to real industry problems.",
-      author: "Ayana Bekele",
-      role: "Hotel Operations Manager",
-    },
-  ]
+  useEffect(() => { setIsLoaded(true) }, [])
 
   const prizes = [
-    {
-      title: "Grand Prize",
-      value: "150k ETB",
-      description: "Cash prize plus 3-month weVenture Incubation program",
-      icon: <Trophy className="h-8 w-8 text-amber-500" />,
-    },
-    {
-      title: "Exclusive Packages",
-      value: "Kuriftu Packages",
-      description: "Luxury stays and experiences at Kuriftu Resorts",
-      icon: <Hotel className="h-8 w-8 text-indigo-500" />,
-    },
-    {
-      title: "Hub Access",
-      value: "ALX Hub Access",
-      description: "Workspace and resources for continued development",
-      icon: <Briefcase className="h-8 w-8 text-emerald-500" />,
-    },
+    { title: "Grand Prize", value: "150k ETB", description: "Cash prize plus 3-month weVenture Incubation program", icon: <Trophy className="h-6 w-6" /> },
+    { title: "Exclusive Packages", value: "Kuriftu Packages", description: "Luxury stays and experiences at Kuriftu Resorts", icon: <Hotel className="h-6 w-6" /> },
+    { title: "Hub Access", value: "ALX Hub Access", description: "Workspace and resources for continued development", icon: <Briefcase className="h-6 w-6" /> },
   ]
 
   const organizers = [
-    {
-      name: "ALX Ethiopia",
-      description:
-        "Empowering young Ethiopians through premier technology training and entrepreneurship, driving the digital economy forward.",
-      icon: alxl,
-    },
-    {
-      name: "Kuriftu Resorts",
-      description:
-        "Setting hospitality standards with luxury service and inspiring venues, perfect for sparking creativity.",
-      icon: kuri,
-    },
-    {
-      name: "weVenture Hub",
-      description: "Fostering startup growth and innovation, providing resources and support to entrepreneurs.",
-      icon: wev,
-    },
+    { name: "ALX Ethiopia", description: "Empowering young Ethiopians through premier technology training and entrepreneurship, driving the digital economy forward.", icon: alxl },
+    { name: "Kuriftu Resorts", description: "Setting hospitality standards with luxury service and inspiring venues, perfect for sparking creativity.", icon: kuri },
+    { name: "weVenture Hub", description: "Fostering startup growth and innovation, providing resources and support to entrepreneurs.", icon: wev },
+  ]
+
+  const steps = [
+    { number: "01", title: "Register", description: "Sign up at our official registration site and secure your team's spot.", icon: <Calendar className="h-5 w-5" />, link: "/registration", linkText: "Register now" },
+    { number: "02", title: "Build Your Team", description: "Open to individual innovators and teams. Need a team? Register and we'll connect you.", icon: <Users className="h-5 w-5" />, link: "/about-us", linkText: "Learn more" },
+    { number: "03", title: "Compete & Win", description: "Present your solution to judges and compete for prizes, incubation, and recognition.", icon: <Trophy className="h-5 w-5" />, link: "/resources", linkText: "View resources" },
   ]
 
   return (
-    <div className={`bg-white min-h-screen transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-blue-950 to-indigo-900 text-white">
-        <div
-          className="absolute inset-0 z-0 opacity-20"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
+    <div className={`bg-neutral-50 min-h-screen transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
 
-        <div className="container mx-auto px-4 py-10 md:pb-32 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-1/2 text-center lg:text-left">
-              <div className="inline-flex items-center justify-center p-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
-                <Calendar className="h-5 w-5 text-amber-400 mr-2" />
-                <span className="text-sm font-medium text-white">April 4 & 18, 2026</span>
-              </div>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* HERO — Dark black with red accents                        */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className="relative overflow-hidden min-h-[82vh] flex items-center -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]" style={{ background: "linear-gradient(135deg, #0a0a0a 0%, #111111 25%, #1a1a1a 50%, #171717 75%, #0a0a0a 100%)" }}>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Hospitality <span className="text-amber-400">Hackathon</span> 2026
-              </h1>
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 z-0 opacity-[0.06]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}></div>
 
-              <p className="text-lg md:text-2xl text-white font-bold mb-4 max-w-xl mx-auto lg:mx-0">SOLVE, CREATE, DISRUPT!</p>
+        {/* Red accent orbs */}
+        <div className="absolute top-1/4 left-[10%] w-[500px] h-[500px] rounded-full animate-orb" style={{ background: "radial-gradient(circle, rgba(220,38,38,0.08) 0%, transparent 70%)" }}></div>
+        <div className="absolute bottom-1/3 right-[10%] w-[600px] h-[600px] rounded-full animate-orb-delay" style={{ background: "radial-gradient(circle, rgba(220,38,38,0.05) 0%, transparent 70%)" }}></div>
 
-              <p className="text-base md:text-lg font-medium text-blue-100 mb-8 max-w-xl mx-auto lg:mx-0">
-                Step into a vibrant space where tech visionaries, entrepreneurs, and hospitality leaders come together
-                to transform Ethiopia's hospitality landscape through innovation.
-              </p>
+        {/* Top gradient line — red */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] animate-gradient" style={{ background: "linear-gradient(90deg, transparent, rgba(220,38,38,0.8), rgba(239,68,68,0.6), transparent)", backgroundSize: "200% 100%" }}></div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link
-                  to="/registration"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-lg transition-colors shadow-lg"
-                >
-                  Register Now
-                  <ChevronRight className="h-5 w-5 ml-1" />
-                </Link>
-                <Link
-                  to="/resources"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-medium rounded-lg transition-colors"
-                >
-                  Explore Resources
-                </Link>
-              </div>
+        {/* Floating tech icons */}
+        <div className="absolute top-28 left-[8%] text-white/[0.03] animate-float hidden lg:block"><Braces className="h-16 w-16" /></div>
+        <div className="absolute top-44 right-[10%] text-white/[0.03] hidden lg:block" style={{ animation: "float 6s ease-in-out 2s infinite" }}><Terminal className="h-12 w-12" /></div>
+        <div className="absolute bottom-48 left-[12%] text-white/[0.03] hidden lg:block" style={{ animation: "float 7s ease-in-out 1s infinite" }}><Code2 className="h-14 w-14" /></div>
+        <div className="absolute bottom-40 right-[7%] text-white/[0.04] hidden lg:block" style={{ animation: "float 5s ease-in-out 3s infinite" }}><Cpu className="h-10 w-10" /></div>
+
+        <div className="container mx-auto px-4 pt-16 pb-28 sm:pt-20 sm:pb-32 md:pt-24 md:pb-40 relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+
+            {/* Badge — glassy pill with red accent */}
+            <div className="animate-fade-in-up inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-8" style={{
+              background: "rgba(255,255,255,0.05)",
+              backdropFilter: "blur(12px)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              boxShadow: "0 2px 12px rgba(0,0,0,0.2)",
+            }}>
+              <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+              <Cpu className="h-3.5 w-3.5 text-red-400" />
+              <span className="text-xs font-medium tracking-wide text-white/70 uppercase">AI-Powered Hospitality Hackathon</span>
             </div>
 
-            <div className="lg:w-3/4">
-              <div className="relative rounded-xl overflow-hidden shadow-2xl border-2 border-white/20">
-                {!isVideoPlaying && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-10">
-                    <button
-                      onClick={playVideo}
-                      className="p-4 bg-amber-500 hover:bg-amber-600 rounded-full transition-colors shadow-lg"
-                    >
-                      <Play className="h-8 w-8 text-white" />
-                    </button>
+            {/* Title */}
+            <h1 className="animate-fade-in-up-delay-1 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-3 leading-[1.08] tracking-tight text-white">
+              <span className="sm:whitespace-nowrap">
+                Hospitality{" "}
+                <span className="animate-gradient bg-clip-text text-transparent" style={{ backgroundImage: `linear-gradient(135deg, ${RED_LIGHT}, ${RED}, ${RED_LIGHT})`, backgroundSize: "200% 200%" }}>
+                  Hackathon
+                </span>
+              </span>{" "}
+              <span className="text-white/70">2026</span>
+            </h1>
+
+            {/* Tagline */}
+            <p className="animate-fade-in-up-delay-2 text-sm md:text-base font-semibold tracking-[0.25em] uppercase text-white/30 mb-7">
+              Solve &middot; Create &middot; Disrupt
+            </p>
+
+            {/* Date & Venue — glassy pills */}
+            <div className="animate-fade-in-up-delay-2 flex flex-col sm:flex-row items-center justify-center gap-3 mb-9">
+              {[
+                { icon: <Calendar className="h-3.5 w-3.5 text-red-400" />, text: "April 4 & 18, 2026" },
+                { icon: <MapPin className="h-3.5 w-3.5 text-red-400" />, text: "ALX Tech Hub & Kuriftu African Village" },
+              ].map((pill, i) => (
+                <div key={i} className="inline-flex items-center gap-2 px-4 py-2 rounded-full" style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(8px)",
+                }}>
+                  {pill.icon}
+                  <span className="text-sm font-medium text-white/60">{pill.text}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Countdown — glassy boxes */}
+            <div className="animate-fade-in-up-delay-3 grid grid-cols-4 gap-3 sm:gap-4 max-w-xs mx-auto mb-10">
+              {[
+                { value: timeLeft.days, label: "Days" },
+                { value: timeLeft.hours, label: "Hours" },
+                { value: timeLeft.minutes, label: "Min" },
+                { value: timeLeft.seconds, label: "Sec" },
+              ].map((item, i) => (
+                <div key={i} className="animate-count-pulse rounded-2xl p-2.5 sm:p-3" style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(8px)",
+                }}>
+                  <div className="text-xl sm:text-2xl font-bold text-white tabular-nums font-mono">
+                    {String(item.value).padStart(2, "0")}
                   </div>
-                )}
-                <video
-                  ref={videoRef}
-                  className="w-full aspect-video object-cover"
-                  poster="/assets/images/poster.png"
-                  controls={isVideoPlaying}
-                  onPlay={() => setIsVideoPlaying(true)}
-                  onPause={() => setIsVideoPlaying(false)}
-                >
-                  <source
-                    src={hero}
-                    type="video/mp4"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+                  <div className="text-[9px] sm:text-[10px] uppercase tracking-wider text-white/25 mt-0.5">{item.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="animate-fade-in-up-delay-4 flex flex-col sm:flex-row gap-3 justify-center px-4 sm:px-0">
+              <Link
+                to="/registration"
+                className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 font-semibold rounded-xl transition-all duration-200 text-white text-sm"
+                style={{ background: btnGradient, boxShadow: btnShadow }}
+              >
+                Register Your Team
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              <Link
+                to="/resources"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 font-medium rounded-xl text-white/80 text-sm transition-all duration-200"
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  backdropFilter: "blur(8px)",
+                }}
+              >
+                Explore Resources
+              </Link>
             </div>
           </div>
         </div>
 
         {/* Wave Divider */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" fill="white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" fill="#fafaf9">
             <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
           </svg>
         </div>
       </section>
-      {/* Hackathon Activities & Venues */}
-      <section className="py-20 bg-slate-50">
+
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* ACTIVITIES & VENUES                                       */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section ref={activitiesRef} className="py-20 bg-neutral-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Hackathon Activities & Venues</h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              A two-day immersive experience across two amazing locations
-            </p>
+          <div className={`text-center mb-14 ${activitiesInView ? "animate-fade-in-up" : "opacity-0"}`}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-neutral-200/60 text-neutral-500 text-xs font-medium tracking-wide uppercase mb-4 shadow-sm">
+              <MapPin className="h-3.5 w-3.5" />
+              Two Venues, Two Days
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight">Activities & Venues</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto ${activitiesInView ? "animate-fade-in-up-delay-2" : "opacity-0"}`}>
             {/* Day 1 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-md">
-              <div className="bg-blue-600 p-4 text-white">
-                <h3 className="text-xl font-bold">Day 1: Saturday, April 4, 2026</h3>
-                <div className="flex items-center mt-2">
-                  <Clock className="h-5 w-5 mr-2" />
-                  <span>10:00 AM - 6:00 PM</span>
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="flex items-start mb-4">
-                  <MapPin className="h-5 w-5 text-blue-600 mr-2 mt-1" />
+            <div className={`${glassCard} overflow-hidden p-1.5`}>
+              <div className="rounded-xl p-5 text-white" style={{ background: "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)" }}>
+                <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-semibold text-slate-800">Location</h4>
-                    <p className="text-slate-600">Capstone ALX Tech Hub, Lideta, Addis Ababa</p>
+                    <div className="text-xs font-medium uppercase tracking-wider mb-1 text-red-400">Day 1</div>
+                    <h3 className="text-lg font-bold">Saturday, April 4, 2026</h3>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-sm text-white/40">
+                    <Clock className="h-4 w-4" />
+                    10 AM – 6 PM
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <Sparkles className="h-5 w-5 text-blue-600 mr-2 mt-1" />
+              </div>
+              <div className="p-6 space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-xl bg-red-50 text-red-600 mt-0.5"><MapPin className="h-4 w-4" /></div>
                   <div>
-                    <h4 className="font-semibold text-slate-800">Activities</h4>
-                    <ul className="text-slate-600 list-disc list-inside space-y-1 mt-2">
-                      <li>Innovation workshops</li>
-                      <li>Team building</li>
-                      <li>MVP development</li>
-                      <li>Technical review sessions</li>
-                    </ul>
+                    <div className="text-sm font-semibold text-neutral-900">ALX Tech Hub</div>
+                    <div className="text-sm text-neutral-500">Lideta, Addis Ababa</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-xl bg-red-50 text-red-600 mt-0.5"><Sparkles className="h-4 w-4" /></div>
+                  <div>
+                    <div className="text-sm font-semibold text-neutral-900 mb-1.5">Activities</div>
+                    <div className="flex flex-wrap gap-2">
+                      {["Innovation workshops", "Team building", "MVP development", "Technical reviews"].map((item) => (
+                        <span key={item} className="inline-flex px-2.5 py-1 rounded-lg bg-neutral-50 text-xs font-medium text-neutral-600 border border-neutral-100">{item}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Day 2 */}
-            <div className="bg-white rounded-xl overflow-hidden shadow-md">
-              <div className="bg-amber-600 p-4 text-white">
-                <h3 className="text-xl font-bold">Day 2: Saturday, April 18, 2026</h3>
-                <div className="flex items-center mt-2">
-                  <Clock className="h-5 w-5 mr-2" />
-                  <span>10:00 AM - 5:00 PM</span>
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="flex items-start mb-4">
-                  <MapPin className="h-5 w-5 text-amber-600 mr-2 mt-1" />
+            <div className={`${glassCard} overflow-hidden p-1.5`}>
+              <div className="rounded-xl p-5 text-white" style={{ background: `linear-gradient(135deg, ${RED} 0%, ${RED_DARK} 100%)` }}>
+                <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-semibold text-slate-800">Location</h4>
-                    <p className="text-slate-600">Kuriftu African Village, Burayu</p>
+                    <div className="text-xs font-medium uppercase tracking-wider mb-1 text-white/70">Day 2</div>
+                    <h3 className="text-lg font-bold">Saturday, April 18, 2026</h3>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-sm text-white/60">
+                    <Clock className="h-4 w-4" />
+                    10 AM – 5 PM
                   </div>
                 </div>
-                <div className="flex items-start">
-                  <Sparkles className="h-5 w-5 text-amber-600 mr-2 mt-1" />
+              </div>
+              <div className="p-6 space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-xl mt-0.5 bg-red-50 text-red-600"><MapPin className="h-4 w-4" /></div>
                   <div>
-                    <h4 className="font-semibold text-slate-800">Activities</h4>
-                    <ul className="text-slate-600 list-disc list-inside space-y-1 mt-2">
-                      <li>Final pitch preparations</li>
-                      <li>Presentation to judges</li>
-                      <li>Awards ceremony</li>
-                      <li>Extended networking</li>
-                    </ul>
+                    <div className="text-sm font-semibold text-neutral-900">Kuriftu African Village</div>
+                    <div className="text-sm text-neutral-500">Burayu</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-xl mt-0.5 bg-red-50 text-red-600"><Sparkles className="h-4 w-4" /></div>
+                  <div>
+                    <div className="text-sm font-semibold text-neutral-900 mb-1.5">Activities</div>
+                    <div className="flex flex-wrap gap-2">
+                      {["Final pitches", "Judging panel", "Awards ceremony", "Networking"].map((item) => (
+                        <span key={item} className="inline-flex px-2.5 py-1 rounded-lg bg-neutral-50 text-xs font-medium text-neutral-600 border border-neutral-100">{item}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -291,236 +324,201 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      <HackathonSchedule />
-    </div>
+
+      {/* Schedule */}
+      <section className="bg-white border-t border-neutral-100">
+        <HackathonSchedule />
       </section>
 
-      {/* Meet the Organizers */}
-      <section className="py-20">
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* ORGANIZERS                                                */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section ref={organizersRef} className="py-20 bg-neutral-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Jointly Organized By</h2>
-            
+          <div className={`text-center mb-14 ${organizersInView ? "animate-fade-in-up" : "opacity-0"}`}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-neutral-200/60 text-neutral-500 text-xs font-medium tracking-wide uppercase mb-4 shadow-sm">
+              <Users className="h-3.5 w-3.5" />
+              Partners
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight">Jointly Organized By</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {organizers.map((organizer, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-md border border-slate-100">
-                <img className="p-3 w-full h-24 bg-slate-50 rounded-lg inline-block mb-4" src={organizer.icon} />
-                <h3 className="text-xl font-semibold mb-3 text-slate-800">{organizer.name}</h3>
-                <p className="text-slate-600">{organizer.description}</p>
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto ${organizersInView ? "animate-fade-in-up-delay-2" : "opacity-0"}`}>
+            {organizers.map((org, i) => (
+              <div key={i} className={`${glassCard} p-6 text-center`}>
+                <div className="h-16 w-full mb-5 flex items-center justify-center">
+                  <img className={`w-auto object-contain ${org.icon === alxl ? 'max-h-14 min-w-[120px] max-w-[140px]' : 'max-h-14 max-w-[160px]'}`} src={org.icon} alt={org.name} />
+                </div>
+                <h3 className="text-base font-semibold text-neutral-900 mb-2">{org.name}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{org.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section>
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      <HackathonPeople />
-    </div>
+      {/* People */}
+      <section className="bg-white">
+        <HackathonPeople />
       </section>
 
-      {/* Prizes & Opportunities */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 to-indigo-900 text-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 z-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* PRIZES — Dark section                                     */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section ref={prizesRef} className="relative py-24 overflow-hidden" style={{ background: darkSection }}>
+        <div className="absolute inset-0 opacity-[0.04]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}></div>
+
+        {/* Subtle red accent glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full" style={{ background: "radial-gradient(ellipse, rgba(220,38,38,0.06) 0%, transparent 70%)" }}></div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center p-2 bg-white/10 backdrop-blur-sm rounded-full mb-4">
-              <Award className="h-5 w-5 text-amber-400 mr-2" />
-              <span className="text-sm font-medium text-white">Exciting Prizes</span>
+          <div className={`text-center mb-14 ${prizesInView ? "animate-fade-in-up" : "opacity-0"}`}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium tracking-wide uppercase text-white/40 mb-4" style={{
+              background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)",
+            }}>
+              <Award className="h-3.5 w-3.5 text-red-400" />
+              Prizes & Opportunities
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Prizes & Opportunities</h2>
-            <p className="text-lg text-blue-100 max-w-3xl mx-auto">
-              The 2026 Hospitality Hackathon offers a platform not just for winning impressive prizes but also for
-              engaging directly with top industry leaders and enhancing your professional skills through hands-on
-              challenges.
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">Compete & Win</h2>
+            <p className="text-base text-white/35 max-w-2xl mx-auto">
+              The 2026 Hospitality Hackathon offers impressive prizes, direct engagement with industry leaders, and hands-on skill development.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {prizes.map((prize, index) => (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-8 text-center border border-white/20 hover:bg-white/15 transition-colors"
-              >
-                <div className="bg-white/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-5 mb-14 max-w-5xl mx-auto ${prizesInView ? "animate-fade-in-up-delay-2" : "opacity-0"}`}>
+            {prizes.map((prize, i) => (
+              <div key={i} className="group rounded-2xl p-6 transition-all duration-300" style={{
+                background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)",
+                backdropFilter: "blur(8px)",
+              }}>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 text-red-400" style={{ background: "rgba(220,38,38,0.12)" }}>
                   {prize.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{prize.title}</h3>
-                <div className="text-3xl font-bold text-amber-400 mb-4">{prize.value}</div>
-                <p className="text-blue-100">{prize.description}</p>
+                <div className="text-sm text-white/35 mb-1">{prize.title}</div>
+                <div className="text-2xl font-bold text-white mb-2">{prize.value}</div>
+                <p className="text-sm text-white/35 leading-relaxed">{prize.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-6 text-center">Compete for Prizes & Opportunities</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex items-start">
-                <div className="bg-white/10 p-2 rounded-full mr-4 mt-1">
-                  <Trophy className="h-5 w-5 text-amber-400" />
-                </div>
+          <div className={`grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto mb-12 ${prizesInView ? "animate-fade-in-up-delay-3" : "opacity-0"}`}>
+            {[
+              { icon: <Trophy className="h-4 w-4" />, title: "Win Big", desc: "150k ETB, Kuriftu packages, ALX hub access" },
+              { icon: <Lightbulb className="h-4 w-4" />, title: "Incubation", desc: "3-month weVenture program to launch your solution" },
+              { icon: <Users className="h-4 w-4" />, title: "Network", desc: "Connect with industry leaders and investors" },
+              { icon: <Star className="h-4 w-4" />, title: "Recognition", desc: "Showcase to an esteemed panel of judges" },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3 p-4 rounded-xl" style={{
+                background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)",
+              }}>
+                <div className="p-1.5 rounded-lg mt-0.5 text-red-400" style={{ background: "rgba(220,38,38,0.1)" }}>{item.icon}</div>
                 <div>
-                  <h4 className="font-semibold text-white mb-1">Win Big</h4>
-                  <p className="text-blue-100">
-                    Secure 150k ETB for 1st place, along with exclusive Kuriftu packages, ALX hub access, and other
-                    rewards.
-                  </p>
+                  <div className="text-sm font-semibold text-white">{item.title}</div>
+                  <div className="text-xs text-white/30">{item.desc}</div>
                 </div>
               </div>
-
-              <div className="flex items-start">
-                <div className="bg-white/10 p-2 rounded-full mr-4 mt-1">
-                  <Lightbulb className="h-5 w-5 text-amber-400" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white mb-1">Incubation Support</h4>
-                  <p className="text-blue-100">
-                    Gain access to a 3-month weVenture Incubation program to help refine and launch your solutions.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="bg-white/10 p-2 rounded-full mr-4 mt-1">
-                  <Users className="h-5 w-5 text-amber-400" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white mb-1">Expand Your Network</h4>
-                  <p className="text-blue-100">Connect with industry leaders and potential investors.</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <div className="bg-white/10 p-2 rounded-full mr-4 mt-1">
-                  <Star className="h-5 w-5 text-amber-400" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-white mb-1">Gain Recognition</h4>
-                  <p className="text-blue-100">
-                    Showcase your skills and solutions to an esteemed panel of judges, receive industry-wide
-                    recognition.
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="text-center">
             <Link
               to="/registration"
-              className="inline-flex items-center justify-center px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-lg transition-colors shadow-lg"
+              className="group inline-flex items-center gap-2 px-6 py-3 text-white font-semibold rounded-xl transition-all duration-200 text-sm"
+              style={{ background: btnGradient, boxShadow: btnShadow }}
             >
               Register to Compete
-              <ChevronRight className="h-5 w-5 ml-1" />
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* How to Participate & Contact Us */}
-      <section className="py-20 bg-slate-50">
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* HOW TO PARTICIPATE                                        */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section ref={participateRef} className="py-20 bg-neutral-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">How to Participate</h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Join us for this exciting opportunity to innovate in Ethiopia's hospitality industry
-            </p>
+          <div className={`text-center mb-14 ${participateInView ? "animate-fade-in-up" : "opacity-0"}`}>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-neutral-200/60 text-neutral-500 text-xs font-medium tracking-wide uppercase mb-4 shadow-sm">
+              <Zap className="h-3.5 w-3.5" />
+              Get Started
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 tracking-tight">How to Participate</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-white rounded-xl p-6 shadow-md border border-slate-100">
-              <div className="p-3 bg-blue-50 rounded-lg inline-block mb-4">
-                <Calendar className="h-6 w-6 text-blue-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-slate-800">Register</h3>
-              <p className="text-slate-600 mb-4">Sign up by March 30th at our official registration site.</p>
-              <Link
-                to="/registration"
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Register now
-                <ArrowRight className="h-4 w-4 ml-1" />
-              </Link>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-md border border-slate-100">
-              <div className="p-3 bg-amber-50 rounded-lg inline-block mb-4">
-                <Users className="h-6 w-6 text-amber-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-slate-800">Eligibility</h3>
-              <p className="text-slate-600 mb-4">
-                Open to individual innovators and teams. Need a team? Register and we'll connect you.
-              </p>
-              <Link to="/about-us" className="inline-flex items-center text-amber-600 hover:text-amber-700 font-medium">
-                Learn more
-                <ArrowRight className="h-4 w-4 ml-1" />
-              </Link>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-md border border-slate-100">
-              <div className="p-3 bg-emerald-50 rounded-lg inline-block mb-4">
-                <Mail className="h-6 w-6 text-emerald-600" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-slate-800">Contact Us</h3>
-              <p className="text-slate-600 mb-4">Have questions? Reach out to us via email or phone.</p>
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <Mail className="h-4 w-4 text-slate-400 mr-2" />
-                  <span className="text-slate-600">info@hospitalityhackathon2026.com</span>
-                </div>
-                <div className="flex items-center">
-                  <Phone className="h-4 w-4 text-slate-400 mr-2" />
-                  <span className="text-slate-600">+251 91 234 5678</span>
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto ${participateInView ? "animate-fade-in-up-delay-2" : "opacity-0"}`}>
+            {steps.map((step, i) => (
+              <div key={i} className={`${glassCard} p-6 relative overflow-hidden group`}>
+                <div className="absolute -top-2 -right-2 text-7xl font-bold text-neutral-100/50 select-none group-hover:text-neutral-200/50 transition-colors duration-300">{step.number}</div>
+                <div className="relative z-10">
+                  <div className="p-2.5 rounded-xl bg-white/80 border border-neutral-200/60 text-neutral-500 inline-flex mb-4 shadow-sm">
+                    {step.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold text-neutral-900 mb-2">{step.title}</h3>
+                  <p className="text-sm text-neutral-500 mb-4 leading-relaxed">{step.description}</p>
+                  <Link to={step.link} className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors" style={{ color: RED }}>
+                    {step.linkText}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
                 </div>
               </div>
+            ))}
+          </div>
+
+          <div className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-6 ${participateInView ? "animate-fade-in-up-delay-3" : "opacity-0"}`}>
+            <div className="flex items-center gap-2 text-sm text-neutral-500">
+              <Mail className="h-4 w-4 text-neutral-400" />
+              info@hospitalityhackathon.et
+            </div>
+            <div className="hidden sm:block w-1 h-1 bg-neutral-300 rounded-full"></div>
+            <div className="flex items-center gap-2 text-sm text-neutral-500">
+              <Phone className="h-4 w-4 text-neutral-400" />
+              +251 91 234 5678
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="flex flex-col justify-end gap-20 pb-2 pt-20 bg-gradient-to-r from-amber-500 to-amber-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">SOLVE, CREATE, DISRUPT!</h2>
-            <p className="text-xl mb-8">
-              Join us for two days of innovation, collaboration, and fun at the Hospitality Hackathon 2026.
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* CTA — Dark section                                        */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <section className="relative py-20 overflow-hidden" style={{ background: darkSection }}>
+        <div className="absolute inset-0 opacity-[0.04]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23ffffff' fillOpacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}></div>
+
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full" style={{ background: "radial-gradient(ellipse, rgba(220,38,38,0.05) 0%, transparent 70%)" }}></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight mb-4">
+              Ready to build the future of hospitality?
+            </h2>
+            <p className="text-lg text-white/35 mb-8 max-w-xl mx-auto">
+              Join innovators, developers, and industry leaders for two days of creation, competition, and collaboration.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 to="/registration"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-amber-600 font-medium rounded-lg transition-colors shadow-lg hover:bg-blue-50"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-semibold rounded-xl transition-all duration-200"
+                style={{ background: btnGradient, boxShadow: btnShadow }}
               >
-                Register Now
-                <ChevronRight className="h-5 w-5 ml-1" />
+                Register Your Team
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <Link
                 to="/contact-us"
-                className="inline-flex items-center justify-center px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-lg transition-colors border border-white/20"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-white/80 font-medium rounded-xl transition-all duration-200"
+                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
               >
-
                 Contact Us
               </Link>
-            </div >
-            
-            
+            </div>
           </div>
         </div>
-      
       </section>
-     
-     
     </div>
   )
 }
-

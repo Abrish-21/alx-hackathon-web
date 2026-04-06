@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
   const navigate = useNavigate();
-  const [registrationType, setRegistrationType] = useState("individual");
+  const [registrationType, setRegistrationType] = useState("team");
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -20,13 +20,11 @@ const Registration = () => {
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [fieldErrors, setFieldErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Clear field errors when form data changes
   useEffect(() => {
-    if (Object.keys(fieldErrors).length > 0) {
-      setFieldErrors({});
-    }
+    setFieldErrors((prev) => Object.keys(prev).length > 0 ? {} : prev);
   }, [formData]);
 
   const handleRegistrationTypeChange = (type) => {
@@ -341,18 +339,25 @@ const Registration = () => {
 
   if (showSuccess) {
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div
+        className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]"
+        style={{
+          background: "linear-gradient(135deg, #0a0a0a 0%, #171717 35%, #1a1a1a 70%, #111111 100%)"
+        }}
+      >
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow-lg sm:rounded-lg sm:px-10 text-center">
+          <div
+            className="rounded-2xl border border-black/[0.06] bg-white/60 shadow-sm backdrop-blur-sm py-8 px-4 sm:px-10 text-center"
+          >
             <div className="mb-6">
-              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-100">
-                <svg className="h-10 w-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full" style={{ backgroundColor: "#DC2626" }}>
+                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Registration Successful!</h2>
-            <p className="text-gray-600 mb-8">
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">Registration Successful!</h2>
+            <p className="text-neutral-600 mb-8">
               {registrationType === "team"
                 ? "Thank you for registering your team for the ALX Hackathon! You and your team members will receive confirmation emails with QR codes shortly."
                 : "Thank you for registering for the ALX Hackathon! You will receive a confirmation email with your QR code shortly."}
@@ -360,7 +365,11 @@ const Registration = () => {
             <div className="space-y-4">
               <button
                 onClick={() => navigate("/")}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white transition-all duration-200 transform hover:scale-[1.02]"
+                style={{
+                  background: "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)",
+                  boxShadow: "0 4px 14px rgba(220, 38, 38, 0.35)"
+                }}
               >
                 Return to Home
               </button>
@@ -369,7 +378,11 @@ const Registration = () => {
                   setShowSuccess(false);
                   setRegistrationType("individual");
                 }}
-                className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-full flex justify-center py-2 px-4 border border-neutral-300 rounded-lg shadow-sm text-sm font-medium text-neutral-700 bg-white/80 hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200"
+                style={{
+                  borderColor: "#DC2626",
+                  color: "#DC2626"
+                }}
               >
                 Register Another Participant
               </button>
@@ -381,29 +394,64 @@ const Registration = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Register for ALX Hackathon</h2>
+    <div
+      className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 -mt-[56px] pt-[56px] lg:-mt-[72px] lg:pt-[72px]"
+      style={{
+        background: "linear-gradient(135deg, #0a0a0a 0%, #171717 35%, #1a1a1a 70%, #111111 100%)"
+      }}
+    >
+      <div className="pt-10 sm:pt-14 lg:pt-16" />
+      <div
+        className="max-w-3xl mx-auto rounded-2xl border border-white/10 shadow-xl p-8 sm:p-10"
+        style={{
+          background: "rgba(255, 255, 255, 0.08)",
+          backdropFilter: "blur(20px) saturate(180%)",
+          WebkitBackdropFilter: "blur(20px) saturate(180%)",
+          boxShadow: "0 0 0 0.5px rgba(255,255,255,0.08), 0 8px 40px rgba(0,0,0,0.4)"
+        }}
+      >
+        <h2 className="text-3xl font-bold text-center text-white mb-2">Register for ALX Hackathon</h2>
+        <p className="text-center text-neutral-400 mb-8 text-sm">April 4 & 18, 2026 — Addis Ababa, Ethiopia</p>
 
         <div className="mb-8">
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center space-x-4 flex-wrap gap-2">
             <button
               type="button"
               onClick={() => handleRegistrationTypeChange("individual")}
-              className={`px-6 py-3 rounded-lg font-medium ${
+              className="px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-[1.02]"
+              style={
                 registrationType === "individual"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+                  ? {
+                      background: "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)",
+                      color: "white",
+                      boxShadow: "0 4px 14px rgba(220, 38, 38, 0.35)"
+                    }
+                  : {
+                      backgroundColor: "rgba(255, 255, 255, 0.06)",
+                      color: "#a3a3a3",
+                      border: "1px solid rgba(255, 255, 255, 0.1)"
+                    }
+              }
             >
               Individual Registration
             </button>
             <button
               type="button"
               onClick={() => handleRegistrationTypeChange("team")}
-              className={`px-6 py-3 rounded-lg font-medium ${
-                registrationType === "team" ? "bg-blue-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
+              className="px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-[1.02]"
+              style={
+                registrationType === "team"
+                  ? {
+                      background: "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)",
+                      color: "white",
+                      boxShadow: "0 4px 14px rgba(220, 38, 38, 0.35)"
+                    }
+                  : {
+                      backgroundColor: "rgba(255, 255, 255, 0.06)",
+                      color: "#a3a3a3",
+                      border: "1px solid rgba(255, 255, 255, 0.1)"
+                    }
+              }
             >
               Team Registration
             </button>
@@ -412,57 +460,57 @@ const Registration = () => {
 
         {status.message && (
           <div
-            className={`mb-6 p-4 rounded-md ${
+            className={`mb-6 p-4 rounded-xl border flex items-center gap-3 ${
               status.type === "error"
-                ? "bg-red-50 text-red-700 border border-red-200"
+                ? "bg-red-900/30 text-red-300 border-red-500/30"
                 : status.type === "loading"
-                  ? "bg-blue-50 text-blue-700 border border-blue-200"
-                  : "bg-green-50 text-green-700 border border-green-200"
+                  ? "bg-white/5 text-neutral-300 border-white/10"
+                  : "bg-white/5 text-neutral-300 border-white/10"
             }`}
           >
-            <div className="flex items-center">
-              {status.type === "loading" && (
-                <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-700"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-              )}
-              {status.type === "error" && (
-                <svg
-                  className="h-5 w-5 text-red-400 mr-3"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+            {status.type === "loading" && (
+              <svg
+                className="animate-spin flex-shrink-0 h-5 w-5"
+                style={{ color: "#DC2626" }}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path
+                  className="opacity-75"
                   fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              )}
-              <span className="flex-1">{status.message}</span>
-            </div>
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            )}
+            {status.type === "error" && (
+              <svg
+                className="flex-shrink-0 h-5 w-5"
+                style={{ color: "#DC2626" }}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            )}
+            <span className="flex-1">{status.message}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className={`bg-blue-50 p-4 rounded-md mb-6`}>
-            <h3 className="text-xl font-semibold text-blue-800 mb-4">
+          <div className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 mb-6">
+            <h3 className="text-xl font-semibold text-white mb-4">
               {registrationType === "team" ? "Team Lead Information" : "Personal Information"}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="fullName" className="block text-sm font-medium text-neutral-300">
                   Full Name *
                 </label>
                 <input
@@ -471,15 +519,17 @@ const Registration = () => {
                   id="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-lg border ${
-                    fieldErrors.fullName ? "border-red-500 bg-red-50" : "border-gray-300 bg-white"
-                  } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5 hover:border-blue-400 transition-colors duration-200`}
+                  className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
+                    fieldErrors.fullName
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                  } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 />
-                {fieldErrors.fullName && <p className="mt-1 text-sm text-red-600">{fieldErrors.fullName}</p>}
+                {fieldErrors.fullName && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.fullName}</p>}
               </div>
 
               <div>
-                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-neutral-300">
                   Phone Number *
                 </label>
                 <input
@@ -488,15 +538,17 @@ const Registration = () => {
                   id="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-lg border ${
-                    fieldErrors.phoneNumber ? "border-red-500 bg-red-50" : "border-gray-300 bg-white"
-                  } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5 hover:border-blue-400 transition-colors duration-200`}
+                  className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
+                    fieldErrors.phoneNumber
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                  } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 />
-                {fieldErrors.phoneNumber && <p className="mt-1 text-sm text-red-600">{fieldErrors.phoneNumber}</p>}
+                {fieldErrors.phoneNumber && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.phoneNumber}</p>}
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="email" className="block text-sm font-medium text-neutral-300">
                   Email Address *
                 </label>
                 <input
@@ -505,15 +557,17 @@ const Registration = () => {
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-lg border ${
-                    fieldErrors.email ? "border-red-500 bg-red-50" : "border-gray-300 bg-white"
-                  } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5 hover:border-blue-400 transition-colors duration-200`}
+                  className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
+                    fieldErrors.email
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                  } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 />
-                {fieldErrors.email && <p className="mt-1 text-sm text-red-600">{fieldErrors.email}</p>}
+                {fieldErrors.email && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.email}</p>}
               </div>
 
               <div>
-                <label htmlFor="alxAffiliation" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="alxAffiliation" className="block text-sm font-medium text-neutral-300">
                   ALX Affiliation *
                 </label>
                 <select
@@ -521,9 +575,11 @@ const Registration = () => {
                   id="alxAffiliation"
                   value={formData.alxAffiliation}
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-lg border ${
-                    fieldErrors.alxAffiliation ? "border-red-500 bg-red-50" : "border-gray-300 bg-white"
-                  } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5 hover:border-blue-400 transition-colors duration-200`}
+                  className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
+                    fieldErrors.alxAffiliation
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                  } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 >
                   <option value="">Select your affiliation</option>
                   <option value="Learner">Learner</option>
@@ -531,13 +587,13 @@ const Registration = () => {
                   <option value="Neither">Neither</option>
                 </select>
                 {fieldErrors.alxAffiliation && (
-                  <p className="mt-1 text-sm text-red-600">{fieldErrors.alxAffiliation}</p>
+                  <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.alxAffiliation}</p>
                 )}
               </div>
 
               {registrationType === "team" && (
                 <div>
-                  <label htmlFor="teamName" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="teamName" className="block text-sm font-medium text-neutral-300">
                     Team Name *
                   </label>
                   <input
@@ -546,16 +602,18 @@ const Registration = () => {
                     id="teamName"
                     value={formData.teamName}
                     onChange={handleChange}
-                    className={`mt-1 block w-full rounded-lg border ${
-                      fieldErrors.teamName ? "border-red-500 bg-red-50" : "border-gray-300 bg-white"
-                    } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5 hover:border-blue-400 transition-colors duration-200`}
+                    className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
+                      fieldErrors.teamName
+                        ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                        : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                    } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                   />
-                  {fieldErrors.teamName && <p className="mt-1 text-sm text-red-600">{fieldErrors.teamName}</p>}
+                  {fieldErrors.teamName && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.teamName}</p>}
                 </div>
               )}
 
               <div>
-                <label htmlFor="roleType" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="roleType" className="block text-sm font-medium text-neutral-300">
                   Role Type *
                 </label>
                 <select
@@ -563,9 +621,11 @@ const Registration = () => {
                   id="roleType"
                   value={formData.roleType}
                   onChange={handleChange}
-                  className={`mt-1 block w-full rounded-lg border ${
-                    fieldErrors.roleType ? "border-red-500 bg-red-50" : "border-gray-300 bg-white"
-                  } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5 hover:border-blue-400 transition-colors duration-200`}
+                  className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
+                    fieldErrors.roleType
+                      ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                      : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                  } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
                 >
                   <option value="">Select your role</option>
                   <option value="Developer">Developer</option>
@@ -574,12 +634,12 @@ const Registration = () => {
                   <option value="Entrepreneur">Entrepreneur</option>
                   <option value="Other">Other</option>
                 </select>
-                {fieldErrors.roleType && <p className="mt-1 text-sm text-red-600">{fieldErrors.roleType}</p>}
+                {fieldErrors.roleType && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.roleType}</p>}
               </div>
             </div>
 
             <div className="mt-4">
-              <label htmlFor="strengths" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="strengths" className="block text-sm font-medium text-neutral-300">
                 Strengths/Background *
               </label>
               <textarea
@@ -589,22 +649,28 @@ const Registration = () => {
                 value={formData.strengths}
                 onChange={handleChange}
                 placeholder="Describe your skills, experience, and what you can bring to the hackathon"
-                className={`mt-1 block w-full rounded-lg border ${
-                  fieldErrors.strengths ? "border-red-500 bg-red-50" : "border-gray-300 bg-white"
-                } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5 hover:border-blue-400 transition-colors duration-200`}
+                className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
+                  fieldErrors.strengths
+                    ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                    : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                } shadow-sm sm:text-sm p-2.5 hover:border-neutral-400`}
               />
-              {fieldErrors.strengths && <p className="mt-1 text-sm text-red-600">{fieldErrors.strengths}</p>}
+              {fieldErrors.strengths && <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors.strengths}</p>}
             </div>
           </div>
 
           {registrationType === "team" && (
-            <div className="bg-gray-50 p-4 rounded-md">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-semibold text-gray-800">Team Members (Max 4 Additional Members)</h3>
+            <div className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
+              <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
+                <h3 className="text-xl font-semibold text-white">Team Members (Max 4 Additional Members)</h3>
                 <button
                   type="button"
                   onClick={addTeamMember}
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="inline-flex items-center px-4 py-2 text-sm leading-4 font-medium rounded-lg text-white border border-transparent transition-all duration-200 transform hover:scale-[1.02]"
+                  style={{
+                    background: "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)",
+                    boxShadow: "0 4px 14px rgba(220, 38, 38, 0.35)"
+                  }}
                 >
                   Add Team Member
                 </button>
@@ -612,20 +678,21 @@ const Registration = () => {
 
               {formData.teamMembers.map((member, index) =>
                 index === 0 ? null : (
-                  <div key={index} className="mb-6 p-4 border border-gray-200 rounded-md">
+                  <div key={index} className="mb-6 p-4 border border-white/10 bg-white/5 rounded-xl">
                     <div className="flex justify-between items-center mb-4">
-                      <h4 className="font-medium text-gray-700">Team Member #{index}</h4>
+                      <h4 className="font-medium text-neutral-200">Team Member #{index}</h4>
                       <button
                         type="button"
                         onClick={() => removeTeamMember(index)}
-                        className="text-red-500 hover:text-red-700"
+                        className="font-medium transition-colors duration-200"
+                        style={{ color: "#DC2626" }}
                       >
                         Remove
                       </button>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor={`member-${index}-name`} className="block text-sm font-medium text-gray-700">
+                        <label htmlFor={`member-${index}-name`} className="block text-sm font-medium text-neutral-300">
                           Full Name *
                         </label>
                         <input
@@ -634,18 +701,18 @@ const Registration = () => {
                           id={`member-${index}-name`}
                           value={member.fullName}
                           onChange={(e) => handleTeamMemberChange(index, e)}
-                          className={`mt-1 block w-full rounded-lg border ${
+                          className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                             fieldErrors[`teamMember-${index}-fullName`]
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-300 bg-white"
-                          } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5`}
+                              ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                              : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                          } shadow-sm sm:text-sm p-2.5`}
                         />
                         {fieldErrors[`teamMember-${index}-fullName`] && (
-                          <p className="mt-1 text-sm text-red-600">{fieldErrors[`teamMember-${index}-fullName`]}</p>
+                          <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors[`teamMember-${index}-fullName`]}</p>
                         )}
                       </div>
                       <div>
-                        <label htmlFor={`member-${index}-email`} className="block text-sm font-medium text-gray-700">
+                        <label htmlFor={`member-${index}-email`} className="block text-sm font-medium text-neutral-300">
                           Email *
                         </label>
                         <input
@@ -654,18 +721,18 @@ const Registration = () => {
                           id={`member-${index}-email`}
                           value={member.email}
                           onChange={(e) => handleTeamMemberChange(index, e)}
-                          className={`mt-1 block w-full rounded-lg border ${
+                          className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                             fieldErrors[`teamMember-${index}-email`]
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-300 bg-white"
-                          } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5`}
+                              ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                              : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                          } shadow-sm sm:text-sm p-2.5`}
                         />
                         {fieldErrors[`teamMember-${index}-email`] && (
-                          <p className="mt-1 text-sm text-red-600">{fieldErrors[`teamMember-${index}-email`]}</p>
+                          <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors[`teamMember-${index}-email`]}</p>
                         )}
                       </div>
                       <div>
-                        <label htmlFor={`member-${index}-phone`} className="block text-sm font-medium text-gray-700">
+                        <label htmlFor={`member-${index}-phone`} className="block text-sm font-medium text-neutral-300">
                           Phone Number *
                         </label>
                         <input
@@ -674,18 +741,18 @@ const Registration = () => {
                           id={`member-${index}-phone`}
                           value={member.phoneNumber}
                           onChange={(e) => handleTeamMemberChange(index, e)}
-                          className={`mt-1 block w-full rounded-lg border ${
+                          className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                             fieldErrors[`teamMember-${index}-phoneNumber`]
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-300 bg-white"
-                          } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5`}
+                              ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                              : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                          } shadow-sm sm:text-sm p-2.5`}
                         />
                         {fieldErrors[`teamMember-${index}-phoneNumber`] && (
-                          <p className="mt-1 text-sm text-red-600">{fieldErrors[`teamMember-${index}-phoneNumber`]}</p>
+                          <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors[`teamMember-${index}-phoneNumber`]}</p>
                         )}
                       </div>
                       <div>
-                        <label htmlFor={`member-${index}-role`} className="block text-sm font-medium text-gray-700">
+                        <label htmlFor={`member-${index}-role`} className="block text-sm font-medium text-neutral-300">
                           Role *
                         </label>
                         <select
@@ -693,11 +760,11 @@ const Registration = () => {
                           id={`member-${index}-role`}
                           value={member.roleType}
                           onChange={(e) => handleTeamMemberChange(index, e)}
-                          className={`mt-1 block w-full rounded-lg border ${
+                          className={`mt-1 block w-full rounded-lg border transition-colors duration-200 ${
                             fieldErrors[`teamMember-${index}-roleType`]
-                              ? "border-red-500 bg-red-50"
-                              : "border-gray-300 bg-white"
-                          } shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2.5`}
+                              ? "border-red-500/50 bg-red-900/20 text-white focus:ring-red-500 focus:border-red-500"
+                              : "border-white/10 bg-white/5 text-white placeholder-neutral-500 focus:ring-red-500 focus:border-red-500"
+                          } shadow-sm sm:text-sm p-2.5`}
                         >
                           <option value="">Select role</option>
                           <option value="Developer">Developer</option>
@@ -707,7 +774,7 @@ const Registration = () => {
                           <option value="Other">Other</option>
                         </select>
                         {fieldErrors[`teamMember-${index}-roleType`] && (
-                          <p className="mt-1 text-sm text-red-600">{fieldErrors[`teamMember-${index}-roleType`]}</p>
+                          <p className="mt-1 text-sm font-medium" style={{ color: "#DC2626" }}>{fieldErrors[`teamMember-${index}-roleType`]}</p>
                         )}
                       </div>
                     </div>
@@ -720,8 +787,12 @@ const Registration = () => {
           <div>
             <button
               type="submit"
-              disabled={isSubmitting} // Disable button when submitting
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transform hover:scale-[1.02] transition-all duration-200"
+              disabled={isSubmitting}
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg text-sm font-medium text-white transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-75 disabled:cursor-not-allowed"
+              style={{
+                background: isSubmitting ? "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)" : "linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%)",
+                boxShadow: "0 4px 14px rgba(220, 38, 38, 0.35)"
+              }}
             >
               {isSubmitting ? (
                 <svg
@@ -743,11 +814,6 @@ const Registration = () => {
                 "Register"
               )}
             </button>
-            {status.message && (
-              <div className={`mb-6 p-4 rounded-md ${status.type === 'error' ? 'bg-red-50 text-red-700' : 'bg-green-50 text-green-700'}`}>
-                {status.message}
-              </div>
-            )}
           </div>
         </form>
       </div>

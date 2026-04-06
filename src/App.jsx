@@ -11,7 +11,7 @@ import Footer from './layouts/Footer'
 
 function App() {
   return (
-    <div className='bg-blue-500'>
+    <div className='bg-white'>
       <Router>
         <Navbar />
         <Routes>
